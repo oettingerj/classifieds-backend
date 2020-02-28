@@ -73,17 +73,25 @@ WSGI_APPLICATION = 'classifieds.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+#DATABASES = {
     # superuser name and password are the same as below
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'classifieds', #os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'USER': 'sampleuser',
+#        'PASSWORD': 'password',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
+
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'classifieds', #os.path.join(BASE_DIR, 'db.sqlite3'),
-        'USER': 'sampleuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation
