@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.urls import path, re_path
+from sample import views
+from django.conf.urls import url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    re_path(r'^api/import/test$', views.import_test)
 ]
