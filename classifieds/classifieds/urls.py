@@ -21,5 +21,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    re_path(r'^api/import/test$', views.import_test)
+    path('api/import/<name>/<email>/<role>/', views.import_test),
+    path('api/import/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.import_posting)
 ]
