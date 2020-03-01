@@ -14,7 +14,7 @@ from .serializers import *
 
 
 @api_view(['GET', 'POST'])
-def import_test(request, name, email, role):
+def import_user(request, name, email, role):
     print(str(name))
     print(str(email))
     print(str(role))
@@ -42,13 +42,13 @@ def import_test(request, name, email, role):
 
 @api_view(['GET', 'POST'])
 def import_posting(request, user_pk, timePosted, category, prospective, fulfilled, description, audience):
-    temp_dictionary = {\
-        'user': user_pk,\
-        'timePosted': timePosted,\
-        'category': category,\
-        'prospective': prospective,\
-        'fulfilled': fulfilled,\
-        'description': description,\
+    temp_dictionary = {
+        'user': user_pk,
+        'timePosted': timePosted,
+        'category': category,
+        'prospective': prospective,
+        'fulfilled': fulfilled,
+        'description': description,
         'audience': audience}
 
     serializer = PostingSerializer(data=temp_dictionary)

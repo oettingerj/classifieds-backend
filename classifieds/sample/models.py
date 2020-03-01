@@ -2,7 +2,7 @@ from django.db import models
 
 class User(models.Model):
     name = models.CharField('Name', max_length=240)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF')
     role = models.CharField(choices=roleChoice.choices, max_length=7)
 
