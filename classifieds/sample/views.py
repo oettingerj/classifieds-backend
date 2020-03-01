@@ -65,3 +65,27 @@ def import_posting(request, user_pk, timePosted, category, prospective, fulfille
     
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'POST'])
+def import_ridePosting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople):
+    temp_dictionary = {
+        'posting': posting_pk,
+        'dateTimeOfRide': dateTimeOfRide,
+        'startLocation': startLocation,
+        'endLocation': endLocation,
+        'numberOfPeople': numberOfPeople
+        }
+
+    serializer = RidePostingSerializer(data=temp_dictionary)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        print("serializer not valid*********")
+
+    print("this will return a HTTP reponse")
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
