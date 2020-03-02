@@ -15,33 +15,24 @@ from .serializers import *
 
 @api_view(['GET', 'POST'])
 def import_user(request, name, email, role):
-    print(str(name))
-    print(str(email))
-    print(str(role))
-    temp_dictionary = {'name': name, 'email': email, 'role': role}
 
-    print("******the data to be passed in is:")
-    print(temp_dictionary)
-    print("**end of data being passed in**")
-
+    temp_dictionary = {
+        'name': name, 
+        'email': email, 
+        'role': role
+    }
     serializer = UserSerializer(data=temp_dictionary)
    
-
     if serializer.is_valid():
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
     else:
-        print("serializer not valid*********")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-    print("this will return a HTTP reponse")
-
-    
-
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
-def import_posting(request, user_pk, timePosted, category, prospective, fulfilled, description, audience):
+def import_posting(request, user_pk, timePosted, category, prospective, 
+                   fulfilled, description, audience):
     temp_dictionary = {
         'user': user_pk,
         'timePosted': timePosted,
@@ -49,19 +40,30 @@ def import_posting(request, user_pk, timePosted, category, prospective, fulfille
         'prospective': prospective,
         'fulfilled': fulfilled,
         'description': description,
-        'audience': audience}
-
+        'audience': audience
+    } 
     serializer = PostingSerializer(data=temp_dictionary)
 
     if serializer.is_valid():
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
     else:
-        print("serializer not valid*********")
-
-
-    print("this will return a HTTP reponse")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
+@api_view(['GET','POST'])
+def import_itemposting(request, posting_pk, images, price, forSale, forLoan):
+    temp_dictionary = {
+        'posting': posting_pk,
+        'images': images,
+        'price': price,
+        'forSale': forSale,
+        'forLoan': forLoan
+    }
+    serializer = ItemPostingSerializer(data=temp_dictionary)
 
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

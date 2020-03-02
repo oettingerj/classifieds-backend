@@ -21,6 +21,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('api/import/user/<name>/<email>/<role>/', views.import_test),
-    path('api/import/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.import_posting)
+    path('api/import/user/<name>/<email>/<role>/', views.import_user),
+    path('api/import/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.import_posting),
+    path('api/import/itemposting/<posting_pk>/<images>/<price>/<forSale>/<forLoan>', views.import_itemposting)
 ]
