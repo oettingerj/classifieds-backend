@@ -1,6 +1,7 @@
 #from django.db import migrations
 from rest_framework import serializers
-from sample.models import User, Posting, ItemPosting
+
+from sample.models import User, Posting, RidePosting, ItemPosting
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,3 +20,10 @@ class ItemPostingSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemPosting
         fields = ['posting', 'images', 'price', 'forSale', 'forLoan']
+
+class RidePostingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RidePosting
+        fields = ['posting', 'dateTimeOfRide', 'startLocation', 'endLocation',
+                  'numberOfPeople']
+
