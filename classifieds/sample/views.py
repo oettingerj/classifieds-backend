@@ -66,7 +66,7 @@ def import_itemposting(request, posting_pk, images, price, forSale, forLoan):
 
 
 @api_view(['GET', 'POST'])
-def import_ridePosting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople):
+def import_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople):
     temp_dictionary = {
         'posting': posting_pk,
         'dateTimeOfRide': dateTimeOfRide,

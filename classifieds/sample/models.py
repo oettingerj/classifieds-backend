@@ -3,7 +3,7 @@ from django.db import models
 class User(models.Model):
     name = models.CharField('Name', max_length=240)
     email = models.EmailField(unique=True)
-    roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF')
+    roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF ALL')
     role = models.CharField(choices=roleChoice.choices, max_length=7)
 
     def __str__(self):
@@ -16,7 +16,7 @@ class Posting(models.Model):
     prospective = models.BooleanField()
     fulfilled = models.BooleanField()
     description = models.TextField()
-    audienceChoice = models.TextChoices('audienceChoice', 'STUDENT FACULTY STAFF')
+    audienceChoice = models.TextChoices('audienceChoice', 'STUDENT FACULTY STAFF ALL')
     audience = models.CharField(choices=audienceChoice.choices, max_length=7)
 
 class RidePosting(models.Model):
