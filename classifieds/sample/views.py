@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from .models import User, Posting, RidePosting, ItemPosting, Comment
+from .models import User, Posting, RidePosting, ItemPosting
 from .serializers import *
 
 
@@ -87,20 +87,4 @@ def import_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLo
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    
-@api_view(['GET', 'POST'])
-def import_comment(request, posting_pk, user_pk, timePosted, content):
-    temp_dictionary = {
-        'posting': posting_pk,
-        'user': user_pk,
-        'timePosted': timePosted,
-        'content': content
-    }
-    
-    serializer = CommentSerializer(data=temp_dictionary)
-    
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
