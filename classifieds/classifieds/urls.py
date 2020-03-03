@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/import/user/<name>/<email>/<role>/', views.import_user),
     path('api/import/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.import_posting),
     path('api/import/itemposting/<posting_pk>/<images>/<price>/<forSale>/<forLoan>', views.import_itemposting),
-    path('api/import/ride/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/', views.import_rideposting)
+    path('api/import/ride/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/', views.import_rideposting),
+    path('api/import/comment/<posting_pk>/<user_pk>/<timePosted>/<content>/', views.import_comment)
 ]
