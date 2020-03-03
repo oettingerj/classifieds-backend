@@ -55,14 +55,18 @@ def import_posting(request, user_pk, timePosted, category, prospective,
 def import_itemposting(request, posting_pk, images, price, forSale, forLoan):
     temp_dictionary = {
         'posting': posting_pk,
-        'images': images,
+        #'images': images, #intentionally excluded for importing test data
         'price': price,
         'forSale': forSale,
         'forLoan': forLoan
     }
     serializer = ItemPostingSerializer(data=temp_dictionary)
 
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])

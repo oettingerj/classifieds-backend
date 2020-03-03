@@ -1,0 +1,54 @@
+http://127.0.0.1:8000/api/import/user/﻿John Mullan/mullanj2@carleton.edu/STUDENT
+http://127.0.0.1:8000/api/import/user/Sophia Maymudes/maymudess@carleton.edu/STUDENT
+http://127.0.0.1:8000/api/import/user/Danielle Eisen/eisend@carleton.edu/STUDENT
+http://127.0.0.1:8000/api/import/user/Tresa Xavier/xaviert@carleton.edu/STUDENT
+http://127.0.0.1:8000/api/import/user/Josh Oettinger/oettingerj@carleton.edu/STUDENT
+http://127.0.0.1:8000/api/import/user/Anna Adams/aadams@carleton.edu/FACULTY
+http://127.0.0.1:8000/api/import/user/Bob Bruce/bbruce@carleton.edu/FACULTY
+http://127.0.0.1:8000/api/import/user/Caitlin Carton/ccarton@carleton.edu/FACULTY
+http://127.0.0.1:8000/api/import/user/Dennis Doherty/ddoherty@carleton.edu/STAFF
+http://127.0.0.1:8000/api/import/user/Ethan Ellison/eellison@carleton.edu/STAFF
+http://127.0.0.1:8000/api/import/user/Fiona Frank/ffrank@carleton.edu/STAFF
+http://127.0.0.1:8000/api/import/user/Giovanni Gregorio/ggregor@carleton.edu/FACULTY
+http://127.0.0.1:8000/api/import/user/Harriet Hufflepuff/hhufflep@carleton.edu/FACULTY
+http://127.0.0.1:8000/api/import/user/Ivy Iolani/iiolani@carleton.edu/STAFF
+http://127.0.0.1:8000/api/import/user/Jack Jameson-Jost/jjamesonjost@carleton.edu/STAFF
+http://127.0.0.1:8000/api/import/posting/﻿1/2020-01-01T12:45/Clothes/FALSE/FALSE/details 1/STUDENT
+http://127.0.0.1:8000/api/import/posting/14/2020-02-04T12:25/Rides/TRUE/FALSE/details 10/STAFF
+http://127.0.0.1:8000/api/import/posting/15/2020-01-21T12:21/Home Goods/FALSE/TRUE/details 11/ALL
+http://127.0.0.1:8000/api/import/posting/1/2020-02-29T12:23/Rides/TRUE/TRUE/details 12/ALL
+http://127.0.0.1:8000/api/import/posting/2/2020-01-31T20:01/Textbooks/FALSE/FALSE/details 13/STUDENT
+http://127.0.0.1:8000/api/import/posting/5/2020-03-02T10:45/Rides/FALSE/FALSE/details 14/ALL
+http://127.0.0.1:8000/api/import/posting/6/2020-01-31T12:12/Rides/TRUE/FALSE/details 15/FACULTY
+http://127.0.0.1:8000/api/import/posting/13/2020-02-26T12:12/Gear/FALSE/TRUE/details 16/STAFF
+http://127.0.0.1:8000/api/import/posting/11/2020-01-02T12:00/Miscellaneous/FALSE/FALSE/details 17/STAFF
+http://127.0.0.1:8000/api/import/posting/3/2020-01-16T00:08/Clothes/FALSE/TRUE/details 18/STUDENT
+http://127.0.0.1:8000/api/import/posting/9/2020-01-21T10:00/Miscellaneous/TRUE/TRUE/details 19/ALL
+http://127.0.0.1:8000/api/import/posting/3/2020-01-06T12:45/Rides/TRUE/FALSE/details 2/ALL
+http://127.0.0.1:8000/api/import/posting/11/2020-01-24T12:02/Clothes/FALSE/FALSE/details 20/ALL
+http://127.0.0.1:8000/api/import/posting/8/2020-01-01T12:45/Gear/FALSE/TRUE/details 3/ALL
+http://127.0.0.1:8000/api/import/posting/6/2020-02-06T12:00/Tools/FALSE/TRUE/details 4/ALL
+http://127.0.0.1:8000/api/import/posting/7/2020-02-07T22:45/Toys/FALSE/FALSE/details 5/FACULTY
+http://127.0.0.1:8000/api/import/posting/10/2020-01-26T12:49/Rides/FALSE/FALSE/details 6/FACULTY
+http://127.0.0.1:8000/api/import/posting/11/2020-01-11T11:11/Rides/TRUE/FALSE/details 7/ALL
+http://127.0.0.1:8000/api/import/posting/12/2020-01-05T12:05/Home Goods/TRUE/FALSE/details 8/ALL
+http://127.0.0.1:8000/api/import/posting/13/2020-03-01T12:41/Toys/FALSE/TRUE/details 9/STAFF
+http://127.0.0.1:8000/api/import/ride/﻿2/2020-02-06T12:45/Carleton/Downtown Minneapolis/1
+http://127.0.0.1:8000/api/import/ride/6/2020-03-06T12:45/Carleton/Northfield Hospital/1
+http://127.0.0.1:8000/api/import/ride/7/2020-02-06T04:45/Carleton/MSP/2
+http://127.0.0.1:8000/api/import/ride/10/2020-03-05T12:45/Carleton /St. Cloud/1
+http://127.0.0.1:8000/api/import/ride/14/2020-03-17T12:45/Carleton/My House/3
+http://127.0.0.1:8000/api/import/ride/15/2020-02-01T12:45/Dundas/Northfield/1
+http://127.0.0.1:8000/api/import/itemposting/﻿1/NULL/5/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/3/NULL/15.5/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/4/NULL/100/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/5/NULL/0/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/8/NULL/50/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/9/NULL/20/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/11/NULL/15/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/13/NULL/10.5/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/16/NULL/0/FALSE/TRUE
+http://127.0.0.1:8000/api/import/itemposting/17/NULL/0/FALSE/TRUE
+http://127.0.0.1:8000/api/import/itemposting/18/NULL/2/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/19/NULL/99/TRUE/FALSE
+http://127.0.0.1:8000/api/import/itemposting/20/NULL/1/TRUE/FALSE

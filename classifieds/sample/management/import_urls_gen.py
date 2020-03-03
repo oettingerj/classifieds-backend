@@ -4,7 +4,7 @@ import os
 
 def main():
 
-    TEST = True
+    TEST = False
     MOCK_CSV_FILENAME = 'mock_csv_data.csv'
     OUTPUT_FILENAME = 'output.txt'
 
@@ -14,19 +14,19 @@ def main():
 
     
 
-    USER_CSV_FILENAME = ''
+    USER_CSV_FILENAME = 'users.csv'
     USER_PREFIX = 'user/'
 
-    POSTING_CSV_FILENAME = ''
+    POSTING_CSV_FILENAME = 'postings.csv'
     POSTING_PREFIX = 'posting/'
 
-    RIDE_POSTING_CSV_FILENAME = ''
-    RIDE_POSTING_PREFIX = 'rideposting/'
+    RIDE_POSTING_CSV_FILENAME = 'ridePosting.csv'
+    RIDE_POSTING_PREFIX = 'ride/'
 
-    ITEM_POSTING_CSV_FILENAME = ''
+    ITEM_POSTING_CSV_FILENAME = 'itemPosting.csv'
     ITEM_POSTING_PREFIX = 'itemposting/'
 
-    COMMENT_CSV_FILENAME = ''
+    COMMENT_CSV_FILENAME = 'comments.csv'
     COMMENT_PREFIX = 'comment/'
 
     csv_filenames.append(USER_CSV_FILENAME)
@@ -41,13 +41,13 @@ def main():
     csv_filenames.append(ITEM_POSTING_CSV_FILENAME)
     prefixes.append(ITEM_POSTING_PREFIX)
 
-    csv_filenames.append(COMMENT_CSV_FILENAME)
-    prefixes.append(COMMENT_PREFIX)
+    #csv_filenames.append(COMMENT_CSV_FILENAME)
+    #prefixes.append(COMMENT_PREFIX)
 
     generate_output_file(OUTPUT_FILENAME)
 
     if not TEST:
-        for i in range(csv_filenames):
+        for i in range(len(csv_filenames)):
             urls = generate_urls(csv_filenames[i], BASE, prefixes[i])
             append_to_output_file(OUTPUT_FILENAME, urls)
     else:
@@ -61,6 +61,9 @@ def generate_urls(CSV_FILE, BASE, PREFIX):
     with open(CSV_FILE, newline='') as csvfile:
         reader = csv.reader(csvfile, dialect='excel')
         for row in reader:
+            for item in row:
+                    if item == "STUDENTS":
+                        item = "STUDENT"
             pre_formatted_url = BASE + PREFIX + '/'.join(row)
             url = urlparse(pre_formatted_url).geturl()
             urls.append(url)

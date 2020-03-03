@@ -28,7 +28,7 @@ class RidePosting(models.Model):
 
 class ItemPosting(models.Model):
     posting = models.OneToOneField(Posting, on_delete=models.DO_NOTHING)
-    images = models.ImageField()
+    images = models.ImageField(blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     forSale = models.BooleanField()
     forLoan = models.BooleanField()
