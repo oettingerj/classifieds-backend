@@ -87,4 +87,7 @@ def import_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLo
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-
+''' example of retriving postings'''
+def posting_list(request):
+    postings = Posting.objects.filter(category='Toys')
+    return render(request, 'sample/posting_list.html', {'postings': postings})
