@@ -25,7 +25,7 @@ SECRET_KEY = '^=(brn*&em6-(_4p#n#$h!otd(de(b#8gcag7a40j+#te7dvnt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']  #classifieds.mathcs.carleton.edu]
+ALLOWED_HOSTS = [*]  #classifieds.mathcs.carleton.edu]
 
 
 # Application definition
