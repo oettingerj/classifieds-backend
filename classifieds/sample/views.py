@@ -41,13 +41,13 @@ def import_posting(request, user_pk, timePosted, category, prospective,
         'fulfilled': fulfilled,
         'description': description,
         'audience': audience
-    } 
-    serializer = PostingSerializer(data=temp_dictionary)
-
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
+    }
+    if request.method == "POST":
+        print("post method")
+        serializer = PostingSerializer(data=temp_dictionary)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
