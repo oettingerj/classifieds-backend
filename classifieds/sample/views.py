@@ -42,7 +42,12 @@ def import_posting(request, user_pk, timePosted, category, prospective,
         'description': description,
         'audience': audience
     }
-    if request.method == "POST":
+    if request.method == "GET":
+        postings = Posting.objects.all()
+        serializer = PostingSerializer(postings, context={'request': request}, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
         print("post method")
         serializer = PostingSerializer(data=temp_dictionary)
         if serializer.is_valid():
