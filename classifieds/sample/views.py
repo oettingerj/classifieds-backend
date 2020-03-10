@@ -30,8 +30,7 @@ def import_user(request, name, email, role):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(['GET', 'POST'])
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def import_posting(request, user_pk, timePosted, category, prospective, 
                    fulfilled, description, audience):
     temp_dictionary = {
