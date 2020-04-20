@@ -7,7 +7,7 @@ from sample.models import User, Posting, RidePosting, ItemPosting
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['name', 'email', 'role']
+        fields = ['username', 'password', 'email', 'first_name', 'last_name', 'role']
 
 
 class PostingSerializer(serializers.ModelSerializer):

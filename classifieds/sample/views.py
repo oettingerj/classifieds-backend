@@ -6,8 +6,11 @@ from django.shortcuts import render
 from django.shortcuts import render
   
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework import status
+
+from django.contrib.auth.models import User
 
 from .models import User, Posting, RidePosting, ItemPosting
 from .serializers import *
@@ -91,8 +94,50 @@ def import_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLo
         return Response(status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
+#view_available_postings (note: to add restriction to viewing postings targeted towards the requesting user type)
+@api_view(['GET'])
+def get_available_postings(request, category):
+    query_set = ''
+    if category == '':
+        query_set = Posting.objects.all()
+    else:
+        query_set = Posting.objects.filter(category=category)
+	
+    serializer = PostingSerializer(query_set, many=True)
+    json = JSONRenderer().render(serializer.data)
+
+    #return Response(json)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_postings_by_id(request, user_id_num):
+    print("user_id_num: ")
+    print(user_id_num)
+    #query_set = Posting.objects.all()
+    #query_set = Posting.objects.filter(category=user_id_num)
+    query_set = Posting.objects.filter(user=user_id_num)
+	
+    serializer = PostingSerializer(query_set, many=True)
+    json = JSONRenderer().render(serializer.data)
+
+    #return Response(json)
+    return Response(serializer.data)
+
+
+
+
+
+
+
+
 ''' example of retriving postings'''
 def posting_list(request):
     postings = Posting.objects.filter(category='Toys')
     return render(request, 'sample/posting_list.html', {'postings': postings})
+
+
+# #USERS
+# @api_view(['POST'])
+# def create_user(request, name, email, role):
