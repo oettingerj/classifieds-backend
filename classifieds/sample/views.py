@@ -78,13 +78,15 @@ def import_itemposting(request, posting_pk, images, price, forSale, forLoan):
 
 
 @api_view(['GET', 'POST'])
-def import_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople):
+def create_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople, willingToPay, payment):
     temp_dictionary = {
         'posting': posting_pk,
         'dateTimeOfRide': dateTimeOfRide,
         'startLocation': startLocation,
         'endLocation': endLocation,
-        'numberOfPeople': numberOfPeople
+        'numberOfPeople': numberOfPeople,
+        'willingToPay': willingToPay,
+        'payment': payment
         }
 
     serializer = RidePostingSerializer(data=temp_dictionary)
@@ -124,14 +126,21 @@ def get_postings_by_id(request, user_id_num):
 
     #return Response(json)
     return Response(serializer.data)
+    
+    
+def edit_rideposting(request, key, startLocation):
+    rideposting = RidePosting.objects.get(pk=key)
+    rideposting.startLocation = startLocation
+    rideposting.save()
+    return render(request, 'sample/posting_list.html')
 
-
-
-
-
-
-
-
+    
+def delete_rideposting(request, key):
+    rideposting = RidePosting.objects.get(pk=key)
+    rideposting.delete()
+    return render(request, 'sample/posting_list.html')
+    
+    
 ''' example of retriving postings'''
 def posting_list(request):
     postings = Posting.objects.filter(category='Toys')

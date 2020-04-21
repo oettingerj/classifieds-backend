@@ -25,7 +25,7 @@ class Posting(models.Model):
     audienceChoice = models.TextChoices('audienceChoice', 'STUDENT FACULTY STAFF ALL')
     audience = models.CharField(choices=audienceChoice.choices, max_length=7)
     savedBy = models.ManyToManyField(User)
-
+#title?
 
 class RidePosting(models.Model):
     posting = models.OneToOneField(Posting, on_delete=models.DO_NOTHING)
@@ -33,7 +33,7 @@ class RidePosting(models.Model):
     startLocation = models.TextField()
     endLocation = models.TextField()
     numberOfPeople = models.IntegerField()
-    willingToPay = models.TextField(default='no')  # change this to choices later
+    willingToPay = models.BooleanField()
     payment = models.DecimalField(max_digits=8, decimal_places=2, default='0.00')
 
 

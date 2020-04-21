@@ -27,6 +27,5 @@ class RidePostingSerializer(serializers.ModelSerializer):
     class Meta:
         model = RidePosting
         fields = ['posting', 'dateTimeOfRide', 'startLocation', 'endLocation',
-                  'numberOfPeople']
-
+                  'numberOfPeople', 'willingToPay', 'payment']
 
