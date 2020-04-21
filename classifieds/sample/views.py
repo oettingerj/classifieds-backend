@@ -114,14 +114,18 @@ def create_itemposting(request, posting_pk, images, price, forSale, forLoan):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# EDIT_POSTING NEEDED?
-
-def edit_rideposting(request, key, startLocation):
+def edit_rideposting(request, ride_pk, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople, willingToPay, payment):
     """Edits a pre-existing database entry for a ride posting and updates it in place. """
-    rideposting = RidePosting.objects.get(pk=key)
+    rideposting = RidePosting.objects.get(pk=ride_pk)
+    rideposting.dateTimeOfRide = dateTimeOfRide
     rideposting.startLocation = startLocation
+    rideposting.endLocation = endLocation
+    rideposting.numberOfPeople = numberOfPeople
+    rideposting.willingToPay = willingToPay
+    rideposting.payment = payment
     rideposting.save()
-    return render(request, 'sample/posting_list.html')
+    serializer = RidePostingSerializer(rideposting)
+    return Response(serializer.data)
 
 
 def edit_itemposting(request, item_pk, posting_pk, images, price, forSale, forLoan):
