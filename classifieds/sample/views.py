@@ -60,7 +60,7 @@ def import_posting(request, user_pk, timePosted, category, prospective,
 
     
 @api_view(['GET','POST'])
-def import_itemposting(request, posting_pk, images, price, forSale, forLoan):
+def import_itemPosting(request, posting_pk, images, price, forSale, forLoan):
     temp_dictionary = {
         'posting': posting_pk,
         #'images': images, #intentionally excluded for importing test data
@@ -68,13 +68,20 @@ def import_itemposting(request, posting_pk, images, price, forSale, forLoan):
         'forSale': forSale,
         'forLoan': forLoan
     }
-    serializer = ItemPostingSerializer(data=temp_dictionary)
 
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == "GET":
+        postings = Posting.objects.all()
+        serializer = PostingSerializer(postings, context={'request': request}, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = ItemPostingSerializer(data=temp_dictionary)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
@@ -139,12 +146,51 @@ def delete_rideposting(request, key):
     rideposting = RidePosting.objects.get(pk=key)
     rideposting.delete()
     return render(request, 'sample/posting_list.html')
-    
-    
-''' example of retriving postings'''
-def posting_list(request):
-    postings = Posting.objects.filter(category='Toys')
-    return render(request, 'sample/posting_list.html', {'postings': postings})
+
+
+def editItemPosting(request, item_pk, posting_pk, images, price, forSale, forLoan):
+    post = ItemPosting.objects.get(pk=item_pk)
+    # use is_valid?
+    post.images = images
+    post.price = price
+    post.forSale = forSale
+    post.forLoan = forLoan
+    post.save()
+    serializer = ItemPostingSerializer(post)
+    return Response(serializer.data)  # not sure if this is best way to do thsi
+
+
+def deleteItemPosting(request, item_pk):
+    post = ItemPosting.objects.get(pk=item_pk)
+    post.delete()
+    return render(request, 'sample/posting_list.html')  # replace HTML File
+
+
+# SEARCH FUNCTION
+def searchPostings(request, keyword):
+    postingList = Posting.objects.filter(description__contains=keyword)  # is this the filter we want?
+    serializer = PostingSerializer(postingList, context={'request': request}, many=True)
+    return Response(serializer.data)
+
+
+# MARK POSTING SOLD
+def postingFulfilledToggle(request, pk):
+    post = Posting.objects.get(pk=pk)
+    if post.fulfilled:
+        post.fulfilled = False
+    else:
+        post.fulfilled = True
+    post.save()
+    return render(request, 'sample/posting_list.html')  # replace HTML File
+
+
+# VIEW DETAILS - JUST RETURN ALL THE INTEL?
+# do we need one of these for item/ride as well?
+def viewDetails(request, pk):
+    post = Posting.objects.get(pk=pk)
+    serializer = PostingSerializer(post, context={'request': request}, many=True)
+    return Response(serializer.data)
+
 
 
 # #USERS
