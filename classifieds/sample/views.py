@@ -17,7 +17,8 @@ from .serializers import *
 
 
 @api_view(['GET', 'POST'])
-def import_user(request, name, email, role):
+def create_user(request, name, email, role):
+    """ Creates a user in the database for the given name, email, and role """
 
     temp_dictionary = {
         'name': name, 
@@ -34,8 +35,10 @@ def import_user(request, name, email, role):
 
 
 @api_view(['GET', 'POST'])
-def import_posting(request, user_pk, timePosted, category, prospective, 
+def create_posting(request, user_pk, timePosted, category, prospective,
                    fulfilled, description, audience):
+    """Creates a new posting object in the database using the given parameters"""
+
     temp_dictionary = {
         'user': user_pk,
         'timePosted': timePosted,
@@ -58,12 +61,39 @@ def import_posting(request, user_pk, timePosted, category, prospective,
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
-@api_view(['GET','POST'])
-def import_itemPosting(request, posting_pk, images, price, forSale, forLoan):
+
+@api_view(['GET', 'POST'])
+def create_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople, willingToPay, payment):
+    """ Creates an ride posting from the given parameters. One of these parameters is the primary key for the base
+    posting the ride posting is connected to """
+
     temp_dictionary = {
         'posting': posting_pk,
-        #'images': images, #intentionally excluded for importing test data
+        'dateTimeOfRide': dateTimeOfRide,
+        'startLocation': startLocation,
+        'endLocation': endLocation,
+        'numberOfPeople': numberOfPeople,
+        'willingToPay': willingToPay,
+        'payment': payment
+        }
+
+    serializer = RidePostingSerializer(data=temp_dictionary)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'POST'])
+def create_itemposting(request, posting_pk, images, price, forSale, forLoan):
+    """ Creates an item posting from the given parameters. One of these parameters is the primary key for the base
+    posting the item posting is connected to """
+
+    temp_dictionary = {
+        'posting': posting_pk,
+        # 'images': images, #intentionally excluded for importing test data
         'price': price,
         'forSale': forSale,
         'forLoan': forLoan
@@ -84,71 +114,19 @@ def import_itemPosting(request, posting_pk, images, price, forSale, forLoan):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST'])
-def create_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople, willingToPay, payment):
-    temp_dictionary = {
-        'posting': posting_pk,
-        'dateTimeOfRide': dateTimeOfRide,
-        'startLocation': startLocation,
-        'endLocation': endLocation,
-        'numberOfPeople': numberOfPeople,
-        'willingToPay': willingToPay,
-        'payment': payment
-        }
+# EDIT_POSTING NEEDED?
 
-    serializer = RidePostingSerializer(data=temp_dictionary)
-
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-#view_available_postings (note: to add restriction to viewing postings targeted towards the requesting user type)
-@api_view(['GET'])
-def get_available_postings(request, category):
-    query_set = ''
-    if category == '':
-        query_set = Posting.objects.all()
-    else:
-        query_set = Posting.objects.filter(category=category)
-	
-    serializer = PostingSerializer(query_set, many=True)
-    json = JSONRenderer().render(serializer.data)
-
-    #return Response(json)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def get_postings_by_id(request, user_id_num):
-    print("user_id_num: ")
-    print(user_id_num)
-    #query_set = Posting.objects.all()
-    #query_set = Posting.objects.filter(category=user_id_num)
-    query_set = Posting.objects.filter(user=user_id_num)
-	
-    serializer = PostingSerializer(query_set, many=True)
-    json = JSONRenderer().render(serializer.data)
-
-    #return Response(json)
-    return Response(serializer.data)
-    
-    
 def edit_rideposting(request, key, startLocation):
+    """Edits a pre-existing database entry for a ride posting and updates it in place. """
     rideposting = RidePosting.objects.get(pk=key)
     rideposting.startLocation = startLocation
     rideposting.save()
     return render(request, 'sample/posting_list.html')
 
-    
-def delete_rideposting(request, key):
-    rideposting = RidePosting.objects.get(pk=key)
-    rideposting.delete()
-    return render(request, 'sample/posting_list.html')
 
+def edit_itemposting(request, item_pk, posting_pk, images, price, forSale, forLoan):
+    """Edits a pre-existing database entry for an item posting and updates it in place. """
 
-def editItemPosting(request, item_pk, posting_pk, images, price, forSale, forLoan):
     post = ItemPosting.objects.get(pk=item_pk)
     # use is_valid?
     post.images = images
@@ -160,21 +138,65 @@ def editItemPosting(request, item_pk, posting_pk, images, price, forSale, forLoa
     return Response(serializer.data)  # not sure if this is best way to do thsi
 
 
-def deleteItemPosting(request, item_pk):
+def delete_rideposting(request, key):
+    """Deletes the ride posting associated with the given primary key from the database"""
+    rideposting = RidePosting.objects.get(pk=key)
+    rideposting.delete()
+    return render(request, 'sample/posting_list.html')
+
+
+def delete_itemposting(request, item_pk):
+    """Deletes the item posting associated with the given primary key from the database"""
     post = ItemPosting.objects.get(pk=item_pk)
     post.delete()
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-# SEARCH FUNCTION
-def searchPostings(request, keyword):
+#view_available_postings (note: to add restriction to viewing postings targeted towards the requesting user type)
+@api_view(['GET'])
+def get_available_postings(request, category):
+    """Returns all available postings in a given category. If no category is given, return all postings."""
+
+    query_set = ''
+    if category == '':
+        query_set = Posting.objects.all()
+    else:
+        query_set = Posting.objects.filter(category=category)
+    serializer = PostingSerializer(query_set, many=True)
+    json = JSONRenderer().render(serializer.data)
+
+    #return Response(json)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_postings_by_id(request, user_id_num):
+    """Returns all postings attributed to a given User. """
+
+    print("user_id_num: ")
+    print(user_id_num)
+    #query_set = Posting.objects.all()
+    #query_set = Posting.objects.filter(category=user_id_num)
+    query_set = Posting.objects.filter(user=user_id_num)
+
+    serializer = PostingSerializer(query_set, many=True)
+    json = JSONRenderer().render(serializer.data)
+
+    #return Response(json)
+    return Response(serializer.data)
+
+
+def search_postings(request, keyword):
+    """Returns all database entries whose 'description' field includes the given keyword. """
+
     postingList = Posting.objects.filter(description__contains=keyword)  # is this the filter we want?
     serializer = PostingSerializer(postingList, context={'request': request}, many=True)
     return Response(serializer.data)
 
 
-# MARK POSTING SOLD
-def postingFulfilledToggle(request, pk):
+def toggle_posting_fulfilled(request, pk):
+    """Toggles between 'fulfilled' values for a given post; if the post was marked as 'unfulfilled' it is now marked as
+    'fulfilled', and vice versa """
+
     post = Posting.objects.get(pk=pk)
     if post.fulfilled:
         post.fulfilled = False
@@ -184,9 +206,12 @@ def postingFulfilledToggle(request, pk):
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-# VIEW DETAILS - JUST RETURN ALL THE INTEL?
-# do we need one of these for item/ride as well?
-def viewDetails(request, pk):
+
+
+def view_posting_details(request, pk):
+    """Returns all information associated with the post with the given primary key. """
+
+    # do we need one of these for item/ride as well?
     post = Posting.objects.get(pk=pk)
     serializer = PostingSerializer(post, context={'request': request}, many=True)
     return Response(serializer.data)

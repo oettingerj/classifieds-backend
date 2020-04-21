@@ -16,7 +16,7 @@ class User(models.Model):
 
 
 class Posting(models.Model):
-    user = models.ForeignKey(User, related_name='poster', on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, related_name='poster', on_delete=models.CASCADE())
     timePosted = models.DateTimeField()
     category = models.CharField(max_length=240)  # change to choices later
     prospective = models.BooleanField()
@@ -28,7 +28,7 @@ class Posting(models.Model):
 #title?
 
 class RidePosting(models.Model):
-    posting = models.OneToOneField(Posting, on_delete=models.DO_NOTHING)
+    posting = models.OneToOneField(Posting, on_delete=models.CASCADE())
     dateTimeOfRide = models.DateTimeField()
     startLocation = models.TextField()
     endLocation = models.TextField()
@@ -38,7 +38,7 @@ class RidePosting(models.Model):
 
 
 class ItemPosting(models.Model):
-    posting = models.OneToOneField(Posting, on_delete=models.DO_NOTHING)
+    posting = models.OneToOneField(Posting, on_delete=models.CASCADE())
     images = models.ImageField(blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     forSale = models.BooleanField()
