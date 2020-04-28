@@ -221,6 +221,35 @@ def view_posting_details(request, pk):
     return Response(serializer.data)
 
 
+def save_posting(request, posting_pk, user_pk):
+    """Adds a posting to a user's collection of saved postings, and adds that user to the posting's collection of users that have saved it."""
+    
+    post = Posting.objects.get(pk=posting_pk)
+    user = User.objects.get(pk=user_pk)
+    post.savedBy.add(user)
+    post.save()
+    return render(request, 'sample/posting_list.html') #change this
+    
+    
+def unsave_posting(request, posting_pk, user_pk):
+    """Removes a posting from a user's collection of saved postings, and removes that user from the posting's collection of users that have saved it."""
+    
+    post = Posting.objects.get(pk=posting_pk)
+    user = User.objects.get(pk=user_pk)
+    post.savedBy.remove(user)
+    post.save()
+    return render(request, 'sample/posting_list.html') #change this
+
+
+def display_saved_postings(request, user_pk):
+    """Displays the postings that the given user has saved."""
+    
+    user = User.objects.get(pk=user_pk)
+    postings = user.savedPostings.all()
+#    serializer = PostingSerializer(postings, many=True)
+#    return Response(serializer.data)
+    return render(request, 'sample/posting_list.html', {'postings': postings}) #change this
+    
 
 # #USERS
 # @api_view(['POST'])
