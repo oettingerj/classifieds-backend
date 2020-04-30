@@ -1,7 +1,7 @@
 #from django.db import migrations
 from rest_framework import serializers
 
-from sample.models import User, Posting, RidePosting, ItemPosting
+from main_app.models import User, Posting, RidePosting, ItemPosting
 
 
 class UserSerializer(serializers.ModelSerializer):

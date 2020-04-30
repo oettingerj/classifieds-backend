@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     
     'rest_framework',
 
-    'sample',
+    'main_app',
 
     'allauth',
     'allauth.account',
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'classifieds.urls'
+ROOT_URLCONF = 'classifieds_project.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'classifieds.wsgi.application'
+WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 
 
 # Database

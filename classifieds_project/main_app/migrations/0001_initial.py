@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+#        ('main_app'),
     ]
 
     operations = [
@@ -41,13 +42,13 @@ class Migration(migrations.Migration):
                 ('startLocation', models.TextField()),
                 ('endLocation', models.TextField()),
                 ('numberOfPeople', models.IntegerField()),
-                ('posting', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, to='sample.Posting')),
+                ('posting', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, to='main_app.Posting')),
             ],
         ),
         migrations.AddField(
             model_name='posting',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='sample.User'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='main_app.User'),
         ),
         migrations.CreateModel(
             name='ItemPosting',
@@ -57,7 +58,7 @@ class Migration(migrations.Migration):
                 ('price', models.DecimalField(decimal_places=2, max_digits=8)),
                 ('forSale', models.BooleanField()),
                 ('forLoan', models.BooleanField()),
-                ('posting', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, to='sample.Posting')),
+                ('posting', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, to='main_app.Posting')),
             ],
         ),
         migrations.CreateModel(
@@ -66,8 +67,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('timePosted', models.DateTimeField()),
                 ('content', models.TextField()),
-                ('posting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='sample.Posting')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='sample.User')),
+                ('posting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='main_app.Posting')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='main_app.User')),
             ],
         ),
     ]

@@ -9,6 +9,7 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF ALL')
     role = models.CharField(choices=roleChoice.choices, max_length=7)
+    dummy_field = models.CharField(max_length=240, default='dummy')
 
 
     def __str__(self):

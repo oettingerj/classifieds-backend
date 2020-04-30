@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sample', '0003_auto_20200420_1826'),
+        ('main_app', '0003_auto_20200420_1826'),
     ]
 
     operations = [
@@ -19,22 +19,22 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='itemposting',
             name='posting',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='sample.Posting'),
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='main_app.Posting'),
         ),
         migrations.AlterField(
             model_name='posting',
             name='savedBy',
-            field=models.ManyToManyField(related_name='savedPostings', to='sample.User'),
+            field=models.ManyToManyField(related_name='savedPostings', to='main_app.User'),
         ),
         migrations.AlterField(
             model_name='posting',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='poster', to='sample.User'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='poster', to='main_app.User'),
         ),
         migrations.AlterField(
             model_name='rideposting',
             name='posting',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='sample.Posting'),
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='main_app.Posting'),
         ),
         migrations.AlterField(
             model_name='rideposting',
