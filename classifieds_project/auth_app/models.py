@@ -11,6 +11,9 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from datetime import datetime
+from django.utils.timezone import get_current_timezone
+from django.utils import timezone
+
 
 
 
@@ -52,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     given_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=150)
-    date_joined = models.DateTimeField(default=datetime.now)
+    date_joined = models.DateTimeField(default=timezone.now)
     #last_login = models.DateTimeField(default=datetime.now) #supplied by AstractBaseUser
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
