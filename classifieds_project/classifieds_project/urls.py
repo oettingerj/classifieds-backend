@@ -17,12 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, re_path, include
 from main_app import views
+from auth_app import views as auth_views
 from django.conf.urls import url
 from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #path('api/create/user/<name>/<email>/<role>/', views.create_user),
+    path('tokensignin/', auth_views.authenticate),
     path('api/create/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.create_posting),
     path('rideposting/create/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/<willingToPay>/<payment>/',views.create_rideposting),
     path('api/create/itemPosting/<posting_pk>/<images>/<price>/<forSale>/<forLoan>', views.create_itemposting),

@@ -1,21 +1,10 @@
-from django.db import models
-import io
-from rest_framework import status
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
-#from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.models import (
     BaseUserManager, 
     AbstractBaseUser,
     PermissionsMixin
 )
 from django.db import models
-from datetime import datetime
-from django.utils.timezone import get_current_timezone
 from django.utils import timezone
-
-
-
 
 class UserManager(BaseUserManager):
     def create_user(self, google_account_id, email, given_name, last_name, role):
@@ -46,7 +35,7 @@ class UserManager(BaseUserManager):
         return new_superuser
 
 class User(AbstractBaseUser, PermissionsMixin):
-    #password field inhereted from AbstractBaseUser
+    #password field and last_login field inhereted from AbstractBaseUser
     USERNAME_FIELD = 'google_account_id'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['given_name', 'last_name', 'email', 'role']
@@ -56,7 +45,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     given_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=150)
     date_joined = models.DateTimeField(default=timezone.now)
-    #last_login = models.DateTimeField(default=datetime.now) #supplied by AstractBaseUser
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF ALL')
@@ -75,8 +63,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     def has_module_perms(self, app_name):
         return True
-
-
 
     def __str__(self):
         description = "Google ID: " + self.google_account_id + " " + "Last name: " + self.last_name

@@ -146,6 +146,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
+ 'auth_app.custom_auth.AuthBackend',
  'django.contrib.auth.backends.ModelBackend'
  )
 
