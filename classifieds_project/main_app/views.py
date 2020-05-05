@@ -143,31 +143,37 @@ def delete_itemposting(request, item_pk):
 @api_view(['GET'])
 def get_available_postings(request, category):
     """Returns all available postings in a given category. If no category is given, return all postings."""
-    current_user = request.user
-    current_user_role = current_user.role
+    if request.user.is_authenticated:
+        current_user = request.user
+        current_user_role = current_user.role
 
-    query_set = ''
-    if category == '':
-        query_set = Posting.objects.filter(user__role=current_user_role)
+        query_set = ''
+        if category == '':
+            query_set = Posting.objects.filter(user__role=current_user_role)
+        else:
+            query_set = Posting.objects.filter(user__role=current_user_role, category=category)
+        serializer = PostingSerializer(query_set, many=True)
+        json = JSONRenderer().render(serializer.data)
+
+        #return Response(json)
+        return Response(serializer.data) #debug so returns JSON successfully
     else:
-        query_set = Posting.objects.filter(user__role=current_user_role, category=category)
-    serializer = PostingSerializer(query_set, many=True)
-    json = JSONRenderer().render(serializer.data)
-
-    #return Response(json)
-    return Response(serializer.data) #debug so returns JSON successfully
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
 def get_own_postings(request):
     """Returns all postings attributed to a given User. """
-    current_user = request.user
-    query_set = Posting.objects.filter(user=current_user)
+    if request.user.is_authenticated:
+        current_user = request.user
+        query_set = Posting.objects.filter(user=current_user)
 
-    serializer = PostingSerializer(query_set, many=True)
-    json = JSONRenderer().render(serializer.data)
+        serializer = PostingSerializer(query_set, many=True)
+        json = JSONRenderer().render(serializer.data)
 
-    #return Response(json)
-    return Response(serializer.data) #debug so returns JSON successfully
+        #return Response(json)
+        return Response(serializer.data) #debug so returns JSON successfully
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 def search_postings(request, keyword):
