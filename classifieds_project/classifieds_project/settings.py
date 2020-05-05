@@ -102,7 +102,7 @@ DATABASES = {
         'NAME': 'classifieds',
         'USER': 'comps',
         'PASSWORD': 'Compsrox236!',
-        'HOST': 'localhost',
+        'HOST': 'classifieds.mathcs.carleton.edu',
         'PORT': '',
     }
 }
