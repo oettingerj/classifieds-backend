@@ -40,6 +40,7 @@ class AuthBackend(BaseBackend):
 
         except ValueError:
             print("Authentication error")
+            return None
             pass
 
     def get_user(user_id):

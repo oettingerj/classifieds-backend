@@ -14,8 +14,14 @@ def authenticate(request):
     print(request.data)
 
     instance_of_AuthBackend_class = AuthBackend()
-    instance_of_AuthBackend_class.authenticate(request)
-    return Response("success from views.py of auth_app")
+    user = instance_of_AuthBackend_class.authenticate(request)
+    if user != None:
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+    #return Response("success from views.py of auth_app")
+    
 
 @api_view(['GET', 'POST'])
 def logout(request):

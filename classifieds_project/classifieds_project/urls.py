@@ -34,7 +34,7 @@ urlpatterns = [
     path('itemposting/delete/<item_pk>/', views.delete_itemposting),
 #    path('api/list/posting/', views.posting_list),
     url(r'api/get/available_postings/(?P<category>\w+|)/', views.get_available_postings),
-    url(r'api/get/postings_by_id/(?P<user_id_num>[0-9]+)/', views.get_postings_by_id),
+    url(r'api/get/own_postings', views.get_own_postings),
     path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name="sample/index.html")), 
     path('api/search/<keyword>/', views.search_postings),

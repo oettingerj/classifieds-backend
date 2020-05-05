@@ -8,6 +8,10 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+
+#note: if this doesn't work:
+#   from django.conf import settings
+#   User = settings.AUTH_USER_MODEL
 from django.contrib.auth.models import User
 
 from .models import Posting, RidePosting, ItemPosting
@@ -136,38 +140,34 @@ def delete_itemposting(request, item_pk):
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-#view_available_postings (note: to add restriction to viewing postings targeted towards the requesting user type)
 @api_view(['GET'])
 def get_available_postings(request, category):
     """Returns all available postings in a given category. If no category is given, return all postings."""
+    current_user = request.user
+    current_user_role = current_user.role
 
     query_set = ''
     if category == '':
-        query_set = Posting.objects.all()
+        query_set = Posting.objects.filter(user__role=current_user_role)
     else:
-        query_set = Posting.objects.filter(category=category)
+        query_set = Posting.objects.filter(user__role=current_user_role, category=category)
     serializer = PostingSerializer(query_set, many=True)
     json = JSONRenderer().render(serializer.data)
 
     #return Response(json)
-    return Response(serializer.data)
+    return Response(serializer.data) #debug so returns JSON successfully
 
 @api_view(['GET'])
-def get_postings_by_id(request, user_id_num):
+def get_own_postings(request):
     """Returns all postings attributed to a given User. """
-
-
-    print("user_id_num: ")
-    print(user_id_num)
-    #query_set = Posting.objects.all()
-    #query_set = Posting.objects.filter(category=user_id_num)
-    query_set = Posting.objects.filter(user=user_id_num)
+    current_user = request.user
+    query_set = Posting.objects.filter(user=current_user)
 
     serializer = PostingSerializer(query_set, many=True)
     json = JSONRenderer().render(serializer.data)
 
     #return Response(json)
-    return Response(serializer.data)
+    return Response(serializer.data) #debug so returns JSON successfully
 
 
 def search_postings(request, keyword):
