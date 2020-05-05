@@ -1,13 +1,18 @@
 #from django.db import migrations
 from rest_framework import serializers
 
-from main_app.models import User, Posting, RidePosting, ItemPosting
+from .models import User, Posting, RidePosting, ItemPosting, AuthBackend
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['username', 'password', 'email', 'first_name', 'last_name', 'role']
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password', 'email', 'first_name', 'last_name', 'role']
+
+# class AuthBackendSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = AuthBackend
+#         fields = []
 
 
 class PostingSerializer(serializers.ModelSerializer):
