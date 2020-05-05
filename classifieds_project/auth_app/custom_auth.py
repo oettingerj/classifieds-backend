@@ -42,6 +42,10 @@ class AuthBackend(BaseBackend):
             print("Authentication error")
             pass
 
+    def get_user(user_id):
+        user = settings.AUTH_USER_MODEL.objects.get(pk=user_id)
+        return user
+
 
 
 

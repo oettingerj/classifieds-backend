@@ -2,8 +2,6 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-
-from django.shortcuts import render
   
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
@@ -157,6 +155,7 @@ def get_available_postings(request, category):
 @api_view(['GET'])
 def get_postings_by_id(request, user_id_num):
     """Returns all postings attributed to a given User. """
+
 
     print("user_id_num: ")
     print(user_id_num)

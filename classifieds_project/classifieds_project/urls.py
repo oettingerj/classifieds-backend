@@ -24,6 +24,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('tokensignin/', auth_views.authenticate),
+    path('logout/', auth_views.logout),
     path('api/create/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.create_posting),
     path('rideposting/create/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/<willingToPay>/<payment>/',views.create_rideposting),
     path('api/create/itemPosting/<posting_pk>/<images>/<price>/<forSale>/<forLoan>', views.create_itemposting),
