@@ -6,7 +6,7 @@ main() {
 	read -p "Do you wish to continue (enter yes to continue): " decision
 	
 	if [ "$decision" == "yes" ]; then
-		cd /Users/jamullan/Documents/School/Carleton/SeniorFiles/AcadW20/COMPS/carleton-classifieds/classifieds/sample
+		cd /Users/jamullan/Documents/School/Carleton/SeniorFiles/AcadS20/COMPS/classifieds-backend/classifieds_project/main_app
 		find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 		find . -path "*/migrations/*.pyc"  -delete
 		cd ..

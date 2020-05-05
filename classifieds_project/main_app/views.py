@@ -12,26 +12,26 @@ from rest_framework import status
 
 from django.contrib.auth.models import User
 
-from .models import User, Posting, RidePosting, ItemPosting
+from .models import Posting, RidePosting, ItemPosting
 from .serializers import *
 
 
-@api_view(['GET', 'POST'])
-def create_user(request, name, email, role):
-    """ Creates a user in the database for the given name, email, and role """
+# @api_view(['GET', 'POST'])
+# def create_user(request, name, email, role):
+#     """ Creates a user in the database for the given name, email, and role """
 
-    temp_dictionary = {
-        'name': name, 
-        'email': email, 
-        'role': role
-    }
-    serializer = UserSerializer(data=temp_dictionary)
+#     temp_dictionary = {
+#         'name': name, 
+#         'email': email, 
+#         'role': role
+#     }
+#     serializer = UserSerializer(data=temp_dictionary)
    
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(status=status.HTTP_201_CREATED)
+#     else:
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])

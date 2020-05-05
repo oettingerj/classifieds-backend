@@ -39,17 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'auth_app',
     
-    'rest_framework'
+    'rest_framework',
 
-    # 'allauth',
-    # 'allauth.account',
+    'allauth',
+    'allauth.account'
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google'
     
 ]
 
-AUTH_USER_MODEL = 'main_app.User'
+AUTH_USER_MODEL = 'auth_app.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
