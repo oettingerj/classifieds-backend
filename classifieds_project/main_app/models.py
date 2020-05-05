@@ -4,7 +4,6 @@ from django.db import models
 class User(models.Model):
     username = models.CharField(max_length=240)
     password = models.CharField(max_length=240)
-    
 
     email = models.EmailField(unique=True)
     roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF ALL')
