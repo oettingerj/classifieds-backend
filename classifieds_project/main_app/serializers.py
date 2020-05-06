@@ -1,7 +1,7 @@
 #from django.db import migrations
 from rest_framework import serializers
 
-from .models import User, Posting, RidePosting, ItemPosting, AuthBackend
+from .models import User, ItemListing, Location, RideListing
 
 
 # class UserSerializer(serializers.ModelSerializer):
@@ -15,22 +15,14 @@ from .models import User, Posting, RidePosting, ItemPosting, AuthBackend
 #         fields = []
 
 
-class PostingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Posting
-        fields = ['user', 'timePosted', 'category', 'prospective',
-                  'fulfilled', 'description', 'audience']
-
 
 class ItemPostingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ItemPosting
-        fields = ['posting', 'images', 'price', 'forSale', 'forLoan']
+        model = ItemListing
+        fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
 
 
 class RidePostingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RidePosting
-        fields = ['posting', 'dateTimeOfRide', 'startLocation', 'endLocation',
-                  'numberOfPeople', 'willingToPay', 'payment']
-
+        model = RideListing
+        fields = ['created','user','datetime','startLocation','endLocation','passengers','distance']

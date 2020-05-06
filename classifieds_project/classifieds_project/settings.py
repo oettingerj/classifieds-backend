@@ -40,16 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     
-    'rest_framework'
+    'rest_framework',
 
-    # 'allauth',
-    # 'allauth.account',
+    'allauth',
+    'allauth.account'
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google'
     
 ]
-
-AUTH_USER_MODEL = 'main_app.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -97,14 +95,21 @@ WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 #    }
 #}
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'classifieds',
+#         'USER': 'comps',
+#         'PASSWORD': 'Compsrox236!',
+#         'HOST': 'classifieds.mathcs.carleton.edu',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'classifieds',
-        'USER': 'comps',
-        'PASSWORD': 'Compsrox236!',
-        'HOST': 'classifieds.mathcs.carleton.edu',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
