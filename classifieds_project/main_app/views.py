@@ -18,6 +18,20 @@ from .models import Posting, RidePosting, ItemPosting
 from .serializers import *
 
 
+@api_view(['GET','POST'])
+def test01(request):
+    print("test01 view called")
+    print(request.user.email)
+    #email_address = request.user.email
+
+    return Response(request.user.email)
+
+@api_view(['GET','POST'])
+def test02(request):
+    print("test02 view called")
+
+    return Response(request.session)
+
 @api_view(['GET', 'POST'])
 def create_posting(request, user_pk, timePosted, category, prospective,
                    fulfilled, description, audience):

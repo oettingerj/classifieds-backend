@@ -8,14 +8,15 @@ from django.utils import timezone
 
 class UserManager(BaseUserManager):
     def create_user(self, google_account_id, email, given_name, last_name, role):
+        print("*****checkpoint 1A*****")
         new_user = self.model (
             google_account_id = google_account_id,
             email = email,
             given_name = given_name,
             last_name = last_name,
-            role = role,
+            #role = 'STUDENT', #default to student
         )
-
+        print("*****checkpoint 1B*****")
         new_user.set_unusable_password()
         new_user.save(using=self._db)
         return new_user
@@ -50,6 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF ALL')
     role = models.CharField(choices=roleChoice.choices, max_length=7)
 
+    username = models.TextField(default="no username", unique=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     
@@ -59,9 +61,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         return given_name + " " + last_name
     
     def has_perm(self, perm, obj=None):
+        print("has_perm called from auth_app/models.py")
         return True
     
     def has_module_perms(self, app_name):
+        print("has_module_perms called from auth_app/models.py")
         return True
 
     def __str__(self):
