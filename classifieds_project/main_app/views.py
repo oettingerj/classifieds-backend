@@ -17,14 +17,21 @@ from django.contrib.auth.models import User
 from .models import Posting, RidePosting, ItemPosting
 from .serializers import *
 
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
+
+
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+
 
 @api_view(['GET','POST'])
 def test01(request):
+    print(request.COOKIES)
     print("test01 view called")
     print(request.user.email)
     #email_address = request.user.email
 
-    return Response(request.user.email)
+    return Response(request.COOKIES)
 
 @api_view(['GET','POST'])
 def test02(request):

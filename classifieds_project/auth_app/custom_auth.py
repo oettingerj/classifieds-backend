@@ -71,6 +71,10 @@ class AuthBackend(BaseBackend):
         #return user
 
     def get_user(self, user_id):
+        print()
+        print()
+        print()
+        print()
         print("*****checkpoint 0I*****")
         print(user_id)
         user = User.objects.get(pk=user_id) #settings.AUTH_USER_MODEL.objects.get(pk=user_id)
