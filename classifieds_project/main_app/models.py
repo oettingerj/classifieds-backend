@@ -43,6 +43,7 @@ class ItemListing(models.Model):
     sold = models.BooleanField()
 
 class Location(models.Model):
+    #id implicitly created
     name = models.CharField(max_length=240)
     latitude = models.DecimalField(max_digits=12, decimal_places=6)
     longitude = models.DecimalField(max_digits=12, decimal_places=6)
@@ -56,7 +57,7 @@ class RideListing(models.Model):
     startLocation = models.ForeignKey(Location, related_name='start_location', on_delete=models.CASCADE)
     endLocation = models.ForeignKey(Location, related_name='end_location', on_delete=models.CASCADE)
     passengers = models.IntegerField()
-    distance = models.DecimalField(max_digits=6, decimal_places=2)
+    distance = models.DecimalField(max_digits=12, decimal_places=8)
 
 
 
