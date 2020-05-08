@@ -1,24 +1,26 @@
 #from django.db import migrations
 from rest_framework import serializers
 
-from .models import Posting, RidePosting, ItemPosting
+from main_app.models import RideListing, ItemListing
 
-class PostingSerializer(serializers.ModelSerializer):
+class ItemListingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Posting
-        fields = ['user', 'timePosted', 'category', 'prospective',
-                  'fulfilled', 'description', 'audience']
+        model = ItemListing
+        fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
 
-
-class ItemPostingSerializer(serializers.ModelSerializer):
+class RideListingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ItemPosting
-        fields = ['posting', 'images', 'price', 'forSale', 'forLoan']
+        model = RideListing
+        fields = ['created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers', 'distance']
 
 
-class RidePostingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RidePosting
-        fields = ['posting', 'dateTimeOfRide', 'startLocation', 'endLocation',
-                  'numberOfPeople', 'willingToPay', 'payment']
-
+# class ItemPostingSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = ItemListing
+#         fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
+#
+#
+# class RidePostingSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = RideListing
+#         fields = ['created','user','datetime','startLocation','endLocation','passengers','distance']

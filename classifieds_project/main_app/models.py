@@ -1,30 +1,47 @@
 from django.db import models
 from django.conf import settings
 
-class Posting(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='poster', on_delete=models.CASCADE)
-    timePosted = models.DateTimeField()
-    category = models.CharField(max_length=240)  # change to choices later
-    prospective = models.BooleanField()
-    fulfilled = models.BooleanField()
-    title = models.TextField(default="N/A")
+from rest_framework import status
+from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
+
+
+from datetime import datetime
+# from .serializers import (
+#     UserSerializer, 
+#     AuthBackendSerializer, 
+#     PostingSerializer, 
+#     ItemPostingSerializer, 
+#     RidePostingSerializer
+# )
+
+
+class ItemListing(models.Model):
+    #id implicitly created
+    created = models.DateTimeField()
+    title = models.CharField(max_length=240)
     description = models.TextField()
-    audienceChoice = models.TextChoices('audienceChoice', 'STUDENT FACULTY STAFF ALL')
-    audience = models.CharField(choices=audienceChoice.choices, max_length=7)
-    savedBy = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='savedPostings')
-
-class RidePosting(models.Model):
-    posting = models.OneToOneField(Posting, on_delete=models.CASCADE)
-    dateTimeOfRide = models.DateTimeField()
-    startLocation = models.TextField()
-    endLocation = models.TextField()
-    numberOfPeople = models.IntegerField()
-    willingToPay = models.BooleanField()
-    payment = models.DecimalField(max_digits=8, decimal_places=2, default='0.00')
-
-class ItemPosting(models.Model):
-    posting = models.OneToOneField(Posting, on_delete=models.CASCADE)
-    images = models.ImageField(blank=True)
+    user = models.ForeignKey(User, related_name='poster', on_delete=models.CASCADE)
+    img = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    forSale = models.BooleanField()
-    forLoan = models.BooleanField()
+    sold = models.BooleanField()
+
+class Location(models.Model):
+    #id implicitly created
+    name = models.CharField(max_length=240)
+    latitude = models.DecimalField(max_digits=12, decimal_places=6)
+    longitude = models.DecimalField(max_digits=12, decimal_places=6)
+    address = models.TextField()
+
+class RideListing(models.Model):
+    #id implicitly created
+    created = models.DateTimeField()
+    user = models.ForeignKey(User, related_name='ride_offerer', on_delete=models.CASCADE)
+    datetime = models.DateTimeField()
+    startLocation = models.ForeignKey(Location, related_name='start_location', on_delete=models.CASCADE)
+    endLocation = models.ForeignKey(Location, related_name='end_location', on_delete=models.CASCADE)
+    passengers = models.IntegerField()
+    distance = models.DecimalField(max_digits=12, decimal_places=8)
+
+
+

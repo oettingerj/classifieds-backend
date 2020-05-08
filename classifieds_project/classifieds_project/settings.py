@@ -98,6 +98,17 @@ WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 #    }
 #}
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'classifieds',
+#         'USER': 'comps',
+#         'PASSWORD': 'Compsrox236!',
+#         'HOST': 'classifieds.mathcs.carleton.edu',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

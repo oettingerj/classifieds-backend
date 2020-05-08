@@ -3,10 +3,10 @@ from datetime import datetime
 
 from django.core.management import BaseCommand
 
-from sample.models import User, Posting, RidePosting, ItemPosting, Comment
-from pytz import UTC
+from main_app.models import User, Posting, RidePosting, ItemPosting, Comment
 
 DATETIME_FORMAT = '%m/%d/%Y %H:%M'
+
 
 class Command(BaseCommand):
 

@@ -91,26 +91,53 @@ def create_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLo
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST'])
-def create_itemposting(request, posting_pk, images, price, forSale, forLoan):
-    """ Creates an item posting from the given parameters. One of these parameters is the primary key for the base
-    posting the item posting is connected to """
+# @api_view(['GET', 'POST'])
+# def create_itemposting(request, posting_pk, images, price, forSale, forLoan):
+#     """ Creates an item posting from the given parameters. One of these parameters is the primary key for the base
+#     posting the item posting is connected to """
+#
+#     temp_dictionary = {
+#         'posting': posting_pk,
+#         # 'images': images, #intentionally excluded for importing test data
+#         'price': price,
+#         'forSale': forSale,
+#         'forLoan': forLoan
+#     }
+#
+#     if request.method == "GET":
+#         postings = Posting.objects.all()
+#         serializer = PostingSerializer(postings, context={'request': request}, many=True)
+#         return Response(serializer.data)
+#
+#     elif request.method == "POST":
+#         serializer = ItemPostingSerializer(data=temp_dictionary)
+#
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET', 'POST'])
+def create_ItemListing(request, created, title, description, user, img, price, sold):
+    """Creates an item listing for the given parameters"""
     temp_dictionary = {
-        'posting': posting_pk,
-        # 'images': images, #intentionally excluded for importing test data
+        'created': created,
+        'title': title,
+        'description':description,
+        'user':user,
+        'img':img,
         'price': price,
-        'forSale': forSale,
-        'forLoan': forLoan
+        'sold':sold
     }
 
     if request.method == "GET":
-        postings = Posting.objects.all()
-        serializer = PostingSerializer(postings, context={'request': request}, many=True)
+        item_listings = ItemListing.objects.all()
+        serializer = ItemListingSerializer(item_listings, context={'request': request}, many=True)
         return Response(serializer.data)
 
     elif request.method == "POST":
-        serializer = ItemPostingSerializer(data=temp_dictionary)
+        serializer = ItemListingSerializer(data=temp_dictionary)
 
         if serializer.is_valid():
             serializer.save()
@@ -133,17 +160,20 @@ def edit_rideposting(request, ride_pk, posting_pk, dateTimeOfRide, startLocation
     return Response(serializer.data)
 
 
-def edit_itemposting(request, item_pk, posting_pk, images, price, forSale, forLoan):
+def edit_itemposting(request, created, title, description, user, img, price, sold):
     """Edits a pre-existing database entry for an item posting and updates it in place. """
 
-    post = ItemPosting.objects.get(pk=item_pk)
+    post = ItemListing.objects.get(pk=request.kwargs['pk'])
     # use is_valid?
-    post.images = images
+    post.created = created
+    post.description = description
+    post.title = title
+    post.user = user # probs not necessary
+    post.img = img
     post.price = price
-    post.forSale = forSale
-    post.forLoan = forLoan
+    post.sold = sold
     post.save()
-    serializer = ItemPostingSerializer(post)
+    serializer = ItemListingSerializer(post)
     return Response(serializer.data)  # not sure if this is best way to do thsi
 
 
@@ -154,9 +184,9 @@ def delete_rideposting(request, key):
     return render(request, 'sample/posting_list.html')
 
 
-def delete_itemposting(request, item_pk):
+def delete_itemposting(request):
     """Deletes the item posting associated with the given primary key from the database"""
-    post = ItemPosting.objects.get(pk=item_pk)
+    post = ItemListing.objects.get(pk=request.kwargs['pk'])
     post.delete()
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
@@ -200,48 +230,65 @@ def get_own_postings(request):
 def search_postings(request, keyword):
     """Returns all database entries whose 'description' field includes the given keyword. """
 
-    postingList = Posting.objects.filter(description__contains=keyword)  # is this the filter we want?
-    serializer = PostingSerializer(postingList, context={'request': request}, many=True)
+    posting_list = ItemListing.objects.filter(description__contains=keyword)  # is this the filter we want?
+    serializer = ItemListingSerializer(posting_list, context={'request': request}, many=True)
     return Response(serializer.data)
 
+def toggle_ride_posting_fulfilled(request):
+    """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
+    'sold', and vice versa """
 
-def toggle_posting_fulfilled(request, pk):
-    """Toggles between 'fulfilled' values for a given post; if the post was marked as 'unfulfilled' it is now marked as
-    'fulfilled', and vice versa """
-
-    post = Posting.objects.get(pk=pk)
-    if post.fulfilled:
-        post.fulfilled = False
+    post = RideListing.objects.get(pk=request.kwargs['pk'])
+    if post.sold:
+        post.sold = False
     else:
-        post.fulfilled = True
+        post.sold = True
     post.save()
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
+def toggle_item_posting_fulfilled(request):
+    """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
+    'sold', and vice versa """
+
+    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    if post.sold:
+        post.sold = False
+    else:
+        post.sold = True
+    post.save()
+    return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-def view_posting_details(request, pk):
+def view_ride_posting_details(request):
     """Returns all information associated with the post with the given primary key. """
 
-    # do we need one of these for item/ride as well?
-    post = Posting.objects.get(pk=pk)
-    serializer = PostingSerializer(post, context={'request': request}, many=True)
+    post = RideListing.objects.get(pk=request.kwargs['pk'])
+    serializer = RideListingSerializer(post, context={'request': request}, many=True)
+    return Response(serializer.data)
+
+
+def view_item_posting_details(request):
+    """Returns all information associated with the post with the given primary key. """
+
+    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    serializer = ItemListingSerializer(post, context={'request': request}, many=True)
     return Response(serializer.data)
 
 
 def save_posting(request, posting_pk, user_pk):
     """Adds a posting to a user's collection of saved postings, and adds that user to the posting's collection of users that have saved it."""
-    
+
     post = Posting.objects.get(pk=posting_pk)
     user = User.objects.get(pk=user_pk)
     post.savedBy.add(user)
     post.save()
     return render(request, 'sample/posting_list.html') #change this
-    
-    
+
+
 def unsave_posting(request, posting_pk, user_pk):
     """Removes a posting from a user's collection of saved postings, and removes that user from the posting's collection of users that have saved it."""
-    
+
     post = Posting.objects.get(pk=posting_pk)
     user = User.objects.get(pk=user_pk)
     post.savedBy.remove(user)
@@ -251,14 +298,14 @@ def unsave_posting(request, posting_pk, user_pk):
 
 def display_saved_postings(request, user_pk):
     """Displays the postings that the given user has saved."""
-    
+
     user = User.objects.get(pk=user_pk)
     postings = user.savedPostings.all()
 #    serializer = PostingSerializer(postings, many=True)
 #    return Response(serializer.data)
     return render(request, 'sample/posting_list.html', {'postings': postings}) #change this
-    
 
-# #USERS
-# @api_view(['POST'])
-# def create_user(request, name, email, role):
+
+#USERS
+@api_view(['POST'])
+def create_user(request, name, email, role):
