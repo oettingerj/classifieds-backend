@@ -33,7 +33,7 @@ def test01(request):
     print(request.user.email)
     #email_address = request.user.email
 
-    return Response(request.COOKIES)
+    return Response(request.user.email)
 
 @api_view(['GET','POST'])
 def test02(request):
@@ -247,14 +247,13 @@ def get_available_postings(request, category):
 
         query_set = ''
         if category == '':
-            query_set = Posting.objects.filter(user__role=current_user_role)
+            query_set = ItemListing.objects.filter(user__role=current_user_role)
         else:
-            query_set = Posting.objects.filter(user__role=current_user_role, category=category)
-        serializer = PostingSerializer(query_set, many=True)
+            query_set = ItemListing.objects.filter(user__role=current_user_role, category=category)
+        serializer = ItemListingSerializer(query_set, many=True)
         json = JSONRenderer().render(serializer.data)
 
-        #return Response(json)
-        return Response(serializer.data) #debug so returns JSON successfully
+        return Response(json)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -263,13 +262,12 @@ def get_own_postings(request):
     """Returns all postings attributed to a given User. """
     if request.user.is_authenticated:
         current_user = request.user
-        query_set = Posting.objects.filter(user=current_user)
+        query_set = ItemListing.objects.filter(user=current_user)
 
-        serializer = PostingSerializer(query_set, many=True)
+        serializer = ItemListingSerializer(query_set, many=True)
         json = JSONRenderer().render(serializer.data)
 
-        #return Response(json)
-        return Response(serializer.data) #debug so returns JSON successfully
+        return Response(json)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 

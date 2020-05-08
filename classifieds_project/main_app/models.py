@@ -18,6 +18,7 @@ class ItemListing(models.Model):
     created = models.DateTimeField()
     title = models.CharField(max_length=240)
     description = models.TextField()
+    category = models.CharField(max_length=120,default="not specified")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='poster', on_delete=models.CASCADE)
     img = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
