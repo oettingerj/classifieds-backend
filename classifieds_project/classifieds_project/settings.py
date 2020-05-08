@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']  #classifieds.mathcs.carleton.edu]
 
 INSTALLED_APPS = [
     'main_app',
+    'corsheaders',
     'reset_migrations',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'auth_app.User'
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,6 +64,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:5000',
+    'http://137.22.56.6:5000'
+]
+
 
 ROOT_URLCONF = 'classifieds_project.urls'
 
