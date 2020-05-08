@@ -1,24 +1,39 @@
 #from django.db import migrations
 from rest_framework import serializers
 
-from .models import Posting, RidePosting, ItemPosting
+from .models import User, ItemListing, Location, RideListing
 
-class PostingSerializer(serializers.ModelSerializer):
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Posting
-        fields = ['user', 'timePosted', 'category', 'prospective',
-                  'fulfilled', 'description', 'audience']
+        model = User
+        fields = ['username', 'password', 'email', 'first_name', 'last_name', 'role']
 
-
-class ItemPostingSerializer(serializers.ModelSerializer):
+class AuthBackendSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ItemPosting
-        fields = ['posting', 'images', 'price', 'forSale', 'forLoan']
+        model = AuthBackend
+        fields = []
 
 
-class RidePostingSerializer(serializers.ModelSerializer):
+
+class ItemListingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RidePosting
-        fields = ['posting', 'dateTimeOfRide', 'startLocation', 'endLocation',
-                  'numberOfPeople', 'willingToPay', 'payment']
+        model = ItemListing
+        fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
 
+class RideListingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RideListing
+        fields = ['created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers', 'distance']
+
+
+# class ItemPostingSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = ItemListing
+#         fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
+#
+#
+# class RidePostingSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = RideListing
+#         fields = ['created','user','datetime','startLocation','endLocation','passengers','distance']
