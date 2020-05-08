@@ -9,12 +9,14 @@ from django.utils import timezone
 class UserManager(BaseUserManager):
     def create_user(self, google_account_id, email, given_name, last_name, role):
         print("*****checkpoint 1A*****")
+        largest_id = User.objects.all().order_by('-id')[0] #allows importation of data into auth_app_user relation without breaking auto-increment
         new_user = self.model (
+            id = largest_id.id + 1,
             google_account_id = google_account_id,
             email = email,
             given_name = given_name,
             last_name = last_name,
-            #role = 'STUDENT', #default to student
+            role = 'STUDENT', #default to student
         )
         print("*****checkpoint 1B*****")
         new_user.set_unusable_password()

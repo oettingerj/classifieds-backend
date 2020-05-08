@@ -3,7 +3,7 @@ from datetime import datetime
 from django.conf import settings
 # from .serializers import (
 #     UserSerializer, 
-#     AuthBackendSerializer, 
+#     AuthBackendSerializer,  
 #     PostingSerializer, 
 #     ItemPostingSerializer, 
 #     RidePostingSerializer
@@ -26,8 +26,8 @@ class ItemListing(models.Model):
 class Location(models.Model):
     #id implicitly created
     name = models.CharField(max_length=240)
-    latitude = models.DecimalField(max_digits=12, decimal_places=6)
-    longitude = models.DecimalField(max_digits=12, decimal_places=6)
+    latitude = models.DecimalField(max_digits=12, decimal_places=8)
+    longitude = models.DecimalField(max_digits=12, decimal_places=8)
     address = models.TextField()
 
 class RideListing(models.Model):

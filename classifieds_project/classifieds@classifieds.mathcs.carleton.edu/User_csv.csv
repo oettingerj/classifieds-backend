@@ -1,0 +1,11 @@
+id,password,last_login,google_account_id,email,given_name,last_name,date_joined,is_superuser,is_active,role,username,is_admin,is_staff
+1,badpassword,2020-05-21 21:17:52.987792-05,1,msisselot0@noaa.gov,Minette,Sisselot,2020-05-20 21:17:52.987792-05,f,t,STAFF,1,f,f
+2,badpassword,2020-05-21 21:17:52.987792-06,2,jlucy1@comcast.net,Johnathan,Lucy,2020-05-20 21:17:52.987792-06,f,t,STAFF,2,f,f
+3,badpassword,2020-05-21 21:17:52.987792-07,3,jgypson2@microsoft.com,Jaquelyn,Gypson,2020-05-20 21:17:52.987792-07,f,t,STUDENT,3,f,f
+4,badpassword,2020-05-21 21:17:52.987792-08,4,cewbach3@freewebs.com,Callie,Ewbach,2020-05-20 21:17:52.987792-08,f,t,STAFF,4,f,f
+5,badpassword,2020-05-21 21:17:52.987792-09,5,gaimer4@harvard.edu,Greta,Aimer,2020-05-20 21:17:52.987792-09,f,t,STUDENT,5,f,f
+6,badpassword,2020-05-21 21:17:52.987792-10,6,ggaddas5@bravesites.com,Gilberta,Gaddas,2020-05-20 21:17:52.987792-10,f,t,FACULTY,6,f,f
+7,badpassword,2020-05-21 21:17:52.987792-11,7,bbearcroft6@cdc.gov,Bertine,Bearcroft,2020-05-20 21:17:52.987792-11,f,t,FACULTY,7,f,f
+8,badpassword,2020-05-21 21:17:52.987792-12,8,osuttell7@ed.gov,Olga,Suttell,2020-05-20 21:17:52.987792-12,f,t,STAFF,8,f,f
+9,badpassword,2020-05-21 21:17:52.987792-13,9,tnovis8@theatlantic.com,Thomasa,Novis,2020-05-20 21:17:52.987792-13,f,t,STUDENT,9,f,f
+10,badpassword,2020-05-21 21:17:52.987792-14,10,lshreeve9@bing.com,Lori,Shreeve,2020-05-20 21:17:52.987792-14,f,t,STAFF,10,f,f
