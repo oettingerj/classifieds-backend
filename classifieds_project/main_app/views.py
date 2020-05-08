@@ -16,7 +16,7 @@ from rest_framework import status
 #   User = settings.AUTH_USER_MODEL
 from django.contrib.auth.models import User
 
-from .models import Posting, RidePosting, ItemPosting
+from .models import ItemListing, RideListing, Location
 from .serializers import *
 
 from django.views.decorators.csrf import csrf_exempt

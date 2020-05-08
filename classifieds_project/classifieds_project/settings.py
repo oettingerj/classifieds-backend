@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']  #classifieds.mathcs.carleton.edu]
 
 INSTALLED_APPS = [
     'main_app',
+    'reset_migrations',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -109,10 +110,25 @@ WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 #     }
 # }
 
+
+
+#Settings for local SQLite db
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+#Settings for PostgreSQL db
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'classifieds',
+        'USER': 'comps',
+        'PASSWORD': 'Compsrox236!',
+        'HOST': 'classifieds.mathcs.carleton.edu',
+        'PORT': '',
     }
 }
 
