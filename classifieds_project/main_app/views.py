@@ -62,27 +62,32 @@ def create_user(request, name, email, role):
 
 
 @api_view(['GET', 'POST'])
-def create_rideposting(request, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople, willingToPay, payment):
-    """ Creates an ride posting from the given parameters. One of these parameters is the primary key for the base
-    posting the ride posting is connected to """
-
+def create_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance):
+    """ Creates a ride listing for the given parameters. """
+    
     temp_dictionary = {
-        'posting': posting_pk,
-        'dateTimeOfRide': dateTimeOfRide,
+        'created': created,
+        'user': user,
+        'datetime': datetime,
         'startLocation': startLocation,
         'endLocation': endLocation,
-        'numberOfPeople': numberOfPeople,
-        'willingToPay': willingToPay,
-        'payment': payment
-        }
-
-    serializer = RidePostingSerializer(data=temp_dictionary)
-
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        'passengers': passengers,
+        'distance': distance
+    }
+    
+    if request.method == 'GET':
+        ridelistings = RideListing.objects.all()
+        serializer = RideListingSerializer(ridelistings, context={'request': request}, many=True)
+        return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        serializer = RideListingSerializer(data=temp_dictionary)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @api_view(['GET', 'POST'])
@@ -140,17 +145,21 @@ def create_ItemListing(request, created, title, description, user, img, price, s
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def edit_rideposting(request, ride_pk, posting_pk, dateTimeOfRide, startLocation, endLocation, numberOfPeople, willingToPay, payment):
-    """Edits a pre-existing database entry for a ride posting and updates it in place. """
-    rideposting = RidePosting.objects.get(pk=ride_pk)
-    rideposting.dateTimeOfRide = dateTimeOfRide
-    rideposting.startLocation = startLocation
-    rideposting.endLocation = endLocation
-    rideposting.numberOfPeople = numberOfPeople
-    rideposting.willingToPay = willingToPay
-    rideposting.payment = payment
-    rideposting.save()
-    serializer = RidePostingSerializer(rideposting)
+def edit_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance):
+    """ Edits a pre-existing database entry for a ride listing and updates it in place. """
+    
+    post = RideLists.objects.get(pk=request.kwargs['pk'])
+    
+    post.created = created
+    post.user = user
+    post.datetime = datetime
+    post.startLocation = startLocation
+    post.endLocation = endLocation
+    post.passengers = passengers
+    post.distance = distance
+    
+    serializer = PostListingSerializer(post)
+    serializer.save()
     return Response(serializer.data)
 
 
@@ -171,11 +180,12 @@ def edit_itemposting(request, created, title, description, user, img, price, sol
     return Response(serializer.data)  # not sure if this is best way to do thsi
 
 
-def delete_rideposting(request, key):
-    """Deletes the ride posting associated with the given primary key from the database"""
-    rideposting = RidePosting.objects.get(pk=key)
-    rideposting.delete()
-    return render(request, 'sample/posting_list.html')
+def delete_ridelisting(request):
+    """ Deletes the ride listing associated with the given primary key from the database. """
+    
+    post = RideListing.objects.get(pk=request.kwargs['pk'])
+    post.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 def delete_itemposting(request):
@@ -267,36 +277,67 @@ def view_item_posting_details(request):
     return Response(serializer.data)
 
 
-def save_posting(request, posting_pk, user_pk):
-    """Adds a posting to a user's collection of saved postings, and adds that user to the posting's collection of users that have saved it."""
-
-    post = Posting.objects.get(pk=posting_pk)
+def save_ridelisting(request, user_pk):
+    """ Adds a ride listing to a user's collection of saved rides, and adds that user to the ride listing's collection of users that have saved it. """
+    
+    post = RideListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
     post.savedBy.add(user)
-    post.save()
-    return render(request, 'sample/posting_list.html') #change this
+    serializer = RideListingSerializer(post, context={'request': request}, many=True)
+    serializer.save()
+    return Response(serializer.data)
 
 
-def unsave_posting(request, posting_pk, user_pk):
-    """Removes a posting from a user's collection of saved postings, and removes that user from the posting's collection of users that have saved it."""
+def save_itemlisting(request, user_pk):
+    """ Adds an item listing to a user's collection of saved items, and adds that user to the item listing's collection of users that have saved it. """
+    
+    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    user = User.objects.get(pk=user_pk)
+    post.savedBy.add(user)
+    serializer = ItemListingSerializer(post, context={'request': request}, many=True)
+    serializer.save()
+    return Response(serializer.data)
 
-    post = Posting.objects.get(pk=posting_pk)
+
+def unsave_ridelisting(request, user_pk):
+    """ Removes a ride listing from a user's collection of saved rides, and removes that user from the ride listing's collection of users that have saved it. """
+    
+    post = RideListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
     post.savedBy.remove(user)
     post.save()
-    return render(request, 'sample/posting_list.html') #change this
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def display_saved_postings(request, user_pk):
-    """Displays the postings that the given user has saved."""
-
+def unsave_itemlisting(request, user_pk):
+    """ Removes an item listing from a user's collection of saved items, and removes that user from the item listing's collection of users that have saved it. """
+    
+    post = ItemListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
-    postings = user.savedPostings.all()
-#    serializer = PostingSerializer(postings, many=True)
-#    return Response(serializer.data)
-    return render(request, 'sample/posting_list.html', {'postings': postings}) #change this
+    post.savedBy.remove(user)
+    post.save()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+def display_saved_ridelistings(request, user_pk):
+    """ Displays the ride listings that the given user has saved. """
+    
+    user = User.objects.get(pk=user_pk)
+    posts = user.savedRides.all()
+    serializer = RideListingSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+def display_saved_itemlistings(request, user_pk):
+    """ Displays the item listings that the given user has saved. """
+    
+    user = User.objects.get(pk=user_pk)
+    posts = user.savedItems.all()
+    serializer = ItemListingSerializer(posts, many=True)
+    return Response(serializer.data)
 
 
 #USERS
 @api_view(['POST'])
 def create_user(request, name, email, role):
+    pass
