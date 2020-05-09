@@ -53,7 +53,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     roleChoice = models.TextChoices('roleChoice', 'STUDENT FACULTY STAFF ALL')
     role = models.CharField(choices=roleChoice.choices, max_length=7)
 
-    username = models.TextField(default="no username", unique=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     

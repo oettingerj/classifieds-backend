@@ -6,7 +6,6 @@ from django.shortcuts import render
 from django.shortcuts import render
 
 from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework import status
 
@@ -247,13 +246,12 @@ def get_available_postings(request, category):
 
         query_set = ''
         if category == '':
-            query_set = ItemListing.objects.filter(user__role=current_user_role)
+            query_set = ItemListing.objects
         else:
-            query_set = ItemListing.objects.filter(user__role=current_user_role, category=category)
+            query_set = ItemListing.objects.filter(category=category)
         serializer = ItemListingSerializer(query_set, many=True)
-        json = JSONRenderer().render(serializer.data)
 
-        return Response(json)
+        return Response(serializer.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -265,9 +263,8 @@ def get_own_postings(request):
         query_set = ItemListing.objects.filter(user=current_user)
 
         serializer = ItemListingSerializer(query_set, many=True)
-        json = JSONRenderer().render(serializer.data)
 
-        return Response(json)
+        return Response(serializer.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
