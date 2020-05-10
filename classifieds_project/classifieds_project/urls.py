@@ -30,11 +30,11 @@ urlpatterns = [
     path('test01/', views.test01),
     path('test02/', views.test02),
     path('api/create/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.create_posting),
-    path('rideposting/create/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/<willingToPay>/<payment>/',views.create_rideposting),
+    path('rideposting/create/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/<willingToPay>/<payment>/',views.create_ridelisting),
     #path('api/create/itemPosting/<posting_pk>/<images>/<price>/<forSale>/<forLoan>', views.create_itemposting),
-    path('rideposting/edit/<ride_pk>/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/<willingToPay>/<payment>/', views.edit_rideposting),
+    path('rideposting/edit/<ride_pk>/<posting_pk>/<dateTimeOfRide>/<startLocation>/<endLocation>/<numberOfPeople>/<willingToPay>/<payment>/', views.edit_ridelisting),
     path('itemposting/edit/<posting_pk>/<images>/<price>/<forSale>/<forLoan>', views.edit_itemposting),
-    path('rideposting/delete/<key>/', views.delete_rideposting),
+    path('rideposting/delete/<key>/', views.delete_ridelisting),
     path('itemposting/delete/<item_pk>/', views.delete_itemposting),
 #    path('api/list/posting/', views.posting_list),
     url(r'api/get/available_postings/(?P<category>\w+|)/', views.get_available_postings),
@@ -43,7 +43,7 @@ urlpatterns = [
     path('api/search/<keyword>/', views.search_postings),
 #    path('api/toggle/fulfilled/<pk>/', views.toggle_posting_fulfilled),
 #    path('api/view/posting_details/<pk>/', views.view_posting_details),
-    path('api/saved/saveposting/<posting_pk>/<user_pk>/', views.save_posting),
-    path('api/saved/unsaveposting/<posting_pk>/<user_pk>/', views.unsave_posting),
-    path('api/saved/displaypostings/<user_pk>/', views.display_saved_postings)
+    # path('api/saved/saveposting/<posting_pk>/<user_pk>/', views.save_posting),
+    # path('api/saved/unsaveposting/<posting_pk>/<user_pk>/', views.unsave_posting),
+    # path('api/saved/displaypostings/<user_pk>/', views.display_saved_postings)
 ]

@@ -23,7 +23,7 @@ class ItemListing(models.Model):
     img = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     sold = models.BooleanField()
-    savedBy = models.ManyToManyField(User, related_name='savedItems')
+    savedBy = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='savedItems')
 
 class Location(models.Model):
     #id implicitly created
@@ -41,7 +41,7 @@ class RideListing(models.Model):
     endLocation = models.ForeignKey(Location, related_name='end_location', on_delete=models.CASCADE)
     passengers = models.IntegerField()
     distance = models.DecimalField(max_digits=12, decimal_places=8),
-    savedBy = models.ManyToManyField(User, related_name='savedRides')
+    savedBy = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='savedRides')
 
 
 
