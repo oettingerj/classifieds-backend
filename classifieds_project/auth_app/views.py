@@ -19,7 +19,11 @@ def authenticate(request):
         print("*****checkpoint 2A*****")
         request.user = user
         print(request.user)
-        return Response(status=status.HTTP_200_OK)
+        
+        response = Response(status=status.HTTP_200_OK)
+        print("response cookies are: ")
+        print(response.cookies)
+        return response
     else:
         print("*****checkpoint 2B*****")
         return Response(status=status.HTTP_403_FORBIDDEN)
