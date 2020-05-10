@@ -40,51 +40,6 @@ def test02(request):
 
     return Response(request.session)
 
-@api_view(['GET', 'POST'])
-def create_posting(request, user_pk, timePosted, category, prospective,
-                   fulfilled, description, audience):
-    """Creates a new posting object in the database using the given parameters"""
-
-    temp_dictionary = {
-        'user': user_pk,
-        'timePosted': timePosted,
-        'category': category,
-        'prospective': prospective,
-        'fulfilled': fulfilled,
-        'description': description,
-        'audience': audience
-    }
-    if request.method == "GET":
-        postings = Posting.objects.all()
-        serializer = PostingSerializer(postings, context={'request': request}, many=True)
-        return Response(serializer.data)
-
-    elif request.method == "POST":
-        print("post method")
-        serializer = PostingSerializer(data=temp_dictionary)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    #from here to **stopping point A** from master branch
-
-    # temp_dictionary = {
-    #     'name': name,
-    #     'email': email,
-    #     'role': role
-    # }
-    # serializer = UserSerializer(data=temp_dictionary)
-
-    # if serializer.is_valid():
-    #     serializer.save()
-    #     return Response(status=status.HTTP_201_CREATED)
-    # else:
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    #**stopping point A**
-
-
 # @api_view(['GET', 'POST'])
 # def create_posting(request, user_pk, timePosted, category, prospective,
 #                    fulfilled, description, audience):
@@ -111,6 +66,51 @@ def create_posting(request, user_pk, timePosted, category, prospective,
 #             serializer.save()
 #             return Response(status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    #from here to **stopping point A** from master branch
+
+    # temp_dictionary = {
+    #     'name': name,
+    #     'email': email,
+    #     'role': role
+    # }
+    # serializer = UserSerializer(data=temp_dictionary)
+
+    # if serializer.is_valid():
+    #     serializer.save()
+    #     return Response(status=status.HTTP_201_CREATED)
+    # else:
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    #**stopping point A**
+
+
+@api_view(['GET', 'POST'])
+def create_posting(request, user_pk, timePosted, category, prospective,
+                   fulfilled, description, audience):
+    """Creates a new posting object in the database using the given parameters"""
+
+    temp_dictionary = {
+        'user': user_pk,
+        'timePosted': timePosted,
+        'category': category,
+        'prospective': prospective,
+        'fulfilled': fulfilled,
+        'description': description,
+        'audience': audience
+    }
+    if request.method == "GET":
+        postings = Posting.objects.all()
+        serializer = PostingSerializer(postings, context={'request': request}, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        print("post method")
+        serializer = PostingSerializer(data=temp_dictionary)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
@@ -170,7 +170,7 @@ def create_ridelisting(request, created, user, datetime, startLocation, endLocat
 #             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
-def create_ItemListing(request, created, title, description, user, img, price, sold):
+def create_itemlisting(request, created, title, description, user, img, price, sold):
     """Creates an item listing for the given parameters"""
     temp_dictionary = {
         'created': created,
@@ -215,7 +215,7 @@ def edit_ridelisting(request, created, user, datetime, startLocation, endLocatio
     return Response(serializer.data)
 
 
-def edit_itemposting(request, created, title, description, user, img, price, sold):
+def edit_itemlisting(request, created, title, description, user, img, price, sold):
     """Edits a pre-existing database entry for an item posting and updates it in place. """
 
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
@@ -240,7 +240,7 @@ def delete_ridelisting(request):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def delete_itemposting(request):
+def delete_itemlisting(request):
     """Deletes the item posting associated with the given primary key from the database"""
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
     post.delete()
@@ -289,7 +289,7 @@ def search_postings(request, keyword):
     serializer = ItemListingSerializer(posting_list, context={'request': request}, many=True)
     return Response(serializer.data)
 
-def toggle_ride_posting_fulfilled(request):
+def toggle_ridelisting_sold(request):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
@@ -302,7 +302,7 @@ def toggle_ride_posting_fulfilled(request):
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-def toggle_item_posting_fulfilled(request):
+def toggle_itemlisting_sold(request):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
@@ -315,7 +315,7 @@ def toggle_item_posting_fulfilled(request):
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-def view_ride_posting_details(request):
+def view_ridelisting_details(request):
     """Returns all information associated with the post with the given primary key. """
 
     post = RideListing.objects.get(pk=request.kwargs['pk'])
@@ -323,7 +323,7 @@ def view_ride_posting_details(request):
     return Response(serializer.data)
 
 
-def view_item_posting_details(request):
+def view_itemlisting_details(request):
     """Returns all information associated with the post with the given primary key. """
 
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
