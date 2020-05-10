@@ -6,31 +6,83 @@ from django.shortcuts import render
 from django.shortcuts import render
 
 from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+
+#note: if this doesn't work:
+#   from django.conf import settings
+#   User = settings.AUTH_USER_MODEL
 from django.contrib.auth.models import User
-from .models import *
+
+from .models import ItemListing, RideListing, Location
 from .serializers import *
 
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
+
+
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+
+
+@api_view(['GET','POST'])
+def test01(request):
+    print(request.COOKIES)
+    print("test01 view called")
+    print(request.user.email)
+    #email_address = request.user.email
+
+    return Response(request.user.email)
+
+@api_view(['GET','POST'])
+def test02(request):
+    print("test02 view called")
+
+    return Response(request.session)
 
 @api_view(['GET', 'POST'])
-def create_user(request, name, email, role):
-    """ Creates a user in the database for the given name, email, and role """
+def create_posting(request, user_pk, timePosted, category, prospective,
+                   fulfilled, description, audience):
+    """Creates a new posting object in the database using the given parameters"""
 
     temp_dictionary = {
-        'name': name,
-        'email': email,
-        'role': role
+        'user': user_pk,
+        'timePosted': timePosted,
+        'category': category,
+        'prospective': prospective,
+        'fulfilled': fulfilled,
+        'description': description,
+        'audience': audience
     }
-    serializer = UserSerializer(data=temp_dictionary)
+    if request.method == "GET":
+        postings = Posting.objects.all()
+        serializer = PostingSerializer(postings, context={'request': request}, many=True)
+        return Response(serializer.data)
 
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
+    elif request.method == "POST":
+        print("post method")
+        serializer = PostingSerializer(data=temp_dictionary)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    #from here to **stopping point A** from master branch
+
+    # temp_dictionary = {
+    #     'name': name,
+    #     'email': email,
+    #     'role': role
+    # }
+    # serializer = UserSerializer(data=temp_dictionary)
+
+    # if serializer.is_valid():
+    #     serializer.save()
+    #     return Response(status=status.HTTP_201_CREATED)
+    # else:
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    #**stopping point A**
 
 
 # @api_view(['GET', 'POST'])
@@ -195,37 +247,36 @@ def delete_itemposting(request):
     return render(request, 'sample/posting_list.html')  # replace HTML File
 
 
-#view_available_postings (note: to add restriction to viewing postings targeted towards the requesting user type)
 @api_view(['GET'])
 def get_available_postings(request, category):
     """Returns all available postings in a given category. If no category is given, return all postings."""
+    if request.user.is_authenticated:
+        current_user = request.user
+        current_user_role = current_user.role
 
-    query_set = ''
-    if category == '':
-        query_set = Posting.objects.all()
+        query_set = ''
+        if category == '':
+            query_set = ItemListing.objects
+        else:
+            query_set = ItemListing.objects.filter(category=category)
+        serializer = ItemListingSerializer(query_set, many=True)
+
+        return Response(serializer.data)
     else:
-        query_set = Posting.objects.filter(category=category)
-    serializer = PostingSerializer(query_set, many=True)
-    json = JSONRenderer().render(serializer.data)
-
-    #return Response(json)
-    return Response(serializer.data)
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
-def get_postings_by_id(request, user_id_num):
+def get_own_postings(request):
     """Returns all postings attributed to a given User. """
+    if request.user.is_authenticated:
+        current_user = request.user
+        query_set = ItemListing.objects.filter(user=current_user)
 
-    print("user_id_num: ")
-    print(user_id_num)
-    #query_set = Posting.objects.all()
-    #query_set = Posting.objects.filter(category=user_id_num)
-    query_set = Posting.objects.filter(user=user_id_num)
+        serializer = ItemListingSerializer(query_set, many=True)
 
-    serializer = PostingSerializer(query_set, many=True)
-    json = JSONRenderer().render(serializer.data)
-
-    #return Response(json)
-    return Response(serializer.data)
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 def search_postings(request, keyword):
@@ -335,9 +386,3 @@ def display_saved_itemlistings(request, user_pk):
     posts = user.savedItems.all()
     serializer = ItemListingSerializer(posts, many=True)
     return Response(serializer.data)
-
-
-#USERS
-@api_view(['POST'])
-def create_user(request, name, email, role):
-    pass

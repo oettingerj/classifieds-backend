@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']  #classifieds.mathcs.carleton.edu]
 
 INSTALLED_APPS = [
     'main_app',
+    'corsheaders',
+    'reset_migrations',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'auth_app',
     
     'rest_framework',
 
@@ -49,7 +52,10 @@ INSTALLED_APPS = [
     
 ]
 
+AUTH_USER_MODEL = 'auth_app.User'
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,6 +64,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:5000',
+    'http://137.22.56.6:5000'
+]
+
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = None
+
 
 ROOT_URLCONF = 'classifieds_project.urls'
 
@@ -106,10 +121,25 @@ WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 #     }
 # }
 
+
+
+#Settings for local SQLite db
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+#Settings for PostgreSQL db
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'classifieds',
+        'USER': 'comps',
+        'PASSWORD': 'Compsrox236!',
+        'HOST': 'classifieds.mathcs.carleton.edu',
+        'PORT': '',
     }
 }
 
@@ -154,12 +184,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
+ 'auth_app.custom_auth.AuthBackend',
  'django.contrib.auth.backends.ModelBackend'
  )
 
 
 SITE_ID = 2
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
 
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {
