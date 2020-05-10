@@ -70,6 +70,9 @@ CORS_ORIGIN_WHITELIST = [
     'http://137.22.56.6:5000'
 ]
 
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = None
+
 
 ROOT_URLCONF = 'classifieds_project.urls'
 

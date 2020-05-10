@@ -14,8 +14,11 @@ class AuthBackend(BaseBackend):
     def authenticate(self, request):
         print("authenticate method of AuthBackend class in custom_auth module called")
         print("request.data as a dictionary from custom_auth.py: ")
-        query_dictionary = request.data
-        dictionary = query_dictionary.dict()
+        # query_dictionary = request.data
+        # dictionary = query_dictionary.dict()
+
+        dictionary = request.data
+
         # for key, value in dictionary.items():
         #     print("pair to follow")
         #     print(key, ':', value)
@@ -24,7 +27,7 @@ class AuthBackend(BaseBackend):
         
 
         try:
-            idinfo = id_token.verify_oauth2_token(dictionary.get("idtoken"), requests.Request(), "493676056314-uid03hsi8jvntqufcmivqhg3otrgnkr8.apps.googleusercontent.com")
+            idinfo = id_token.verify_oauth2_token(dictionary.get("idtoken"), requests.Request(), "578173933063-2bldsbnkidcvoiq20eqeasv7u6u1fog3.apps.googleusercontent.com")
             print("*****checkpoint 0A*****")
             if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
                 raise ValueError('Wrong token issuer.')
