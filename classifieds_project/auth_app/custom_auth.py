@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from django.contrib.auth.backends import BaseBackend
-from auth_app.models import UserManager
+#from auth_app.models igit lmport UserManager
 
 from google.oauth2 import id_token
 from google.auth.transport import requests

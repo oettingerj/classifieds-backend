@@ -261,6 +261,9 @@ def get_available_postings(request, category):
             query_set = ItemListing.objects.filter(category=category)
         serializer = ItemListingSerializer(query_set, many=True)
 
+        #test_query_set = User.objects
+        #serializer = UserSerializer(test_query_set, many=True)
+
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
