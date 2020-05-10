@@ -8,12 +8,12 @@ from .models import ItemListing, RideListing, Location
 class ItemListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemListing
-        fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
+        fields = ['id', 'created', 'title', 'description', 'user', 'img', 'price', 'sold']
 
 class RideListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = RideListing
-        fields = ['created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers', 'distance']
+        fields = ['id', 'created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers', 'distance']
 
 
 # class ItemPostingSerializer(serializers.ModelSerializer):
