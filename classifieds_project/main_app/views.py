@@ -199,7 +199,7 @@ def edit_ridelisting(request, created, user, datetime, startLocation, endLocatio
     serializer.save()
     return Response(serializer.data)
 
-
+@api_view(['POST'])
 def edit_itemlisting(request, pk, created, title, description, user, img, price, sold):
     """Edits a pre-existing database entry for an item posting and updates it in place. """
 
@@ -208,7 +208,7 @@ def edit_itemlisting(request, pk, created, title, description, user, img, price,
     post.created = created
     post.description = description
     post.title = title
-    post.user = request.user # probs not necessary
+    post.user = request.user
     post.img = img
     post.price = price
     post.sold = sold
