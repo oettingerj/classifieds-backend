@@ -36,6 +36,7 @@ class RideListing(models.Model):
     passengers = models.IntegerField()
     distance = models.DecimalField(max_digits=12, decimal_places=8),
     savedBy = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='savedRides')
+    sold = models.BooleanField()
 
 
 
