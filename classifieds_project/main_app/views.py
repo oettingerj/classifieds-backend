@@ -204,7 +204,6 @@ def edit_itemlisting(request, pk, created, title, description, user, img, price,
     """Edits a pre-existing database entry for an item posting and updates it in place. """
 
     post = ItemListing.objects.get(pk=pk)
-    # use is_valid?
     post.created = created
     post.description = description
     post.title = title
@@ -214,13 +213,9 @@ def edit_itemlisting(request, pk, created, title, description, user, img, price,
     post.sold = sold
     post.save()
     return Response(status=status.HTTP_201_CREATED)
-    # serializer = ItemListingSerializer(post)
-    # if serializer.is_valid():
-    #     serializer.save()
-    #     return Response(serializer.data)
-    # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['POST'])
 def delete_ridelisting(request, pk):
     """ Deletes the ride listing associated with the given primary key from the database. """
     
@@ -228,7 +223,7 @@ def delete_ridelisting(request, pk):
     post.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-
+@api_view(['POST'])
 def delete_itemlisting(request, pk):
     """Deletes the item posting associated with the given primary key from the database"""
     post = ItemListing.objects.get(pk=pk)
@@ -277,7 +272,7 @@ def get_own_postings(request):
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
-
+@api_view(['GET'])
 def search_postings(request, keyword):
     """Returns all database entries whose 'description' or 'title' field includes the given keyword. """
 
@@ -285,7 +280,7 @@ def search_postings(request, keyword):
     serializer = ItemListingSerializer(posting_list, context={'request': request}, many=True)
     return Response(serializer.data)
 
-
+@api_view(['POST'])
 def toggle_ridelisting_sold(request, pk):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
@@ -298,7 +293,7 @@ def toggle_ridelisting_sold(request, pk):
     post.save()
     return Response(status=status.HTTP_200_OK)
 
-
+@api_view(['POST'])
 def toggle_itemlisting_sold(request, pk):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
@@ -311,7 +306,7 @@ def toggle_itemlisting_sold(request, pk):
     post.save()
     return Response(status=status.HTTP_200_OK)
 
-
+@api_view(['GET'])
 def view_ridelisting_details(request, pk):
     """Returns all information associated with the post with the given primary key. """
 
@@ -319,7 +314,7 @@ def view_ridelisting_details(request, pk):
     serializer = RideListingSerializer(post, context={'request': request}, many=True)
     return Response(serializer.data)
 
-
+@api_view(['GET'])
 def view_itemlisting_details(request, pk):
     """Returns all information associated with the post with the given primary key. """
 
