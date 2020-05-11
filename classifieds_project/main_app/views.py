@@ -307,15 +307,14 @@ def view_ridelisting_details(request, pk):
     """Returns all information associated with the post with the given primary key. """
 
     post = RideListing.objects.get(pk=pk)
-    serializer = RideListingSerializer(post, context={'request': request}, many=True)
+    serializer = RideListingSerializer(post, context={'request': request})
     return Response(serializer.data)
 
 @api_view(['GET'])
 def view_itemlisting_details(request, pk):
     """Returns all information associated with the post with the given primary key. """
-
     post = ItemListing.objects.get(pk=pk)
-    serializer = ItemListingSerializer(post, context={'request': request}, many=True)
+    serializer = ItemListingSerializer(post, context={'request': request})
     return Response(serializer.data)
 
 
