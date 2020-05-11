@@ -34,15 +34,3 @@ class RideListingSerializer(serializers.ModelSerializer):
         representation['user'] = UserSerializer(user_query_set, many=True).data
         
         return representation
-
-
-# class ItemPostingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = ItemListing
-#         fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
-#
-#
-# class RidePostingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = RideListing
-#         fields = ['created','user','datetime','startLocation','endLocation','passengers','distance']

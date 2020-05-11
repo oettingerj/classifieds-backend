@@ -140,6 +140,10 @@ DATABASES = {
         'PASSWORD': 'Compsrox236!',
         'HOST': 'classifieds.mathcs.carleton.edu',
         'PORT': '',
+        'TEST': { #configuration for unit testing
+            'NAME': 'classifieds_project_test',
+
+        },
     }
 }
 

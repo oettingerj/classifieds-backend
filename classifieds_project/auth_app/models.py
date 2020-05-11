@@ -8,8 +8,8 @@ from django.utils import timezone
 
 class UserManager(BaseUserManager):
     def create_user(self, google_account_id, email, given_name, last_name, role):
-        print("*****checkpoint 1A*****")
         largest_id = User.objects.all().order_by('-id')[0] #allows importation of data into auth_app_user relation without breaking auto-increment
+        
         new_user = self.model (
             id = largest_id.id + 1,
             google_account_id = google_account_id,
@@ -18,9 +18,10 @@ class UserManager(BaseUserManager):
             last_name = last_name,
             role = 'STUDENT', #default to student
         )
-        print("*****checkpoint 1B*****")
+
         new_user.set_unusable_password()
         new_user.save(using=self._db)
+        
         return new_user
 
     def create_superuser(self, google_account_id, email, given_name, last_name, role, password=None):
@@ -35,6 +36,7 @@ class UserManager(BaseUserManager):
 
         new_superuser.set_password(password)
         new_superuser.save(using=self._db)
+        
         return new_superuser
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -62,13 +64,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         return given_name + " " + last_name
     
     def has_perm(self, perm, obj=None):
-        print("has_perm called from auth_app/models.py")
         return True
     
     def has_module_perms(self, app_name):
-        print("has_module_perms called from auth_app/models.py")
         return True
 
     def __str__(self):
         description = "Google ID: " + self.google_account_id + " " + "Last name: " + self.last_name
+        
         return description
