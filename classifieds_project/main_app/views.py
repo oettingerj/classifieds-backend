@@ -281,28 +281,22 @@ def search_postings(request, keyword):
     return Response(serializer.data)
 
 @api_view(['POST'])
-def toggle_ridelisting_sold(request, pk):
+def change_ridelisting_sold(request, pk, new_sold):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
     post = RideListing.objects.get(pk=pk)
-    if post.sold:
-        post.sold = False
-    else:
-        post.sold = True
+    post.sold = new_sold
     post.save()
     return Response(status=status.HTTP_200_OK)
 
 @api_view(['POST'])
-def toggle_itemlisting_sold(request, pk):
+def toggle_itemlisting_sold(request, pk, new_sold):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
     post = ItemListing.objects.get(pk=pk)
-    if post.sold:
-        post.sold = False
-    else:
-        post.sold = True
+    post.sold = new_sold
     post.save()
     return Response(status=status.HTTP_200_OK)
 
