@@ -278,7 +278,7 @@ def get_own_postings(request):
 def search_postings(request, keyword):
     """Returns all database entries whose 'description' or 'title' field includes the given keyword. """
 
-    posting_list = ItemListing.objects.filter(description__contains=keyword).filter(title__contains=keyword)
+    posting_list = ItemListing.objects.filter(title__contains=keyword)
     serializer = ItemListingSerializer(posting_list, context={'request': request}, many=True)
     return Response(serializer.data)
 
