@@ -69,32 +69,32 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
     #**stopping point A**
 
 
-@api_view(['GET', 'POST'])
-def create_posting(request, user_pk, timePosted, category, prospective,
-                   fulfilled, description, audience):
-    """Creates a new posting object in the database using the given parameters"""
-
-    temp_dictionary = {
-        'user': user_pk,
-        'timePosted': timePosted,
-        'category': category,
-        'prospective': prospective,
-        'fulfilled': fulfilled,
-        'description': description,
-        'audience': audience
-    }
-    if request.method == "GET":
-        postings = Posting.objects.all()
-        serializer = PostingSerializer(postings, context={'request': request}, many=True)
-        return Response(serializer.data)
-
-    elif request.method == "POST":
-        print("post method")
-        serializer = PostingSerializer(data=temp_dictionary)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#@api_view(['GET', 'POST'])
+#def create_posting(request, user_pk, timePosted, category, prospective,
+#                   fulfilled, description, audience):
+#    """Creates a new posting object in the database using the given parameters"""
+#
+#    temp_dictionary = {
+#        'user': user_pk,
+#        'timePosted': timePosted,
+#        'category': category,
+#        'prospective': prospective,
+#        'fulfilled': fulfilled,
+#        'description': description,
+#        'audience': audience
+#    }
+#    if request.method == "GET":
+#        postings = Posting.objects.all()
+#        serializer = PostingSerializer(postings, context={'request': request}, many=True)
+#        return Response(serializer.data)
+#
+#    elif request.method == "POST":
+#        print("post method")
+#        serializer = PostingSerializer(data=temp_dictionary)
+#        if serializer.is_valid():
+#            serializer.save()
+#            return Response(status=status.HTTP_201_CREATED)
+#        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])

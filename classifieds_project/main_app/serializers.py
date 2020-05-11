@@ -16,7 +16,7 @@ class ItemListingSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
 
         user_query_set = User.objects.filter(id=instance.user.id)
-        representation['user'] = UserSerializer(user_query_set, many=True).data
+        representation['user'] = UserSerializer(user_query_set, many=True).data[0]
         
         return representation
 
@@ -31,6 +31,6 @@ class RideListingSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
 
         user_query_set = User.objects.filter(id=instance.user.id)
-        representation['user'] = UserSerializer(user_query_set, many=True).data
+        representation['user'] = UserSerializer(user_query_set, many=True).data[0]
         
         return representation
