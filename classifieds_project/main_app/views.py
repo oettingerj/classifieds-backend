@@ -291,7 +291,7 @@ def change_ridelisting_sold(request, pk, new_sold):
     return Response(status=status.HTTP_200_OK)
 
 @api_view(['POST'])
-def toggle_itemlisting_sold(request, pk, new_sold):
+def change_itemlisting_sold(request, pk, new_sold):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
