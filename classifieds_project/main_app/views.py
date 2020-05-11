@@ -8,6 +8,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.renderers import JSONRenderer
 
 
 #note: if this doesn't work:
@@ -263,6 +264,16 @@ def get_available_postings(request, category):
 
         #test_query_set = User.objects
         #serializer = UserSerializer(test_query_set, many=True)
+
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['GET'])
+def get_available_rides(request):
+    """Returns all available postings in a given category. If no category is given, return all postings."""
+    if request.user.is_authenticated:
+        serializer = RideListingSerializer(RideListing.objects, many=True)
 
         return Response(serializer.data)
     else:

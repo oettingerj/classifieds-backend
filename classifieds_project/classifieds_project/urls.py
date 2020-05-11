@@ -38,6 +38,7 @@ urlpatterns = [
     path('itemposting/delete/<pk>/', views.delete_itemlisting),
     url(r'api/get/available_postings/(?P<category>\w+|)/', views.get_available_postings),
     url(r'api/get/own_postings/', views.get_own_postings),
+    url('api/get/available_rides/', views.get_available_rides),
     path('accounts/', include('allauth.urls')), 
     path('api/search/<keyword>/', views.search_postings),
     path('rideposting/togglesold/<pk>/', views.toggle_ridelisting_sold),
