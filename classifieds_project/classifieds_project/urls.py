@@ -35,7 +35,7 @@ urlpatterns = [
     path('itemposting/edit/<created>/<title>/<description>/<user>/<img>/<price>/<sold>/', views.edit_itemlisting),
     path('rideposting/delete/<pk>/', views.delete_ridelisting),
     path('itemposting/delete/<pk>/', views.delete_itemlisting),
-    url(r'api/get/available_postings/(?P<category>\w+|)/', views.get_available_postings),
+    url(r'api/get/available_postings/(?P<category>[\w|\s]+)/', views.get_available_postings),
     url(r'api/get/own_postings/', views.get_own_postings),
     path('accounts/', include('allauth.urls')), 
     path('api/search/<keyword>/', views.search_postings),

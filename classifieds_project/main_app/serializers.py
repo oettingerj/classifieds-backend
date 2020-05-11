@@ -10,7 +10,7 @@ from auth_app.models import User
 class ItemListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemListing
-        fields = ['id', 'created', 'user', 'title', 'description', 'img', 'price', 'sold']
+        fields = ['id', 'created', 'user', 'title', 'description', 'img', 'price', 'sold', 'category']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
