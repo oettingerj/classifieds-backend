@@ -200,7 +200,7 @@ def edit_ridelisting(request, created, user, datetime, startLocation, endLocatio
     return Response(serializer.data)
 
 
-def edit_itemlisting(request, created, title, description, user, img, price, sold):
+def edit_itemlisting(request, pk, created, title, description, user, img, price, sold):
     """Edits a pre-existing database entry for an item posting and updates it in place. """
 
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
