@@ -99,7 +99,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 
 
 @api_view(['GET', 'POST'])
-def create_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance):
+def create_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance, sold):
     """ Creates a ride listing for the given parameters. """
     
     temp_dictionary = {
@@ -109,7 +109,8 @@ def create_ridelisting(request, created, user, datetime, startLocation, endLocat
         'startLocation': startLocation,
         'endLocation': endLocation,
         'passengers': passengers,
-        'distance': distance
+        'distance': distance,
+        'sold': sold
     }
     
     if request.method == 'GET':
@@ -182,7 +183,7 @@ def create_itemlisting(request, created, title, description, user, img, price, s
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def edit_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance):
+def edit_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance, sold):
     """ Edits a pre-existing database entry for a ride listing and updates it in place. """
     
     post = RideLists.objects.get(pk=request.kwargs['pk'])
@@ -194,6 +195,7 @@ def edit_ridelisting(request, created, user, datetime, startLocation, endLocatio
     post.endLocation = endLocation
     post.passengers = passengers
     post.distance = distance
+    post.sold = sold
     
     serializer = PostListingSerializer(post)
     serializer.save()
