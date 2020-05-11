@@ -160,11 +160,11 @@ def create_itemlisting(request, created, title, description, user, img, price, s
     temp_dictionary = {
         'created': created,
         'title': title,
-        'description':description,
-        'user':user,
-        'img':img,
+        'description': description,
+        'user': user,
+        'img': img,
         'price': price,
-        'sold':sold
+        'sold': sold
     }
 
     if request.method == "GET":
@@ -214,6 +214,7 @@ def edit_itemlisting(request, created, title, description, user, img, price, sol
     post.sold = sold
     post.save()
     serializer = ItemListingSerializer(post)
+    serializer.save()
     return Response(serializer.data)  # not sure if this is best way to do thsi
 
 
@@ -229,7 +230,7 @@ def delete_itemlisting(request):
     """Deletes the item posting associated with the given primary key from the database"""
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
     post.delete()
-    return render(request, 'sample/posting_list.html')  # replace HTML File
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['GET'])
@@ -275,11 +276,12 @@ def get_own_postings(request):
 
 
 def search_postings(request, keyword):
-    """Returns all database entries whose 'description' field includes the given keyword. """
+    """Returns all database entries whose 'description' or 'title' field includes the given keyword. """
 
-    posting_list = ItemListing.objects.filter(description__contains=keyword)  # is this the filter we want?
+    posting_list = ItemListing.objects.filter(description__contains=keyword).filter(title__contains=keyword)
     serializer = ItemListingSerializer(posting_list, context={'request': request}, many=True)
     return Response(serializer.data)
+
 
 def toggle_ridelisting_sold(request):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
@@ -291,7 +293,7 @@ def toggle_ridelisting_sold(request):
     else:
         post.sold = True
     post.save()
-    return render(request, 'sample/posting_list.html')  # replace HTML File
+    return Response(status=status.HTTP_200_OK)
 
 
 def toggle_itemlisting_sold(request):
@@ -304,7 +306,7 @@ def toggle_itemlisting_sold(request):
     else:
         post.sold = True
     post.save()
-    return render(request, 'sample/posting_list.html')  # replace HTML File
+    return Response(status=status.HTTP_200_OK)
 
 
 def view_ridelisting_details(request):

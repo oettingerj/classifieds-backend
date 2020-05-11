@@ -32,7 +32,7 @@ urlpatterns = [
     path('rideposting/create/<created>/<user>/<datetime>/<startLocation>/<endLocation>/<passengers>/<distance>/', views.create_ridelisting),
     path('itemposting/create/<created>/<title>/<description>/<user>/<img>/<price>/<sold>/', views.create_itemlisting),
     path('rideposting/edit/<created>/<user>/<datetime>/<startLocation>/<endLocation>/<passengers>/<distance>/', views.edit_ridelisting),
-    path('itemposting/edit/<created>/<title>/<description>/<user>/<img>/<price>/<sold>/', views.edit_itemlisting),
+    path('itemposting/edit/<pk>/<created>/<title>/<description>/<user>/<img>/<price>/<sold>/', views.edit_itemlisting),
     path('rideposting/delete/<pk>/', views.delete_ridelisting),
     path('itemposting/delete/<pk>/', views.delete_itemlisting),
     url(r'api/get/available_postings/(?P<category>[\w|\s]+)/', views.get_available_postings),
