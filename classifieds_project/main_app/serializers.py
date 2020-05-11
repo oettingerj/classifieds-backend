@@ -11,7 +11,7 @@ from auth_app.models import User
 class ItemListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemListing
-        fields = ['id', 'created', 'user', 'title', 'description', 'img', 'price', 'sold']
+        fields = ['id', 'created', 'user', 'title', 'description', 'img', 'price', 'sold', 'category']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -46,15 +46,3 @@ class RideListingSerializer(serializers.ModelSerializer):
         representation['endLocation'] = LocationSerializer(end_location_query_set, many=True).data[0]
 
         return representation
-
-
-# class ItemPostingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = ItemListing
-#         fields = ['created', 'title', 'description', 'user', 'img', 'price', 'sold']
-#
-#
-# class RidePostingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = RideListing
-#         fields = ['created','user','datetime','startLocation','endLocation','passengers','distance']

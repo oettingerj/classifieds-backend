@@ -25,22 +25,6 @@ from django.views.decorators.csrf import csrf_protect
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
-
-@api_view(['GET','POST'])
-def test01(request):
-    print(request.COOKIES)
-    print("test01 view called")
-    print(request.user.email)
-    #email_address = request.user.email
-
-    return Response(request.user.email)
-
-@api_view(['GET','POST'])
-def test02(request):
-    print("test02 view called")
-
-    return Response(request.session)
-
 # @api_view(['GET', 'POST'])
 # def create_posting(request, user_pk, timePosted, category, prospective,
 #                    fulfilled, description, audience):
@@ -262,9 +246,6 @@ def get_available_postings(request, category):
             query_set = ItemListing.objects.filter(category=category)
         serializer = ItemListingSerializer(query_set, many=True)
 
-        #test_query_set = User.objects
-        #serializer = UserSerializer(test_query_set, many=True)
-
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
@@ -400,3 +381,7 @@ def display_saved_itemlistings(request, user_pk):
     posts = user.savedItems.all()
     serializer = ItemListingSerializer(posts, many=True)
     return Response(serializer.data)
+
+@api_view(['GET','POST'])
+def test01(request):
+    return Response(request.user.email)
