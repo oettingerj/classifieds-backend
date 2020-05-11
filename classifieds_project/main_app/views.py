@@ -203,7 +203,7 @@ def edit_ridelisting(request, created, user, datetime, startLocation, endLocatio
 def edit_itemlisting(request, pk, created, title, description, user, img, price, sold):
     """Edits a pre-existing database entry for an item posting and updates it in place. """
 
-    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    post = ItemListing.objects.get(pk=pk)
     # use is_valid?
     post.created = created
     post.description = description
@@ -218,17 +218,17 @@ def edit_itemlisting(request, pk, created, title, description, user, img, price,
     return Response(serializer.data)  # not sure if this is best way to do thsi
 
 
-def delete_ridelisting(request):
+def delete_ridelisting(request, pk):
     """ Deletes the ride listing associated with the given primary key from the database. """
     
-    post = RideListing.objects.get(pk=request.kwargs['pk'])
+    post = RideListing.objects.get(pk=pk)
     post.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def delete_itemlisting(request):
+def delete_itemlisting(request, pk):
     """Deletes the item posting associated with the given primary key from the database"""
-    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    post = ItemListing.objects.get(pk=pk)
     post.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -283,11 +283,11 @@ def search_postings(request, keyword):
     return Response(serializer.data)
 
 
-def toggle_ridelisting_sold(request):
+def toggle_ridelisting_sold(request, pk):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
-    post = RideListing.objects.get(pk=request.kwargs['pk'])
+    post = RideListing.objects.get(pk=pk)
     if post.sold:
         post.sold = False
     else:
@@ -296,11 +296,11 @@ def toggle_ridelisting_sold(request):
     return Response(status=status.HTTP_200_OK)
 
 
-def toggle_itemlisting_sold(request):
+def toggle_itemlisting_sold(request, pk):
     """Toggles between 'sold' values for a given post; if the post was marked as 'sold' it is now marked as
     'sold', and vice versa """
 
-    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    post = ItemListing.objects.get(pk=pk)
     if post.sold:
         post.sold = False
     else:
@@ -309,18 +309,18 @@ def toggle_itemlisting_sold(request):
     return Response(status=status.HTTP_200_OK)
 
 
-def view_ridelisting_details(request):
+def view_ridelisting_details(request, pk):
     """Returns all information associated with the post with the given primary key. """
 
-    post = RideListing.objects.get(pk=request.kwargs['pk'])
+    post = RideListing.objects.get(pk=pk)
     serializer = RideListingSerializer(post, context={'request': request}, many=True)
     return Response(serializer.data)
 
 
-def view_itemlisting_details(request):
+def view_itemlisting_details(request, pk):
     """Returns all information associated with the post with the given primary key. """
 
-    post = ItemListing.objects.get(pk=request.kwargs['pk'])
+    post = ItemListing.objects.get(pk=pk)
     serializer = ItemListingSerializer(post, context={'request': request}, many=True)
     return Response(serializer.data)
 
