@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 
 from django.shortcuts import render
-
+from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -278,7 +278,7 @@ def get_own_postings(request):
 def search_postings(request, keyword):
     """Returns all database entries whose 'description' or 'title' field includes the given keyword. """
 
-    query_set = ItemListing.objects.filter(description__contains=keyword).filter(title__contains=keyword)
+    query_set = ItemListing.objects.filter(Q(description__icontains=keyword) | Q(title__icontains=keyword))
     print(len(query_set))
     serializer = ItemListingSerializer(query_set, context={'request': request}, many=True)
     return Response(serializer.data)
