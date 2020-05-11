@@ -208,7 +208,7 @@ def edit_itemlisting(request, pk, created, title, description, user, img, price,
     post.created = created
     post.description = description
     post.title = title
-    post.user = user # probs not necessary
+    post.user = request.user # probs not necessary
     post.img = img
     post.price = price
     post.sold = sold
