@@ -98,7 +98,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 #        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def create_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance, sold):
     """ Creates a ride listing for the given parameters. """
     
@@ -113,19 +113,13 @@ def create_ridelisting(request, created, user, datetime, startLocation, endLocat
         'sold': sold
     }
     
-    if request.method == 'GET':
-        ridelistings = RideListing.objects.all()
-        serializer = RideListingSerializer(ridelistings, context={'request': request}, many=True)
-        return Response(serializer.data)
-    
-    elif request.method == 'POST':
-        serializer = RideListingSerializer(data=temp_dictionary)
-        
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer = RideListingSerializer(data=temp_dictionary)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @api_view(['GET', 'POST'])
@@ -155,7 +149,7 @@ def create_ridelisting(request, created, user, datetime, startLocation, endLocat
 #         else:
 #             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def create_itemlisting(request, created, title, description, user, img, price, sold):
     """Creates an item listing for the given parameters"""
     temp_dictionary = {
@@ -168,19 +162,13 @@ def create_itemlisting(request, created, title, description, user, img, price, s
         'sold': sold
     }
 
-    if request.method == "GET":
-        item_listings = ItemListing.objects.all()
-        serializer = ItemListingSerializer(item_listings, context={'request': request}, many=True)
-        return Response(serializer.data)
+    serializer = ItemListingSerializer(data=temp_dictionary)
 
-    elif request.method == "POST":
-        serializer = ItemListingSerializer(data=temp_dictionary)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def edit_ridelisting(request, pk, created, datetime, startLocation, endLocation, passengers, distance, sold):
