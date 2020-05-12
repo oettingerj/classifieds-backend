@@ -22,6 +22,9 @@ class ItemListingSerializer(serializers.ModelSerializer):
         return representation
 
 class LocationSerializer(serializers.ModelSerializer):
+    latitude = FloatField()
+    longitude = FloatField()
+
     class Meta:
         model = Location
         fields = ['id', 'name', 'latitude', 'longitude', 'address']
