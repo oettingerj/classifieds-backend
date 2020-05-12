@@ -44,10 +44,10 @@ urlpatterns = [
     path('itemposting/changesold/<pk>/<new_sold>/', views.change_itemlisting_sold),
     path('rideposting/view/postingdetails/<pk>/', views.view_ridelisting_details),
     path('itemposting/view/postingdetails/<pk>/', views.view_itemlisting_details),
-    path('rideposting/like/<user_pk>/<pk>/', views.like_ridelisting),
-    path('itemposting/like/<user_pk>/<pk>/', views.like_itemlisting),
-    path('rideposting/unlike/<user_pk>/<pk>/', views.unlike_ridelisting),
-    path('itemposting/unlike/<user_pk>/<pk>/', views.unlike_itemlisting),
-    path('rideposting/displayliked/<user_pk>/<pk>/', views.display_liked_ridelistings),
-    path('itemposting/displayliked/<user_pk>/<pk>/', views.display_liked_itemlistings)
+    path('rideposting/like/<pk>/', views.like_ridelisting),
+    path('itemposting/like/<pk>/', views.like_itemlisting),
+    path('rideposting/unlike/<pk>/', views.unlike_ridelisting),
+    path('itemposting/unlike/<pk>/', views.unlike_itemlisting),
+    path('rideposting/displayliked/', views.display_liked_ridelistings),
+    path('itemposting/displayliked/', views.display_liked_itemlistings)
 ]

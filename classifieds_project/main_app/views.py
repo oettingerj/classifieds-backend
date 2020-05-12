@@ -322,62 +322,62 @@ def view_itemlisting_details(request, pk):
     serializer = ItemListingSerializer(post, context={'request': request})
     return Response(serializer.data)
 
-
-def like_ridelisting(request, user_pk):
+@api_view(['POST'])
+def like_ridelisting(request, pk):
     """ Adds a ride listing to a user's collection of liked rides, and adds that user to the ride listing's collection of users that have liked it. """
     
-    post = RideListing.objects.get(pk=request.kwargs['pk'])
-    user = User.objects.get(pk=user_pk)
+    post = RideListing.objects.get(pk=pk)
+    user = request.user
     post.likedBy.add(user)
+    post.save()
     serializer = RideListingSerializer(post, context={'request': request}, many=True)
-    serializer.save()
-    return Response(serializer.data)
+    return Response(status=status.HTTP_200_OK)
 
-
-def like_itemlisting(request, user_pk):
+@api_view(['POST'])
+def like_itemlisting(request, pk):
     """ Adds an item listing to a user's collection of liked items, and adds that user to the item listing's collection of users that have liked it. """
     
-    post = ItemListing.objects.get(pk=request.kwargs['pk'])
-    user = User.objects.get(pk=user_pk)
+    post = ItemListing.objects.get(pk=pk)
+    user = request.user
     post.likedBy.add(user)
+    post.save()
     serializer = ItemListingSerializer(post, context={'request': request}, many=True)
-    serializer.save()
-    return Response(serializer.data)
+    return Response(status=status.HTTP_200_OK)
 
-
-def unlike_ridelisting(request, user_pk):
+@api_view(['POST'])
+def unlike_ridelisting(request, pk):
     """ Removes a ride listing from a user's collection of liked rides, and removes that user from the ride listing's collection of users that have liked it. """
     
-    post = RideListing.objects.get(pk=request.kwargs['pk'])
-    user = User.objects.get(pk=user_pk)
+    post = RideListing.objects.get(pk=pk)
+    user = request.user
     post.likedBy.remove(user)
     post.save()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-def unlike_itemlisting(request, user_pk):
+@api_view(['POST'])
+def unlike_itemlisting(request, pk):
     """ Removes an item listing from a user's collection of liked items, and removes that user from the item listing's collection of users that have liked it. """
     
-    post = ItemListing.objects.get(pk=request.kwargs['pk'])
-    user = User.objects.get(pk=user_pk)
+    post = ItemListing.objects.get(pk=pk)
+    user = request.user
     post.likedBy.remove(user)
     post.save()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-def display_liked_ridelistings(request, user_pk):
+@api_view(['GET'])
+def display_liked_ridelistings(request):
     """ Displays the ride listings that the given user has liked. """
     
-    user = User.objects.get(pk=user_pk)
+    user = request.user
     posts = user.likedRides.all()
     serializer = RideListingSerializer(posts, many=True)
     return Response(serializer.data)
 
-
-def display_liked_itemlistings(request, user_pk):
+@api_view(['GET'])
+def display_liked_itemlistings(request):
     """ Displays the item listings that the given user has liked. """
     
-    user = User.objects.get(pk=user_pk)
+    user = request.user
     posts = user.likedItems.all()
     serializer = ItemListingSerializer(posts, many=True)
     return Response(serializer.data)
