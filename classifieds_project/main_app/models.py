@@ -22,8 +22,8 @@ class ItemListing(models.Model):
 class Location(models.Model):
     #id implicitly created
     name = models.CharField(max_length=240)
-    latitude = models.DecimalField(max_digits=12, decimal_places=8)
-    longitude = models.DecimalField(max_digits=12, decimal_places=8)
+    latitude = models.DecimalField(max_digits=20, decimal_places=16)
+    longitude = models.DecimalField(max_digits=20, decimal_places=16)
     address = models.TextField()
 
 class RideListing(models.Model):

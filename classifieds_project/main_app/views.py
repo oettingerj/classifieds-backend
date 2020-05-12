@@ -99,19 +99,31 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 
 
 @api_view(['POST'])
-def create_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance, sold):
+def create_ridelisting(request):
     """ Creates a ride listing for the given parameters. """
-    
+
+    body_params = request.data
+
+    start_loc_serializer = LocationSerializer(data=body_params.get('startLocation'))
+    end_loc_serializer = LocationSerializer(data=body_params.get('endLocation'))
+    if start_loc_serializer.is_valid() and end_loc_serializer.is_valid():
+        start_id = start_loc_serializer.save().id
+        end_id = end_loc_serializer.save().id
+    else:
+        return Response(start_loc_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     temp_dictionary = {
-        'created': created,
-        'user': user,
-        'datetime': datetime,
-        'startLocation': startLocation,
-        'endLocation': endLocation,
-        'passengers': passengers,
-        'distance': distance,
-        'sold': sold
+        'created': body_params.get('created'),
+        'user': request.user.id,
+        'datetime': body_params.get('datetime'),
+        'startLocation': start_id,
+        'endLocation': end_id,
+        'passengers': body_params.get('passengers'),
+        'distance': body_params.get('distance'),
+        'sold': False
     }
+
+
     
     serializer = RideListingSerializer(data=temp_dictionary)
 

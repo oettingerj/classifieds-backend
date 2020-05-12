@@ -1,5 +1,6 @@
 from auth_app.custom_auth import AuthBackend
 from django.contrib.auth import logout as logout_user
+from django.middleware import csrf
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -10,8 +11,9 @@ from rest_framework import status
 def authenticate(request):
     instance_of_AuthBackend_class = AuthBackend()
     user = instance_of_AuthBackend_class.authenticate(request)
+    csrf_token = csrf.get_token(request)
     if user != None:
-        response = Response(status=status.HTTP_200_OK)
+        response = Response(data={'csrfToken': csrf_token}, status=status.HTTP_200_OK)
 
         return response
     else:
