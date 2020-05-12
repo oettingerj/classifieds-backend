@@ -182,24 +182,28 @@ def create_itemlisting(request, created, title, description, user, img, price, s
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-def edit_ridelisting(request, created, user, datetime, startLocation, endLocation, passengers, distance, sold):
+@api_view(['POST'])
+def edit_ridelisting(request, pk, created, datetime, startLocation, endLocation, passengers, distance, sold):
     """ Edits a pre-existing database entry for a ride listing and updates it in place. """
-    
-    post = RideLists.objects.get(pk=request.kwargs['pk'])
-    
+    print("erl 1")
+    post = RideListing.objects.get(pk=pk)
+    print("erl 2")
     post.created = created
-    post.user = user
+    post.user = request.user
     post.datetime = datetime
-    post.startLocation = startLocation
-    post.endLocation = endLocation
+    post.startLocation = Location.objects.get(pk=startLocation)
+    post.endLocation = Location.objects.get(pk=endLocation)
     post.passengers = passengers
     post.distance = distance
     post.sold = sold
-    
-    serializer = PostListingSerializer(post)
-    serializer.save()
-    return Response(serializer.data)
+    print("erl 3")
+    post.save()
+    print("erl 4")
+    serializer = RideListingSerializer(post)
+    print("erl 5")
+#    serializer.save()
+#    return Response(serializer.data)
+    return Response(status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def edit_itemlisting(request, pk, created, title, description, user, img, price, sold):

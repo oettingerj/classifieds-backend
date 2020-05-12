@@ -31,7 +31,7 @@ class RideListingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RideListing
-        fields = ['id', 'created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers']
+        fields = ['id', 'created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers', 'sold']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
