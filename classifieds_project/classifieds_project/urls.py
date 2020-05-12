@@ -44,10 +44,10 @@ urlpatterns = [
     path('itemposting/changesold/<pk>/<new_sold>/', views.change_itemlisting_sold),
     path('rideposting/view/postingdetails/<pk>/', views.view_ridelisting_details),
     path('itemposting/view/postingdetails/<pk>/', views.view_itemlisting_details),
-    path('rideposting/save/<user_pk>/<pk>/', views.save_ridelisting),
-    path('itemposting/save/<user_pk>/<pk>/', views.save_itemlisting),
-    path('rideposting/unsave/<user_pk>/<pk>/', views.unsave_ridelisting),
-    path('itemposting/unsave/<user_pk>/<pk>/', views.unsave_itemlisting),
-    path('rideposting/displaysaved/<user_pk>/<pk>/', views.display_saved_ridelistings),
-    path('itemposting/displaysaved/<user_pk>/<pk>/', views.display_saved_itemlistings)
+    path('rideposting/like/<user_pk>/<pk>/', views.like_ridelisting),
+    path('itemposting/like/<user_pk>/<pk>/', views.like_itemlisting),
+    path('rideposting/unlike/<user_pk>/<pk>/', views.unlike_ridelisting),
+    path('itemposting/unlike/<user_pk>/<pk>/', views.unlike_itemlisting),
+    path('rideposting/displayliked/<user_pk>/<pk>/', views.display_liked_ridelistings),
+    path('itemposting/displayliked/<user_pk>/<pk>/', views.display_liked_itemlistings)
 ]

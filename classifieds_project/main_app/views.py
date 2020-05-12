@@ -323,62 +323,62 @@ def view_itemlisting_details(request, pk):
     return Response(serializer.data)
 
 
-def save_ridelisting(request, user_pk):
-    """ Adds a ride listing to a user's collection of saved rides, and adds that user to the ride listing's collection of users that have saved it. """
+def like_ridelisting(request, user_pk):
+    """ Adds a ride listing to a user's collection of liked rides, and adds that user to the ride listing's collection of users that have liked it. """
     
     post = RideListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
-    post.savedBy.add(user)
+    post.likedBy.add(user)
     serializer = RideListingSerializer(post, context={'request': request}, many=True)
     serializer.save()
     return Response(serializer.data)
 
 
-def save_itemlisting(request, user_pk):
-    """ Adds an item listing to a user's collection of saved items, and adds that user to the item listing's collection of users that have saved it. """
+def like_itemlisting(request, user_pk):
+    """ Adds an item listing to a user's collection of liked items, and adds that user to the item listing's collection of users that have liked it. """
     
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
-    post.savedBy.add(user)
+    post.likedBy.add(user)
     serializer = ItemListingSerializer(post, context={'request': request}, many=True)
     serializer.save()
     return Response(serializer.data)
 
 
-def unsave_ridelisting(request, user_pk):
-    """ Removes a ride listing from a user's collection of saved rides, and removes that user from the ride listing's collection of users that have saved it. """
+def unlike_ridelisting(request, user_pk):
+    """ Removes a ride listing from a user's collection of liked rides, and removes that user from the ride listing's collection of users that have liked it. """
     
     post = RideListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
-    post.savedBy.remove(user)
+    post.likedBy.remove(user)
     post.save()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def unsave_itemlisting(request, user_pk):
-    """ Removes an item listing from a user's collection of saved items, and removes that user from the item listing's collection of users that have saved it. """
+def unlike_itemlisting(request, user_pk):
+    """ Removes an item listing from a user's collection of liked items, and removes that user from the item listing's collection of users that have liked it. """
     
     post = ItemListing.objects.get(pk=request.kwargs['pk'])
     user = User.objects.get(pk=user_pk)
-    post.savedBy.remove(user)
+    post.likedBy.remove(user)
     post.save()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def display_saved_ridelistings(request, user_pk):
-    """ Displays the ride listings that the given user has saved. """
+def display_liked_ridelistings(request, user_pk):
+    """ Displays the ride listings that the given user has liked. """
     
     user = User.objects.get(pk=user_pk)
-    posts = user.savedRides.all()
+    posts = user.likedRides.all()
     serializer = RideListingSerializer(posts, many=True)
     return Response(serializer.data)
 
 
-def display_saved_itemlistings(request, user_pk):
-    """ Displays the item listings that the given user has saved. """
+def display_liked_itemlistings(request, user_pk):
+    """ Displays the item listings that the given user has liked. """
     
     user = User.objects.get(pk=user_pk)
-    posts = user.savedItems.all()
+    posts = user.likedItems.all()
     serializer = ItemListingSerializer(posts, many=True)
     return Response(serializer.data)
 
