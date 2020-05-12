@@ -162,16 +162,18 @@ def create_ridelisting(request):
 #             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
-def create_itemlisting(request, created, title, description, user, img, price, sold):
+def create_itemlisting(request):
     """Creates an item listing for the given parameters"""
+    body_params = request.data
+
     temp_dictionary = {
-        'created': created,
-        'title': title,
-        'description': description,
-        'user': user,
-        'img': img,
-        'price': price,
-        'sold': sold
+        'created': body_params.get('created'),
+        'title': body_params.get('title'),
+        'description': body_params.get('description'),
+        'user': request.user.id,
+        'img': body_params.get('img'),
+        'price': body_params.get('price'),
+        'sold': False
     }
 
     serializer = ItemListingSerializer(data=temp_dictionary)
