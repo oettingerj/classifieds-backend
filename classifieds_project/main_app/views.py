@@ -173,24 +173,17 @@ def create_itemlisting(request, created, title, description, user, img, price, s
 @api_view(['POST'])
 def edit_ridelisting(request, pk, created, datetime, startLocation, endLocation, passengers, distance, sold):
     """ Edits a pre-existing database entry for a ride listing and updates it in place. """
-    print("erl 1")
+
     post = RideListing.objects.get(pk=pk)
-    print("erl 2")
     post.created = created
-    post.user = request.user
     post.datetime = datetime
     post.startLocation = Location.objects.get(pk=startLocation)
     post.endLocation = Location.objects.get(pk=endLocation)
     post.passengers = passengers
     post.distance = distance
     post.sold = sold
-    print("erl 3")
     post.save()
-    print("erl 4")
     serializer = RideListingSerializer(post)
-    print("erl 5")
-#    serializer.save()
-#    return Response(serializer.data)
     return Response(status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -214,8 +207,11 @@ def delete_ridelisting(request, pk):
     """ Deletes the ride listing associated with the given primary key from the database. """
     
     post = RideListing.objects.get(pk=pk)
-    post.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    if post.user == request.user:
+        post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['POST'])
 def delete_itemlisting(request, pk):
