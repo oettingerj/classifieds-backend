@@ -34,7 +34,7 @@ class RideListing(models.Model):
     startLocation = models.ForeignKey(Location, related_name='start_location', on_delete=models.CASCADE)
     endLocation = models.ForeignKey(Location, related_name='end_location', on_delete=models.CASCADE)
     passengers = models.IntegerField()
-    distance = models.DecimalField(max_digits=12, decimal_places=8),
+    distance = models.IntegerField(),
     likedBy = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likedRides')
     sold = models.BooleanField()
 

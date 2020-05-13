@@ -30,8 +30,6 @@ class LocationSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'latitude', 'longitude', 'address']
 
 class RideListingSerializer(serializers.ModelSerializer):
-    # distance = serializers.DecimalField(max_digits=12, decimal_places=8)
-
     class Meta:
         model = RideListing
         fields = ['id', 'created', 'user', 'datetime', 'startLocation', 'endLocation', 'passengers', 'sold']
