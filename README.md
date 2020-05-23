@@ -16,9 +16,9 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 
 
 ## The File Hierarchy
-\classifieds_project
+\classifieds_project(see note 1)
 	manage.py
-	\classifieds_project
+	\classifieds_project (see note 2)
 		config.py
 		connect.py
 		settings.py
@@ -28,8 +28,7 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 		models.py
 		views.py
 		serializers.py
-admin.py
-		apps.py
+		admin.py
 		\management
 		\migrations
 		\templates
@@ -37,14 +36,19 @@ admin.py
 	\auth_app
 		models.py
 		views.py
-		custom_auth.py
-admin.py
+		custom_auth.py (see note 3)
+		admin.py
 		apps.py
 		\management
 		\migrations
 		\templates
 		tests.py
-	db.sqlite3
+	db.sqlite3 (see note 4)
+	
+Note 1: a.k.a. the outer project directory
+Note 2: a.k.a. the inner project directory (by convention, this directory has the same name as the outer project directory)
+Note 3: defines the authentication backend class used by the project
+Note 4: this local SQLite db is Django default when developoing locally, but in this project has since been replaced by a remote PostgreSQL db 
 	
 
 
@@ -72,38 +76,38 @@ Django refers to its organizational architecture as Model View Template (MVT); a
 ### Testing
 #### Google id_token Generation
 Successful login with Google credentials on a client-facing web app will return a googleUser object; an id_token can be obtained from this object. Generation of the token can be completed as follows:
-Download the directory “GoogleIDTokenGen” (located in the same directory on the shared Google Drive as this “Documentation” document)
-On your machine, open the index.html file inside of the directory in a text editor
-Check that the meta tag on line 5 has an attribute “content” that is set to the appropriate OAuth 2.0 Client ID as a string (the trailing portion of this string should read .apps.googleusercontent.com”. There is no need to change this attribute’s value for generic testing purposes.
-Open a command line interface on your machine, and cd to the “GoogleIDTokenGen” directory that you downloaded
-Start a Python web server that serves the index.html file by entering the command “python3 -m http.server 5000” (port 5000, is specified as to allow simultaneous operation of a Django server on the default port of 8000). Attempting to use this utility without accessing it from a server may be flagged by Google as a security threat and may prohibit access.
-In a web browser, navigate to “localhost:5000”
-Click the Google sign in button at the top of the webpage; you will be asked to choose an account/enter credentials to continue to “Carleton Classifieds.” If you are presented with any other destination this utility should be considered compromised and immediate abortion is thus advised. Note that you must use an account having a domain of carleton.edu
-Click the “Copy id_token” button to copy the presented id_token to your clipboard. You are now in possession of a valid Google id_token that can be used to authenticate to the backend Django server.
+1. Download the directory “GoogleIDTokenGen” (located in the same directory on the shared Google Drive as this “Documentation” document)
+2. On your machine, open the index.html file inside of the directory in a text editor
+3. Check that the meta tag on line 5 has an attribute “content” that is set to the appropriate OAuth 2.0 Client ID as a string (the trailing portion of this string should read .apps.googleusercontent.com”. There is no need to change this attribute’s value for generic testing purposes.
+4. Open a command line interface on your machine, and cd to the “GoogleIDTokenGen” directory that you downloaded
+5. Start a Python web server that serves the index.html file by entering the command “python3 -m http.server 5000” (port 5000, is specified as to allow simultaneous operation of a Django server on the default port of 8000). Attempting to use this utility without accessing it from a server may be flagged by Google as a security threat and may prohibit access.
+6. In a web browser, navigate to “localhost:5000”
+7. Click the Google sign in button at the top of the webpage; you will be asked to choose an account/enter credentials to continue to “Carleton Classifieds.” If you are presented with any other destination this utility should be considered compromised and immediate abortion is thus advised. Note that you must use an account having a domain of carleton.edu
+8. Click the “Copy id_token” button to copy the presented id_token to your clipboard. You are now in possession of a valid Google id_token that can be used to authenticate to the backend Django server.
 #### Sending an HTTP Request
 ##### Logging in
 With a valid Google id_token, authentication to the Django backend can proceed, followed by subsequent testing of other endpoints. Begin by downloading the application Insomnia Core, and proceed as follows:
-Open Insomnia and click on “New Request”
-Select the method “POST” 
-Select “Form URL Encoded,” and create the request
-By the POST method, enter the base of the url of the Django server along with the port number (running locally, this often defaults to http://127.0.0.1:8000)
-In the “New name” field enter “idtoken” and in the “New value” field paste in the Google id_token that you copied previously
-Specify the API endpoint you wish to access. Since you have yet to authenticate, this should be tokensignin (the url should now read http://127.0.0.1:8000/tokensignin/). Note the absence of the trailing forward slash will cause an error.
-You should receive an HTTP_200 OK response, along with two cookies which will be used with future HTTP requests to endpoints that provide the server with your identity as a logged in user. If unsuccessful, try obtaining a new Google id_token; these generally expire after 1 hour. One cookie has the key “sessionid” and the other cookie has the key “csrftoken”
+1. Open Insomnia and click on “New Request”
+2. Select the method “POST” 
+3. Select “Form URL Encoded,” and create the request
+4. By the POST method, enter the base of the url of the Django server along with the port number (running locally, this often defaults to http://127.0.0.1:8000)
+5. In the “New name” field enter “idtoken” and in the “New value” field paste in the Google id_token that you copied previously
+6. Specify the API endpoint you wish to access. Since you have yet to authenticate, this should be tokensignin (the url should now read http://127.0.0.1:8000/tokensignin/). Note the absence of the trailing forward slash will cause an error.
+7. You should receive an HTTP_200 OK response, along with two cookies which will be used with future HTTP requests to endpoints that provide the server with your identity as a logged in user. If unsuccessful, try obtaining a new Google id_token; these generally expire after 1 hour. One cookie has the key “sessionid” and the other cookie has the key “csrftoken”
 
 ##### GET Requests
 After logging-in per above, proceed as follows:
-Use the same request that you used to login, as this will preserve the necessary cookies. Change the method of the request, however, to “GET”
-Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
-Send the request
+1. Use the same request that you used to login, as this will preserve the necessary cookies. Change the method of the request, however, to “GET”
+2. Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
+3. Send the request
 
 ##### POST Requests
 As POST requests change data in the database, it is even more critical for the authenticity of the user to be verified. In particular, Django is looking to protect against Cross-Site Request Forgery (CSRF); Django expects the POST request to contain a “csrftoken” for it to examine. This token must exist in two places within the HTTP(S) POST request; additionally, the request must contain the sessionid. Following initial authentication (see “Logging in” above), the client is given two cookies, one containing the “csrftoken” and the other the “sessionid.” Sending a subsequent POST request to another endpoint via Insomnia will automatically include those cookies in the POST request; Django also expects the POST request to have a separate header that contains the CSRF token. Proceed as follows to perform a POST request:
-Obtain the value of the “csrftoken” by clicking “Cookie” then “Manage Cookies” in Insomnia
-Click on edit for the cookie that begins with “csrftoken=”
-Copy the value of the cookie in the window that appears, then close the window, and close the “Manage Cookies” window
-Click on “Header” in Insomnia
-Enter “X-CSRFTOKEN” where it reads “New header” and paste the csrftoken value that you previously copied in the “New value” field
-You no longer need the “Content-Type” header as you did for initial authentication, but you may wish to keep the box checked to ease in future login activity
-Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
-Send the request 
+1. Obtain the value of the “csrftoken” by clicking “Cookie” then “Manage Cookies” in Insomnia
+2. Click on edit for the cookie that begins with “csrftoken=”
+3. Copy the value of the cookie in the window that appears, then close the window, and close the “Manage Cookies” window
+4. Click on “Header” in Insomnia
+5. Enter “X-CSRFTOKEN” where it reads “New header” and paste the csrftoken value that you previously copied in the “New value” field
+6. You no longer need the “Content-Type” header as you did for initial authentication, but you may wish to keep the box checked to ease in future login activity
+7. Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
+8. Send the request 
