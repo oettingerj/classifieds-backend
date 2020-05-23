@@ -10,7 +10,7 @@
 &emsp;&emsp;[MVT Architecture](<#mvt-architecture>)<br />
 &emsp;[API Endpoints](<#api-endpoints>)<br />
 &emsp;&emsp;[Testing](<#testing>)<br />
-&emsp;&emsp;&emsp;[Google id_token Generation](<#google-id-token-generation>)<br />
+&emsp;&emsp;&emsp;[Google id_token Generation](<#google-id_token-generation>)<br />
 &emsp;&emsp;&emsp;[Sending an HTTP Request](<#sending-an-http-request>)<br />
 &emsp;&emsp;&emsp;&emsp;[Logging in](<#logging-in>)<br />
 &emsp;&emsp;&emsp;&emsp;[GET Requests](<#get-requests>)<br />
