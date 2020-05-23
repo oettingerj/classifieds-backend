@@ -123,3 +123,13 @@ As POST requests change data in the database, it is even more critical for the a
 6. You no longer need the “Content-Type” header as you did for initial authentication, but you may wish to keep the box checked to ease in future login activity
 7. Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
 8. Send the request 
+
+## Running the Server
+
+### Installing Dependencies
+The following dependences
+
+### Starting the Sever
+The server can be started from a local machine as follows: <br />
+1. cd to classifieds_project (the outer project directory)
+2. run the command "python3 manage.py runserver"
