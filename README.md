@@ -57,10 +57,10 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 &emsp;&emsp;tests.py<br />
 &emsp;db.sqlite3 (see note 4)<br />
 	
-Note 1: a.k.a. the outer project directory
-Note 2: a.k.a. the inner project directory (by convention, this directory has the same name as the outer project directory)
-Note 3: defines the authentication backend class used by the project
-Note 4: this local SQLite db is Django default when developoing locally, but in this project has since been replaced by a remote PostgreSQL db 
+Note 1: a.k.a. the outer project directory<br />
+Note 2: a.k.a. the inner project directory (by convention, this directory has the same name as the outer project directory)<br />
+Note 3: defines the authentication backend class used by the project<br />
+Note 4: this local SQLite db is Django default when developoing locally, but in this project has since been replaced by a remote PostgreSQL db<br />
 	
 
 
