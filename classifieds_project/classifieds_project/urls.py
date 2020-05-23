@@ -28,7 +28,6 @@ urlpatterns = [
     path('tokensignin/', auth_views.authenticate),
     path('logout/', auth_views.logout),
     path('test01/', views.test01),
-#    path('api/create/posting/<user_pk>/<timePosted>/<category>/<prospective>/<fulfilled>/<description>/<audience>/', views.create_posting),
     path('rideposting/create/', views.create_ridelisting),
     path('itemposting/create/', views.create_itemlisting),
     path('rideposting/edit/<pk>/<created>/<datetime>/<startLocation>/<endLocation>/<passengers>/<distance>/<sold>/', views.edit_ridelisting),
