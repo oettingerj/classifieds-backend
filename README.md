@@ -1,20 +1,20 @@
 **Table of Contents**
-[Django: The Backend Web Framework](<#django-the-backend-web-framework>)
-	[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy-nomenclature>)
-	[The File Hierarchy](<#the-file-hierarchy>)
-	[Data Flow](<#data-flow>)
-		[URL mapper](<#url-mapper>)
-		[View](<#view>)
-		[Model](<#model>)
-		[Serializers](<#serializers>)
-		[MVT Architecture](<#mvt-architecture>)
-	[API Endpoints](<#api-endpoints>)
-		[Testing](<#testing>)
-			[Google id_token Generation](<#google-id-token-generation>)
-			[Sending an HTTP Request](<#sending-an-http-request>)
-				[Logging in](<#logging-in>)
-				[GET Requests](<#get-requests>)
-				[POST Requests](<#post-requests>)
+[Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
+&emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy-nomenclature>)<br />
+&emsp;[The File Hierarchy](<#the-file-hierarchy>)<br />
+&emsp;[Data Flow](<#data-flow>)<br />
+&emsp;&emsp;[URL mapper](<#url-mapper>)<br />
+&emsp;&emsp;[View](<#view>)<br />
+&emsp;&emsp;[Model](<#model>)<br />
+&emsp;&emsp;[Serializers](<#serializers>)<br />
+&emsp;&emsp;[MVT Architecture](<#mvt-architecture>)<br />
+	[API Endpoints](<#api-endpoints>)<br />
+		[Testing](<#testing>)<br />
+			[Google id_token Generation](<#google-id-token-generation>)<br />
+			[Sending an HTTP Request](<#sending-an-http-request>)<br />
+				[Logging in](<#logging-in>)<br />
+				[GET Requests](<#get-requests>)<br />
+				[POST Requests](<#post-requests>)<br />
 
 # Django: The Backend Web Framework
 ## Organizational Hierarchy & Nomenclature
