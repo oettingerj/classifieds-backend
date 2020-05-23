@@ -146,7 +146,7 @@ The server can be started from a local machine as follows:
 # References
 In the construction of this README.md file and development of this repository, the following sources were consulted:
 - [Django documentation: general (Django Software Foundation)](https://docs.djangoproject.com/en/3.0/)
-- [Django documetation: customizing authentication (Django Software Foundation)](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/)
+- [Django documentation: customizing authentication (Django Software Foundation)](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/)
 - [Django overview (Mozilla Corporation)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction)
 - [Django REST framework: serialization (Encode OSS Ltd.)](<https://www.django-rest-framework.org/api-guide/serializers/>)
 - [Googe auth with backend server (Google LLC)](<https://developers.google.com/identity/sign-in/web/backend-auth>)
