@@ -105,7 +105,7 @@ Successful login with Google credentials on a client-facing web app will return 
 8. Click the “Copy id_token” button to copy the presented id_token to your clipboard. You are now in possession of a valid Google id_token that can be used to authenticate to the backend Django server.
 #### Sending an HTTP Request
 ##### Logging in
-With a valid Google id_token, authentication to the Django backend can proceed, followed by subsequent testing of other endpoints. Begin by downloading the application Insomnia Core, and proceed as follows:
+With a valid Google id_token, authentication to the Django backend can proceed, followed by subsequent testing of other endpoints. Begin by downloading the application [Insomnia Core](<https://insomnia.rest/download/>), and proceed as follows:
 1. Open Insomnia and click on “New Request”
 2. Select the method “POST” 
 3. Select “Form URL Encoded,” and create the request
