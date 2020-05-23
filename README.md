@@ -1,5 +1,5 @@
-#Django: The Backend Web Framework
-##Organizational Hierarchy & Nomenclature
+# Django: The Backend Web Framework
+## Organizational Hierarchy & Nomenclature
 An instance of a collective hierarchy of files whose purpose is to instruct Django for a particular web-app is known as a project (called “classifieds_project” for this project). A project contains at least one app. An app is a collection of files that govern Django’s operation as it relates to a specific domain. The scope of such a domain is variable, and is discretionary. One may elect to consolidate all behavior to a single app, or distribute it across multiple apps. 
 
 This particular project contains an app called “main_app” which houses nearly all of the project’s functionality. This project contains another app called “auth_app” which handles customized user authentication (verifying that a user is who they claim they are) and authorization (determining what a user has permission to do once they have been authenticated). 
@@ -15,7 +15,7 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 
 
 
-##The File Hierarchy
+## The File Hierarchy
 \classifieds_project
 	manage.py
 	\classifieds_project
@@ -48,29 +48,29 @@ admin.py
 	
 
 
-##Data Flow
-###URL mapper 
+## Data Flow
+### URL mapper 
 (urls.py)
 Django is called to action when it receives an HTTP request (from the front-end, for example). The URL mapper (urls.py) redirects the HTTP request to the appropriate view based on the request URL. Each app has its own views (views.py), so the app the request is being redirected to must be specified. Patterns of strings or digits in the URL can be matched and passed as data to a view function.
 
-###View 
+### View 
 (views.py)
 The view of the specified app receives the redirected HTTP request and reads/writes the necessary data via the model (models.py), which is also specific to a particular app. Although formatting information need not be returned, the view can optionally delegate formatting to an app’s templates (templates.py). Once the necessary actions, if any, have been executed upon the data the view returns an HTTP response. Note that the serializers can play a necessary intermediate role.
 
-###Model 
+### Model 
 (models.py)
 Models are Python classes that govern the structure of an app’s data (ultimately informing necessary actions to be performed upon the database and which dictate the structure of the database itself). Typically in models.py, when a new class is defined the Model class is inherited, which provides the necessary methods to manage data (such as adding, modifying, and deleting data), and to query data. Generally, each new class defined in models.py correlates to a table in the database, and each Python class attribute correlates to an attribute in the respective database table. Deviations from this structure may be observed when considering classes that manage other classes. For example, auth_app/views.py contains a class that defines a User, and another class that governs how a normal user and a superuser should be created. This is standard practice when defining a custom users class. Note that a single database is used across all apps.
 
-###Serializers 
+### Serializers 
 (serializers.py)
 Serializers provide for both serialization (transforming data such as a Django queryset or model instance to native Python data types) and deserialization (parsing data incoming data from an HTTP request, validating it, and converting it into a complex dataset that Django’s methods can act upon). Each app has its own set of serializers, which are defined as Python classes, often that inherit from the ModelSerializer class.
 
-###MVT Architecture
+### MVT Architecture
 Django refers to its organizational architecture as Model View Template (MVT); although it is similar to the Model View Controller (MVC) architecture, it is not synonymous. Django’s view presents the model in a particular format, just as the view in an MVC architecture does. In some ways, however, Django delegates what would be the role of the controller to the URL mapper and serializers.
 
-##API Endpoints
-###Testing
-####Google id_token Generation
+## API Endpoints
+### Testing
+#### Google id_token Generation
 Successful login with Google credentials on a client-facing web app will return a googleUser object; an id_token can be obtained from this object. Generation of the token can be completed as follows:
 Download the directory “GoogleIDTokenGen” (located in the same directory on the shared Google Drive as this “Documentation” document)
 On your machine, open the index.html file inside of the directory in a text editor
@@ -80,8 +80,8 @@ Start a Python web server that serves the index.html file by entering the comman
 In a web browser, navigate to “localhost:5000”
 Click the Google sign in button at the top of the webpage; you will be asked to choose an account/enter credentials to continue to “Carleton Classifieds.” If you are presented with any other destination this utility should be considered compromised and immediate abortion is thus advised. Note that you must use an account having a domain of carleton.edu
 Click the “Copy id_token” button to copy the presented id_token to your clipboard. You are now in possession of a valid Google id_token that can be used to authenticate to the backend Django server.
-####Sending an HTTP Request
-#####Logging in
+#### Sending an HTTP Request
+##### Logging in
 With a valid Google id_token, authentication to the Django backend can proceed, followed by subsequent testing of other endpoints. Begin by downloading the application Insomnia Core, and proceed as follows:
 Open Insomnia and click on “New Request”
 Select the method “POST” 
@@ -91,13 +91,13 @@ In the “New name” field enter “idtoken” and in the “New value” field
 Specify the API endpoint you wish to access. Since you have yet to authenticate, this should be tokensignin (the url should now read http://127.0.0.1:8000/tokensignin/). Note the absence of the trailing forward slash will cause an error.
 You should receive an HTTP_200 OK response, along with two cookies which will be used with future HTTP requests to endpoints that provide the server with your identity as a logged in user. If unsuccessful, try obtaining a new Google id_token; these generally expire after 1 hour. One cookie has the key “sessionid” and the other cookie has the key “csrftoken”
 
-#####GET Requests
+##### GET Requests
 After logging-in per above, proceed as follows:
 Use the same request that you used to login, as this will preserve the necessary cookies. Change the method of the request, however, to “GET”
 Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
 Send the request
 
-#####POST Requests
+##### POST Requests
 As POST requests change data in the database, it is even more critical for the authenticity of the user to be verified. In particular, Django is looking to protect against Cross-Site Request Forgery (CSRF); Django expects the POST request to contain a “csrftoken” for it to examine. This token must exist in two places within the HTTP(S) POST request; additionally, the request must contain the sessionid. Following initial authentication (see “Logging in” above), the client is given two cookies, one containing the “csrftoken” and the other the “sessionid.” Sending a subsequent POST request to another endpoint via Insomnia will automatically include those cookies in the POST request; Django also expects the POST request to have a separate header that contains the CSRF token. Proceed as follows to perform a POST request:
 Obtain the value of the “csrftoken” by clicking “Cookie” then “Manage Cookies” in Insomnia
 Click on edit for the cookie that begins with “csrftoken=”
