@@ -30,6 +30,9 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 &emsp;\classifieds_project (see note 2)<br />
 &emsp;&emsp;config.py<br />
 &emsp;&emsp;connect.py<br />
+&emsp;&emsp;\resources<br />
+&emsp;&emsp;&emsp;\google_id_token_gen<br />
+&emsp;&emsp;&emsp;&emsp;index.html<br />
 &emsp;&emsp;settings.py<br />
 &emsp;&emsp;urls.py<br />
 &emsp;&emsp;wsgi.py<br />
@@ -85,10 +88,10 @@ Django refers to its organizational architecture as Model View Template (MVT); a
 ### Testing
 #### Google id_token Generation
 Successful login with Google credentials on a client-facing web app will return a googleUser object; an id_token can be obtained from this object. Generation of the token can be completed as follows:
-1. Download the directory “GoogleIDTokenGen” (located in the same directory on the shared Google Drive as this “Documentation” document)
-2. On your machine, open the index.html file inside of the directory in a text editor
+1. Navigate to classifieds_project/classifieds_project/resources/google_id_token_gen in the repo
+2. On your machine, open the index.html file inside of the google_id_token_gen directory in a text editor
 3. Check that the meta tag on line 5 has an attribute “content” that is set to the appropriate OAuth 2.0 Client ID as a string (the trailing portion of this string should read .apps.googleusercontent.com”. There is no need to change this attribute’s value for generic testing purposes.
-4. Open a command line interface on your machine, and cd to the “GoogleIDTokenGen” directory that you downloaded
+4. Open a command line interface on your machine, and cd to the "google_id_token_gen" directory as previously specified
 5. Start a Python web server that serves the index.html file by entering the command “python3 -m http.server 5000” (port 5000, is specified as to allow simultaneous operation of a Django server on the default port of 8000). Attempting to use this utility without accessing it from a server may be flagged by Google as a security threat and may prohibit access.
 6. In a web browser, navigate to “localhost:5000”
 7. Click the Google sign in button at the top of the webpage; you will be asked to choose an account/enter credentials to continue to “Carleton Classifieds.” If you are presented with any other destination this utility should be considered compromised and immediate abortion is thus advised. Note that you must use an account having a domain of carleton.edu
