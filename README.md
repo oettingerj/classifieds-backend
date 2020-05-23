@@ -25,34 +25,34 @@ This particular project contains an app called “main_app” which houses nearl
 Notably the Django nomenclature of an app is distinct from an app in the general term “web app.” A single web app, in which Django can act as the back end, may have many apps (in the Django sense of the word). In addition to one or more apps, a Django project always has a manage.py file, and may optionally have a database contained within the outer project directory.
 
 ## The File Hierarchy
-\classifieds_project(see note 1)
-	manage.py
-	\classifieds_project (see note 2)
-		config.py
-		connect.py
-		settings.py
-		urls.py
-		wsgi.py
-	\main_app
-		models.py
-		views.py
-		serializers.py
-		admin.py
-		\management
-		\migrations
-		\templates
-		tests.py
-	\auth_app
-		models.py
-		views.py
-		custom_auth.py (see note 3)
-		admin.py
-		apps.py
-		\management
-		\migrations
-		\templates
-		tests.py
-	db.sqlite3 (see note 4)
+\classifieds_project(see note 1)<br />
+&emsp;manage.py<br />
+&emsp;\classifieds_project (see note 2)<br />
+&emsp;&emsp;config.py<br />
+&emsp;&emsp;connect.py<br />
+&emsp;&emsp;settings.py<br />
+&emsp;&emsp;urls.py<br />
+&emsp;&emsp;wsgi.py<br />
+&emsp;\main_app<br />
+&emsp;&emsp;models.py<br />
+&emsp;&emsp;views.py<br />
+&emsp;&emsp;serializers.py<br />
+&emsp;&emsp;admin.py<br />
+&emsp;&emsp;\management<br />
+&emsp;&emsp;\migrations<br />
+&emsp;&emsp;\templates<br />
+&emsp;&emsp;tests.py<br />
+&emsp;\auth_app<br />
+&emsp;&emsp;models.py<br />
+&emsp;&emsp;views.py<br />
+&emsp;&emsp;custom_auth.py (see note 3)<br />
+&emsp;&emsp;admin.py<br />
+&emsp;&emsp;apps.py<br />
+&emsp;&emsp;\management<br />
+&emsp;&emsp;\migrations<br />
+&emsp;&emsp;\templates<br />
+&emsp;&emsp;tests.py<br />
+&emsp;db.sqlite3 (see note 4)<br />
 	
 Note 1: a.k.a. the outer project directory
 Note 2: a.k.a. the inner project directory (by convention, this directory has the same name as the outer project directory)
