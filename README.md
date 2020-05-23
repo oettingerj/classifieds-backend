@@ -1,3 +1,21 @@
+**Table of Contents**
+[Django: The Backend Web Framework](<#django-the-backend-web-framework>)
+	[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy-nomenclature>)
+	[The File Hierarchy](<#the-file-hierarchy>)
+	[Data Flow](<#data-flow>)
+		[URL mapper](<#url-mapper>)
+		[View](<#view>)
+		[Model](<#model>)
+		[Serializers](<#serializers>)
+		[MVT Architecture](<#mvt-architecture>)
+	[API Endpoints](<#api-endpoints>)
+		[Testing](<#testing>)
+			[Google id_token Generation](<#google-id-token-generation>)
+			[Sending an HTTP Request](<#sending-an-http-request>)
+				[Logging in](<#logging-in>)
+				[GET Requests](<#get-requests>)
+				[POST Requests](<#post-requests>)
+
 # Django: The Backend Web Framework
 ## Organizational Hierarchy & Nomenclature
 An instance of a collective hierarchy of files whose purpose is to instruct Django for a particular web-app is known as a project (called “classifieds_project” for this project). A project contains at least one app. An app is a collection of files that govern Django’s operation as it relates to a specific domain. The scope of such a domain is variable, and is discretionary. One may elect to consolidate all behavior to a single app, or distribute it across multiple apps. 
@@ -5,15 +23,6 @@ An instance of a collective hierarchy of files whose purpose is to instruct Djan
 This particular project contains an app called “main_app” which houses nearly all of the project’s functionality. This project contains another app called “auth_app” which handles customized user authentication (verifying that a user is who they claim they are) and authorization (determining what a user has permission to do once they have been authenticated). 
 
 Notably the Django nomenclature of an app is distinct from an app in the general term “web app.” A single web app, in which Django can act as the back end, may have many apps (in the Django sense of the word). In addition to one or more apps, a Django project always has a manage.py file, and may optionally have a database contained within the outer project directory.
-
-
-
-
-
-
-[POST Requests](<#post-requests>)
-
-
 
 ## The File Hierarchy
 \classifieds_project(see note 1)
