@@ -15,6 +15,9 @@
 &emsp;&emsp;&emsp;&emsp;[Logging in](<#logging-in>)<br />
 &emsp;&emsp;&emsp;&emsp;[GET Requests](<#get-requests>)<br />
 &emsp;&emsp;&emsp;&emsp;[POST Requests](<#post-requests>)<br />
+&emsp;[Running the Server](<#running-the-server>)<br />
+&emsp;&emsp;[Installing Dependencies](<#installing-dependencies>)<br />
+&emsp;&emsp;[Starting the Server](<#starting-the-server>)<br />
 
 # Django: The Backend Web Framework
 ## Organizational Hierarchy & Nomenclature
