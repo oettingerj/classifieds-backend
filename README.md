@@ -18,6 +18,7 @@
 &emsp;[Running the Server](<#running-the-server>)<br />
 &emsp;&emsp;[Installing Dependencies](<#installing-dependencies>)<br />
 &emsp;&emsp;[Starting the Server](<#starting-the-server>)<br />
+[References](<#references>)<br />
 
 # Django: The Backend Web Framework
 ## Organizational Hierarchy & Nomenclature
@@ -141,3 +142,11 @@ The dependencies are delinitated in the Pipfile (contained in the root directory
 The server can be started from a local machine as follows:
 1. cd to classifieds_project (the outer project directory)
 2. run the command "python3 manage.py runserver"
+
+# References
+In the construction of this README.md file and development of this repository, the following sources were consulted:
+- [Django documentation: general (Django Software Foundation)](https://docs.djangoproject.com/en/3.0/)
+- [Django documetation: customizing authentication (Django Software Foundation)](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/)
+- [Django overview (Mozilla Corporation)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction)
+- [Django REST framework: serialization (Encode OSS Ltd.)](<https://www.django-rest-framework.org/api-guide/serializers/>)
+- [Googe auth with backend server (Google LLC)](<https://developers.google.com/identity/sign-in/web/backend-auth>)
