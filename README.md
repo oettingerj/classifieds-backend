@@ -136,7 +136,7 @@ As POST requests change data in the database, it is even more critical for the a
 ### Installing Dependencies
 The dependencies are delinitated in the Pipfile (contained in the root directory of this repo), and they can be installed using pipenv.
 
-### Starting the Sever
+### Starting the Server
 The server can be started from a local machine as follows:
 1. cd to classifieds_project (the outer project directory)
 2. run the command "python3 manage.py runserver"
