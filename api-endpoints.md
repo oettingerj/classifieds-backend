@@ -1,32 +1,33 @@
+# API Endpoints
 These are the endpoints that can be used (by frontend code or for testing) to access the database.
 
-Authentication:
-login (POST):   tokensignin/
-logout (POST, GET): logout/
+## Authentication:
+&emsp;login (POST):   tokensignin/<br />
+&emsp;logout (POST, GET): logout/
 
-Ride Listings:
-create (POST):  rideposting/create/
-edit (POST):    rideposting/edit/<pk>/<created>/<datetime>/<startLocation>/<endLocation>/<passengers>/<distance>/<sold>/
-delete (POST):  rideposting/delete/<pk>/
-toggle sold (POST): rideposting/changesold/<pk>/<new_sold>/
-view details (GET): rideposting/view/postingdetails/<pk>/
-mark liked (POST):  rideposting/like/<pk>/
-mark unliked (POST):    rideposting/unlike/<pk>/
-view liked (GET):   rideposting/displayliked/
+## Ride Listings:
+&emsp;create (POST):  rideposting/create/<br />
+&emsp;edit (POST):    rideposting/edit/\<pk>/\<created>/\<datetime>/\<startLocation>/\<endLocation>/\<passengers>/\<distance>/\<sold>/<br />
+&emsp;delete (POST):  rideposting/delete/<pk>/<br />
+&emsp;toggle sold (POST): rideposting/changesold/<pk>/<new_sold>/<br />
+&emsp;view details (GET): rideposting/view/postingdetails/<pk>/<br />
+&emsp;mark liked (POST):  rideposting/like/<pk>/<br />
+&emsp;mark unliked (POST):    rideposting/unlike/<pk>/<br />
+&emsp;view liked (GET):   rideposting/displayliked/
     
-Item Listings:
-create (POST):  itemposting/create/
-edit (POST):    itemposting/edit/<pk>/<created>/<title>/<description>/<user>/<img>/<price>/<sold>/
-delete (POST):  itemposting/delete/<pk>/
-toggle sold (POST): itemposting/changesold/<pk>/<new_sold>/
-view details (GET): itemposting/view/postingdetails/<pk>/
-mark liked (POST):  itemposting/like/<pk>/
-mark unliked (POST):    itemposting/unlike/<pk>/
-view liked (GET):   itemposting/displayliked/
+## Item Listings:
+&emsp;create (POST):  itemposting/create/<br />
+&emsp;edit (POST):    itemposting/edit/<pk>/<created>/<title>/<description>/<user>/<img>/<price>/<sold>/<br />
+&emsp;delete (POST):  itemposting/delete/<pk>/<br />
+&emsp;toggle sold (POST): itemposting/changesold/<pk>/<new_sold>/<br />
+&emsp;view details (GET): itemposting/view/postingdetails/<pk>/<br />
+&emsp;mark liked (POST):  itemposting/like/<pk>/<br />
+&emsp;mark unliked (POST):    itemposting/unlike/<pk>/<br />
+&emsp;view liked (GET):   itemposting/displayliked/
     
-Navigation:
-view all listings (GET):  api/get/available_postings//
-view listings by category (GET):  api/get/available_postings/<category>/
-view all rides (GET): api/get/available_rides/
-view own listings (GET):  api/get/own_postings/
-search listings (GET):    api/search/<keyword>/
+## Navigation:
+&emsp;view all listings (GET):  api/get/available_postings//<br />
+&emsp;view listings by category (GET):  api/get/available_postings/<category>/<br />
+&emsp;view all rides (GET): api/get/available_rides/<br />
+&emsp;view own listings (GET):  api/get/own_postings/<br />
+&emsp;search listings (GET):    api/search/<keyword>/
