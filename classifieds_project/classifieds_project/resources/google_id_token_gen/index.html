@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<head>
+<meta name="google-signin-client_id" content="578173933063-2bldsbnkidcvoiq20eqeasv7u6u1fog3.apps.googleusercontent.com">
+</head>
+
+<body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <button id="logout_button" disabled onclick="logout()">Logout</button>
+
+    <h2>id_token</h2>
+    <div id="id_token"></div>
+
+    <button id="copy_button" disabled onclick="copy()">Copy id_token</button>
+    <input type="text" value="" id = "id_token_textfield">
+
+    <h2>Name</h2>
+    <div id="name"></div>
+
+    <h2>User ID</h2>
+    <div id="google_id"></div>
+
+    <h2>Email</h2>
+    <div id="email"></div>
+
+    <img id="user_image">
+
+    
+</body>
+</html>
+
+<script>
+
+  function onSignIn(googleUser) {
+    console.log("onSignIn called");
+    var profile = googleUser.getBasicProfile();
+
+    var id_token = googleUser.getAuthResponse().id_token;
+    var name = profile.getName();
+    var google_id = profile.getId();
+    var email = profile.getEmail();
+    var user_image = profile.getImageUrl();
+
+    document.getElementById("id_token").innerHTML = id_token;
+    document.getElementById("name").innerHTML = name;
+    document.getElementById("google_id").innerHTML = google_id;
+    document.getElementById("email").innerHTML = email;
+    document.getElementById("user_image").setAttribute("src", user_image);
+    document.getElementById("user_image").style = "";
+
+    document.getElementById("copy_button").removeAttribute("disabled");
+    document.getElementById("logout_button").removeAttribute("disabled");
+    
+    console.log("sign in complete");
+}
+
+function logout() {
+  console.log("logout");
+
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut();
+
+  document.getElementById("id_token").innerHTML = "";
+  document.getElementById("name").innerHTML = "";
+  document.getElementById("google_id").innerHTML = "";
+  document.getElementById("email").innerHTML = "";
+  document.getElementById("user_image").style = "display: none;";
+  document.getElementById("id_token_textfield").value="";
+
+  document.getElementById("copy_button").setAttribute("disabled", "True");
+  document.getElementById("logout_button").setAttribute("disabled", "True");
+}
+
+function copy(){
+  var id_token = document.getElementById("id_token_textfield");
+  id_token.value = document.getElementById("id_token").innerHTML;
+  id_token.select();
+  document.execCommand("copy");
+  id_token.value = "copied";
+
+}
+</script>
+
