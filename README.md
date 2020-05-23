@@ -92,6 +92,7 @@ Serializers provide for both serialization (transforming data such as a Django q
 Django refers to its organizational architecture as Model View Template (MVT); although it is similar to the Model View Controller (MVC) architecture, it is not synonymous. Django’s view presents the model in a particular format, just as the view in an MVC architecture does. In some ways, however, Django delegates what would be the role of the controller to the URL mapper and serializers.
 
 ## API Endpoints
+For a listing of the API endpoints, please refer to the api-endpoints.md file contained in the root directory of this repo.
 ### Testing
 #### Google id_token Generation
 Successful login with Google credentials on a client-facing web app will return a googleUser object; an id_token can be obtained from this object. Generation of the token can be completed as follows:
