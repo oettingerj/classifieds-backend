@@ -25,7 +25,7 @@ This particular project contains an app called “main_app” which houses nearl
 Notably the Django nomenclature of an app is distinct from an app in the general term “web app.” A single web app, in which Django can act as the back end, may have many apps (in the Django sense of the word). In addition to one or more apps, a Django project always has a manage.py file, and may optionally have a database contained within the outer project directory.
 
 ## The File Hierarchy
-\classifieds_project(see note 1)<br />
+\classifieds_project (see note 1)<br />
 &emsp;manage.py<br />
 &emsp;\classifieds_project (see note 2)<br />
 &emsp;&emsp;config.py<br />
@@ -56,11 +56,15 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 &emsp;&emsp;\templates<br />
 &emsp;&emsp;tests.py<br />
 &emsp;db.sqlite3 (see note 4)<br />
+Pipfile<br />
+README.md (this file)<br />
+api-endpoints.md (see note 5) <br />
 	
 Note 1: a.k.a. the outer project directory<br />
 Note 2: a.k.a. the inner project directory (by convention, this directory has the same name as the outer project directory)<br />
 Note 3: defines the authentication backend class used by the project<br />
 Note 4: this local SQLite db is Django default when developoing locally, but in this project has since been replaced by a remote PostgreSQL db<br />
+Note 5: this file serves as detailed documentation for the API endpoints<br />
 	
 
 
@@ -127,9 +131,9 @@ As POST requests change data in the database, it is even more critical for the a
 ## Running the Server
 
 ### Installing Dependencies
-The following dependences
+The dependencies are delinitated in the Pipfile (contained in the root directory of this repo), and they can be installed using pipenv.
 
 ### Starting the Sever
-The server can be started from a local machine as follows: <br />
+The server can be started from a local machine as follows:
 1. cd to classifieds_project (the outer project directory)
 2. run the command "python3 manage.py runserver"
