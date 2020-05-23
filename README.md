@@ -1,6 +1,6 @@
-**Table of Contents**
+**Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
-&emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy-nomenclature>)<br />
+&emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy--nomenclature>)<br />
 &emsp;[The File Hierarchy](<#the-file-hierarchy>)<br />
 &emsp;[Data Flow](<#data-flow>)<br />
 &emsp;&emsp;[URL mapper](<#url-mapper>)<br />
