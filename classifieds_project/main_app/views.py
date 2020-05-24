@@ -295,8 +295,3 @@ def display_liked_itemlistings(request):
     posts = user.likedItems.all()
     serializer = ItemListingSerializer(posts, many=True)
     return Response(serializer.data)
-
-
-@api_view(['GET','POST'])
-def test01(request):
-    return Response(request.user.email)
