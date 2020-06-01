@@ -1,3 +1,11 @@
+**NOTICE**<br />
+This repository contains passwords stored in plaintext and should therefore not be made public in its current state. Also note that this README.md file is best read on Github.com or with any application that can properly render this Markdown file.<br />
+
+**ABOUT**<br />
+Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
+Last updated: 6/1/2020<br />
+Content: This repository contains the code for the backend of the Carleton Classified web-app. This backend is constructed using the web framework Django.<br />
+
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
 &emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy--nomenclature>)<br />
@@ -23,11 +31,22 @@
 # Django: The Backend Web Framework
 ## Environnment Setup
 These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
+
 ### Core Tools
-Fundamental tools such as git are required for the operation of this repo. Users of macOS can install the Xcode command line tools; users of other operating systems are encouraged to install git using a method of their choice, and install any other programs as instructed by the command line interface.
+Fundamental tools, especially git, are required for the operation of this repo. Users of macOS can install the Xcode command line tools which will ensure the installation of all such tools; users of other operating systems are encouraged to install git using a method of their choice, and install any other programs as instructed by the command line interface.
+
 #### Installing the Xcode Command Line Tools (macOS only)
 1. Open the application "Terminal"
-2. Enter the command `xcode-select --install`
+2. Enter the command `xcode-select --install` (do NOT continue until you have read the next instruction)
+3. When prompted, do NOT select "Get Xcode" unless you wish to do so (the file size nears 10 GB and requires considerable time to download and install). Instead, click "Install" which will install only the command line developer tools.
+
+#### Cloning the repo
+1. In a commmand line interface, navigate to where you wish to clone this repository
+2. Clone this repository with the command `git clone <url-of-this-repo>`
+3. Note that the default branch is the "master" branch, which your team may designate to hold only tested and stable code. To see the branches available to you, enter the command `git branch`. If you wish to check out a branch other than the master, enter the command `git checkout <branch_name>`. 
+
+####
+
 
 
 ## Organizational Hierarchy & Nomenclature
