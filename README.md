@@ -21,6 +21,15 @@
 [References](<#references>)<br />
 
 # Django: The Backend Web Framework
+## Environnment Setup
+These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
+### Core Tools
+Fundamental tools such as git are required for the operation of this repo. Users of macOS can install the Xcode command line tools; users of other operating systems are encouraged to install git using a method of their choice, and install any other programs as instructed by the command line interface.
+#### Installing the Xcode Command Line Tools (macOS only)
+1. Open the application "Terminal"
+2. Enter the command `xcode-select --install`
+
+
 ## Organizational Hierarchy & Nomenclature
 An instance of a collective hierarchy of files whose purpose is to instruct Django for a particular web-app is known as a project (called “classifieds_project” for this project). A project contains at least one app. An app is a collection of files that govern Django’s operation as it relates to a specific domain. The scope of such a domain is variable, and is discretionary. One may elect to consolidate all behavior to a single app, or distribute it across multiple apps. 
 
