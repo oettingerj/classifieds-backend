@@ -32,10 +32,10 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 # Django: The Backend Web Framework
 ## Environnment Setup
-These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
+This section provides instructions for how to setup a machine on which the Django server can run. These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
 
 ### Core Tool Installation
-Fundamental tools, especially git, are required for the operation of this repo. Users of macOS can install the Xcode command line tools which will ensure the installation of all such tools; users of other operating systems are encouraged to install git using a method of their choice, and install any other programs as instructed by the command line interface.
+Fundamental tools, especially git, are required for the further setup of the environment. Users of macOS can install the Xcode command line tools which will ensure the installation of all such tools; users of other operating systems are encouraged to install [git](<https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>) using a method of their choice, and install any other programs as instructed by the command line interface.
 
 #### Installing the Xcode Command Line Tools (macOS only)
 1. Open the application "Terminal"
@@ -63,7 +63,7 @@ Unless you plan to use a database system other than PostgreSQL, you'll need to i
 With pipenv installed, the remaining dependencies can be installed efficiently in a single motion. In a command line interface, begin by navigating to the root directory of the repo, which contains the file "Pipfile" among other contents. Create a Python virtual environment and spawn an associated shell by running the commmand `pipenv shell --three` (note that the argument "three" is specified to make a Python virtual environment for Python3 specifically). To install the dependencies as deliniated in the Pipfile, enter `pipenv install`. Please see troubleshooting note 1 if this fails. Exit the shell (on macOS, use control-D).
 
 ### Carleton VPN Installation
-As of version 1.0.0 of this repo, connection to the database requires that the machine that runs the Django server have a Carleton ip address. This can be achieved by installing and running the VPN that Carleton provides. Please refer to Carleton ITS's [instructions for downloading, installing, and running the VPN](<https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN>). Following installation, please activate the VPN on your machine. This marks the end of the environment setup! Woo hoo! You're well on your way to running the Django server!
+As of version 1.0.0 of this repo, connection to the database requires that the machine that runs the Django server has a Carleton ip address. The Django server can not be operationalized without connection to a database. Establishing a Carleton ip address can be achieved by installing and running the VPN that Carleton provides. Please refer to Carleton ITS's [instructions for downloading, installing, and running the VPN](<https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN>). Following installation, please activate the VPN on your machine. This marks the end of the environment setup! Woo hoo! You're well on your way to running the Django server!
 
 ### Environment Setup Troubleshooting
 Generally, errors during environment setup are due to missing prerequisitive software (including missing the most recent version), or the inability for the machine to find the prerequistive software. The following notes may be helpful generally, and certain parts of the instructions above may refer you to specific notes.
@@ -75,7 +75,7 @@ Generally, errors during environment setup are due to missing prerequisitive sof
 To run the Django server, perform the following actions:
 
 1. Navigate to `classifieds_project` (the outer project directory; see note 1 in "The File Hierarchy" section below for reference)
-2. Start the server with the command `pipenv run python3 manage.py runserver`. Alternatively, you may activate the project's Python virtual enviornment separately with `pipenv shell` and then run `python3 manage.py runserver` inside of the shell.
+2. Start the server with the command `pipenv run python3 manage.py runserver`. Alternatively, you may activate the project's Python virtual enviornment separately with `pipenv shell` and then run `python3 manage.py runserver` inside of the shell. Recall that exiting the shell may require a different key sequence than stopping the server. (On macOS, existing the shell can be accomplished via control-D.)
 
 
 ## Organizational Hierarchy & Nomenclature
