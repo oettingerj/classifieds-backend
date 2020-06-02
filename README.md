@@ -13,7 +13,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;[**Database Setup**](<#Database-Setup>)<br />
 &emsp;&emsp;&emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
 &emsp;&emsp;&emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
-&emsp;&emsp;&emsp;&emsp;[Connecting to the Linux VM at Carleton](<#Connecting-to-the-Linux-VM-at-Carleton>)
+&emsp;&emsp;&emsp;&emsp;[Connecting to the Linux VM at Carleton](<#Connecting-to-the-Linux-VM-at-Carleton>)<br />
 &emsp;&emsp;&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
 &emsp;&emsp;[**Environment Setup**](<#environment-setup>)<br />
 &emsp;&emsp;&emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
