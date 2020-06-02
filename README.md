@@ -1,12 +1,10 @@
-<style>p{color:red;}</style>
-<p><em>foo</em></p>
-
 **NOTICE**<br />
-This repository contains passwords stored in plaintext and therefore should not be made public in its current state. Also note that this README.md file follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
+This repository contains passwords stored in plaintext and therefore should not be made public in its current state. Also note that this README.md file (generally) follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
 
 **About**<br />
 Last updated (this file): 6/1/2020<br />
 Version (of repo): 1.0.0<br />
+Version (of this file): 1.1.0 <br />
 Content: This repository contains the code for the backend of the Carleton Classified web-app. This backend is constructed using the web framework Django.<br />
 Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
@@ -36,7 +34,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 ## Environnment Setup
 These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
 
-### Core Tools
+### Core Tool Installation
 Fundamental tools, especially git, are required for the operation of this repo. Users of macOS can install the Xcode command line tools which will ensure the installation of all such tools; users of other operating systems are encouraged to install git using a method of their choice, and install any other programs as instructed by the command line interface.
 
 #### Installing the Xcode Command Line Tools (macOS only)
@@ -44,13 +42,34 @@ Fundamental tools, especially git, are required for the operation of this repo. 
 2. Enter the command `xcode-select --install` (do NOT continue until you have read the next instruction)
 3. When prompted, do NOT select "Get Xcode" unless you wish to do so (the file size nears 10 GB and requires considerable time to download and install). Instead, click "Install" which will install only the command line developer tools.
 
-#### Cloning the repo
+### Cloning the repo
 1. In a commmand line interface, navigate to where you wish to clone this repository
 2. Clone this repository with the command `git clone <url-of-this-repo>`
 3. Note that the default branch is the "master" branch, which your team may designate to hold only tested and stable code. To see the branches available to you, enter the command `git branch`. If you wish to check out a branch other than the master, enter the command `git checkout <branch_name>`. 
 
-####
+### Homebrew Installation
+Homebrew is a package manager for Linux-based operating systems (including macOS and those using Windows Subsystem for Linux) which aids in the installation process of various software. It can be installed with the command `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`. Note that the last quote is part of the command itself.
 
+### Python3 Installation
+Python 2 is pre-installed on most versions of macOS; Python 3, however, requires installation. Other operating systems will also likely require the installation of Python 3. Python 3 is perhaps most easily installed using the program previous installed, Homebrew. To install Python 3, enter the command `brew install python`.
+
+### PostgreSQL Installation
+Unless you plan to use a database system other than PostgreSQL, you'll need to install it on your machine. It can be installed with the command `brew install postgresql`
+
+### Pipenv Installation
+[Pipenv](<https://pypi.org/project/pipenv/>) combines multiple tools together, such as pip and virtualenv. It is particularly helpful when installing dependencies from a list that your team has constructed, all the while using the benefits of a [Python virtual environment](<https://docs.python.org/3/tutorial/venv.html>). Pipenv can be installed by executing `pip3 install pipenv`.
+
+### Dependency Installation from the Pipfile
+With pipenv installed, the remaining dependencies can be installed efficiently in a single motion. In a command line interface, begin by navigating to the root directory of the repo, which contains the file "Pipfile" among other contents. Create a Python virtual environment and spawn an associated shell by running the commmand `pipenv shell --three` (note that the argument "three" is specified to make a Python virtual environment for Python3 specifically). To install the dependencies as deliniated in the Pipfile, enter `pipenv install`. Exit the shell (on macOS, use control-D).
+
+### Carleton VPN Installation
+As of version 1.0.0 of this repo, connection to the database requires that the machine that runs the Django server have a Carleton ip address. This can be achieved by installing and running the VPN that Carleton provides. Please refer to Carleton ITS's [instructions for downloading, installing, and running the VPN](<https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN>). Following installation, please activate the VPN on your machine.
+
+### Environment Setup Complete
+This marks the end of the environment setup! Woo hoo! You're well on your way to running the Django server!
+
+## Running the server
+To run the Django server 
 
 
 ## Organizational Hierarchy & Nomenclature
