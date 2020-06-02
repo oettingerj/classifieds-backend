@@ -1,10 +1,11 @@
 **NOTICE**<br />
-This repository contains passwords stored in plaintext and should therefore not be made public in its current state. Also note that this README.md file is best read on Github.com or with any application that can properly render this Markdown file.<br />
+This repository contains <div style="color:red;">passwords stored in plaintext</div> and therefore should not be made public in its current state. Also note that this README.md file follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
 
-**ABOUT**<br />
-Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
-Last updated: 6/1/2020<br />
+**About**<br />
+Last updated (this file): 6/1/2020<br />
+Version (of repo): 1.0.0<br />
 Content: This repository contains the code for the backend of the Carleton Classified web-app. This backend is constructed using the web framework Django.<br />
+Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
