@@ -155,36 +155,36 @@ Notably the Django nomenclature of an app is distinct from an app in the general
 
 ## The File Hierarchy
 \classifieds_project (see note 1)<br />
-&emsp;manage.py<br />
-&emsp;\classifieds_project (see note 2)<br />
-&emsp;&emsp;config.py<br />
-&emsp;&emsp;connect.py<br />
-&emsp;&emsp;\resources<br />
-&emsp;&emsp;&emsp;\google_id_token_gen<br />
-&emsp;&emsp;&emsp;&emsp;index.html<br />
-&emsp;&emsp;settings.py<br />
-&emsp;&emsp;urls.py<br />
-&emsp;&emsp;wsgi.py<br />
-&emsp;\main_app<br />
-&emsp;&emsp;models.py<br />
-&emsp;&emsp;views.py<br />
-&emsp;&emsp;serializers.py<br />
-&emsp;&emsp;admin.py<br />
-&emsp;&emsp;\management<br />
-&emsp;&emsp;\migrations<br />
-&emsp;&emsp;\templates<br />
-&emsp;&emsp;tests.py<br />
-&emsp;\auth_app<br />
-&emsp;&emsp;models.py<br />
-&emsp;&emsp;views.py<br />
-&emsp;&emsp;custom_auth.py (see note 3)<br />
-&emsp;&emsp;admin.py<br />
-&emsp;&emsp;apps.py<br />
-&emsp;&emsp;\management<br />
-&emsp;&emsp;\migrations<br />
-&emsp;&emsp;\templates<br />
-&emsp;&emsp;tests.py<br />
-&emsp;db.sqlite3 (see note 4)<br />
+&emsp;&emsp;manage.py<br />
+&emsp;&emsp;\classifieds_project (see note 2)<br />
+&emsp;&emsp;&emsp;&emsp;config.py<br />
+&emsp;&emsp;&emsp;&emsp;connect.py<br />
+&emsp;&emsp;&emsp;&emsp;\resources<br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;\google_id_token_gen<br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;index.html<br />
+&emsp;&emsp;&emsp;&emsp;settings.py<br />
+&emsp;&emsp;&emsp;&emsp;urls.py<br />
+&emsp;&emsp;&emsp;&emsp;wsgi.py<br />
+&emsp;&emsp;\main_app<br />
+&emsp;&emsp;&emsp;&emsp;models.py<br />
+&emsp;&emsp;&emsp;&emsp;views.py<br />
+&emsp;&emsp;&emsp;&emsp;serializers.py<br />
+&emsp;&emsp;&emsp;&emsp;admin.py<br />
+&emsp;&emsp;&emsp;&emsp;\management<br />
+&emsp;&emsp;&emsp;&emsp;\migrations<br />
+&emsp;&emsp;&emsp;&emsp;\templates<br />
+&emsp;&emsp;&emsp;&emsp;tests.py<br />
+&emsp;&emsp;\auth_app<br />
+&emsp;&emsp;&emsp;&emsp;models.py<br />
+&emsp;&emsp;&emsp;&emsp;views.py<br />
+&emsp;&emsp;&emsp;&emsp;custom_auth.py (see note 3)<br />
+&emsp;&emsp;&emsp;&emsp;admin.py<br />
+&emsp;&emsp;&emsp;&emsp;apps.py<br />
+&emsp;&emsp;&emsp;&emsp;\management<br />
+&emsp;&emsp;&emsp;&emsp;\migrations<br />
+&emsp;&emsp;&emsp;&emsp;\templates<br />
+&emsp;&emsp;&emsp;&emsp;tests.py<br />
+&emsp;&emsp;db.sqlite3 (see note 4)<br />
 Pipfile<br />
 README.md (this file)<br />
 api-endpoints.md (see note 5) <br />
