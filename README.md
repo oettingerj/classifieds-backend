@@ -10,9 +10,31 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
-&emsp;[Database Setup](<#database-setup>)<br />
+&emsp;[Database Setup](<#Database-Setup>)<br />
+SQLite Database Creation
+PostgreSQL Database Creation
+Django Database Configuration
+
 &emsp;[Environment Setup](<#environment-setup>)<br />
+Core Tool Installation
+Installing the Xcode Command Line Tools (macOS only)
+Cloning the repo
+Homebrew Installation
+Python3 Installation
+SQLite Installation
+PostgreSQL Installation
+Pipenv Installation
+Dependency Installation from the Pipfile
+Carleton VPN Installation
+Environment Setup Troubleshooting
+
+
+
 &emsp;[Running the Server](<#running-the-server>)<br />
+Server Troubleshooting
+
+
+
 &emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy--nomenclature>)<br />
 &emsp;[The File Hierarchy](<#the-file-hierarchy>)<br />
 &emsp;[Data Flow](<#data-flow>)<br />
