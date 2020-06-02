@@ -46,7 +46,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 [**References**](<#references>)<br />
 
 # Django: The Backend Web Framework
-[Django](<https://www.djangoproject.com>) is a Python web framework that is used mainly for backend web development. This document will overview the necessary steps to get Django up and running (setting up the database, setting up the environment on which Django will run, and finally starting the Django server), and will also provide an overview of how Django functions in general and how this project is structured in particular.
+[Django](<https://www.djangoproject.com>) is a Python [web framework](<https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Web_frameworks>) that is used mainly for backend web development. This document will overview the necessary steps to get Django up and running (setting up the database, setting up the environment on which Django will run, and finally starting the Django server), and will also provide an overview of how Django functions in general and how this project is structured in particular.
 ## Database Setup
 Django requires a connection to a database to be operational. That database can either exist locally on the machine that runs the Django server, or it can exist on another server entirely. By default, Django will create a SQLite database on the machine where the Django server is run. As of version 1.0.0 of this repo, however, a Linux virtual machine (VM) at Carleton is being used to host a PostgreSQL database.
 ### SQLite Database Creation
