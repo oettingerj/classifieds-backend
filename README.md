@@ -38,7 +38,7 @@ If Django is configured to its default settings (shown below), and SQLite is ins
 
 ### PostgreSQL Database Creation
 If Django is configured to, it can connect to a remote database. Unlike when using SQLite, Django will not create a new database on the remote server running PostgreSQL if the database does not yet exist. As of version 1.0.0 of this repo, a Linux virtual machine at Carleton is hosting a PostgreSQL database. If a new remote database needs to be created, the following instructions should be performed:
-1. `ssh` onto a remote machine as root
+1. `ssh` onto a remote machine as root that will host the database
 2. Install PostgreSQL (if you have installed Homebrew on the remote server, you can install PostgreSQL with `brew install postgresql`) on the remote server
 3. Assume the role of the postgres superuser by entering the command `sudo su - postgres`
 4. Login to the PostgreSQL database with the command `psql -U postgres`
