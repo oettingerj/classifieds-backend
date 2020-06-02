@@ -16,7 +16,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
 &emsp;&emsp;[**Environment Setup**](<#environment-setup>)<br />
 &emsp;&emsp;&emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp[Installing the Xcode Command Line Tools (macOS only)](<#Installing-the-Xcode-Command-Line-Tools-macOS-only>)<br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Installing the Xcode Command Line Tools (macOS only)](<#Installing-the-Xcode-Command-Line-Tools-macOS-only>)<br />
 &emsp;&emsp;&emsp;&emsp;[Cloning the repo](<#Cloning-the-repo>)<br />
 &emsp;&emsp;&emsp;&emsp;[Homebrew Installation](<#Homebrew-Installation>)<br />
 &emsp;&emsp;&emsp;&emsp;[Python3 Installation](<#Python3-Installation>)<br />
