@@ -145,7 +145,7 @@ As of version 1.0.0 of this repo, connection to the database requires that the m
 ### Environment Setup Troubleshooting
 Generally, errors during environment setup are due to missing prerequisitive software (including missing the most recent version), or the inability for the machine to find the prerequistive software. The following notes may be helpful generally, and certain parts of the instructions above may refer you to specific notes.
 1. The "LIBRARY_PATH" variable may be incorrectly set; if on macOS, run the command `export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/` to allow for the successful installation of psycopg2. Note that closing and reopening a command line session will reset this variable, as will sourcing your .bash_profile or .bash_rc file.
-2. "wheel" may be out of date; it can be updated with `pip3 install —upgrade wheel`
+2. "wheel" may be out of date; it can be updated with `pip3 install --upgrade wheel`
 3. postgresql may be out of date; it can be updated with `brew upgrade postgresql`
 
 ## Running the Server
