@@ -239,16 +239,6 @@ As POST requests change data in the database, it is even more critical for the a
 7. Change the url to direct to the appropriate endpoint, ensuring the presence of the trailing forward slash as appropriate
 8. Send the request 
 
-## Running the Server
-
-### Installing Dependencies
-The dependencies are delinitated in the Pipfile (contained in the root directory of this repo), and they can be installed using pipenv.
-
-### Starting the Server
-The server can be started from a local machine as follows:
-1. cd to classifieds_project (the outer project directory)
-2. run the command "python3 manage.py runserver"
-
 # References
 In the construction of this README.md file and development of this repository, the following sources were consulted:
 - [Django documentation: general (Django Software Foundation)](https://docs.djangoproject.com/en/3.0/)
