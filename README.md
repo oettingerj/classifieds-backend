@@ -47,9 +47,7 @@ If Django is configured to, it can connect to a remote database. Unlike when usi
 7. [Grant privileges](<https://www.postgresql.org/docs/12/ddl-priv.html>) to the new user so they can interact as necessary with the new database (granting access control list values of `CTc` is recommended)
 8. Modify Django's database configuration settings as necessary (refer to Database configuration version 2.0 below).
 
-
-### PostgreSQL Database Creation
-### Django Configuration
+### Django Database Configuration
 Configuration settings for Django's connection to a database can be found in `classifieds_project/classifieds_project/settings.py`. In particular, is the constant `DATABASES` in `settings.py` that dictates the connection settings. Django's default setting is as follows:
 ```python
 #Database configuration version 1.0
