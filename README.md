@@ -77,7 +77,7 @@ DATABASES = {
 }
 ```
 
-## Environnment Setup
+## Environment Setup
 This section provides instructions for how to setup a machine on which the Django server can run. These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
 
 ### Core Tool Installation
