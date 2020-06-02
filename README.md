@@ -126,6 +126,10 @@ To run the Django server, perform the following actions:
 1. Navigate to `classifieds_project` (the outer project directory; see note 1 in "The File Hierarchy" section below for reference)
 2. Start the server with the command `pipenv run python3 manage.py runserver`. Alternatively, you may activate the project's Python virtual enviornment separately with `pipenv shell` and then run `python3 manage.py runserver` inside of the shell. Recall that exiting the shell may require a different key sequence than stopping the server. (On macOS, existing the shell can be accomplished via control-D.)
 
+### Server Troubleshooting
+Check for these possible issues when attempting to start and/or access the Django server:
+1. If you're connecting to the Linux VM at Carleton to access the PostgreSQL database (which is true as of version 1.0.0 of this repo), you'll need to have the Carleton VPN turned on (or be on campus).
+2. By default the Django server is accessed on HTTP port 8000. Verify that when you started the server you did not specify a different port, or if you did, be sure the url you're using to access the Django server reflects that.
 
 ## Organizational Hierarchy & Nomenclature
 An instance of a collective hierarchy of files whose purpose is to instruct Django for a particular web-app is known as a project (called “classifieds_project” for this project). A project contains at least one app. An app is a collection of files that govern Django’s operation as it relates to a specific domain. The scope of such a domain is variable, and is discretionary. One may elect to consolidate all behavior to a single app, or distribute it across multiple apps. 
