@@ -99,31 +99,6 @@ WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-#DATABASES = {
-    # superuser name and password are the same as below
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'classifieds', #os.path.join(BASE_DIR, 'db.sqlite3'),
-#        'USER': 'sampleuser',
-#        'PASSWORD': 'password',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'classifieds',
-#         'USER': 'comps',
-#         'PASSWORD': 'Compsrox236!',
-#         'HOST': 'classifieds.mathcs.carleton.edu',
-#         'PORT': '',
-#     }
-# }
-
-
-
 #Settings for local SQLite db
 # DATABASES = {
 #     'default': {
@@ -133,12 +108,15 @@ WSGI_APPLICATION = 'classifieds_project.wsgi.application'
 # }
 
 #Settings for PostgreSQL db
+#NOTICE: <PostgreSQL_username> and <PostgreSQL_user_password> must be substituted for their
+#actual values in order to establish a connection to this database. Refer to this repo's
+#README.md file for access instructions.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'classifieds',
-        'USER': 'comps',
-        'PASSWORD': 'Compsrox236!',
+        'USER': '<PostgreSQL_username>',
+        'PASSWORD': '<PostgreSQL_user_password>',
         'HOST': 'classifieds.mathcs.carleton.edu',
         'PORT': '',
         'TEST': { #configuration for unit testing
