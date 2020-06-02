@@ -11,27 +11,27 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
 &emsp;[Database Setup](<#Database-Setup>)<br />
-SQLite Database Creation
-PostgreSQL Database Creation
-Django Database Configuration
+&emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)
+&emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)
+&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)
 
 &emsp;[Environment Setup](<#environment-setup>)<br />
-Core Tool Installation
-Installing the Xcode Command Line Tools (macOS only)
-Cloning the repo
-Homebrew Installation
-Python3 Installation
-SQLite Installation
-PostgreSQL Installation
-Pipenv Installation
-Dependency Installation from the Pipfile
-Carleton VPN Installation
-Environment Setup Troubleshooting
+&emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
+&emsp;&emsp;&emsp[Installing the Xcode Command Line Tools (macOS only)](<#Installing the Xcode Command Line Tools (macOS only)>)<br />
+&emsp;&emsp;[Cloning the repo](<#Cloning-the-repo>)<br />
+&emsp;&emsp;[Homebrew Installation](<#Homebrew-Installation>)<br />
+&emsp;&emsp;[Python3 Installation](<#Python3-Installation>)<br />
+&emsp;&emsp;[SQLite Installation](<#SQLite-Installation>)<br />
+&emsp;&emsp;[PostgreSQL Installation](<#PostgreSQL-Installation>)<br />
+&emsp;&emsp;[Pipenv Installation](<#Pipenv-Installation>)<br />
+&emsp;&emsp;[Dependency Installation from the Pipfile](<#Dependency-Installation-from-the-Pipfile>)<br />
+&emsp;&emsp;[Carleton VPN Installation](<#Carleton-VPN-Installation>)<br />
+&emsp;&emsp;[Environment Setup Troubleshooting](<#Environment-Setup-Troubleshooting>)<br />
 
 
 
 &emsp;[Running the Server](<#running-the-server>)<br />
-Server Troubleshooting
+&emsp;&emsp;[Server Troubleshooting](<#Server-Troubleshooting>)<br />
 
 
 
