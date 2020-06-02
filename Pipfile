@@ -13,6 +13,7 @@ pillow = "*"
 django-cors-headers = "*"
 django-reset-migrations = "*"
 google-auth = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.7"
