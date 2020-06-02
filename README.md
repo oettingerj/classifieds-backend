@@ -13,6 +13,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;[**Database Setup**](<#Database-Setup>)<br />
 &emsp;&emsp;&emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
 &emsp;&emsp;&emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
+&emsp;&emsp;&emsp;&emsp;[Connecting to the Linux VM at Carleton](<#Connecting-to-the-Linux-VM-at-Carleton>)
 &emsp;&emsp;&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
 &emsp;&emsp;[**Environment Setup**](<#environment-setup>)<br />
 &emsp;&emsp;&emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
@@ -53,7 +54,7 @@ Django requires a connection to a database to be operational. That database can 
 If Django is configured to its default settings (shown below), and SQLite is installed (see SQLite Installation in Environment Setup), a new SQLite database will automatically be created on a machine that starts the Django server, unless such a database already exists.
 
 ### PostgreSQL Database Creation
-If Django is configured to, it can connect to a remote database. Unlike when using SQLite, Django will not create a new database on the remote server running PostgreSQL if the database does not yet exist. As of version 1.0.0 of this repo, a Linux virtual machine at Carleton is hosting a PostgreSQL database. If a new remote database needs to be created, the following steps should be performed:
+If Django is configured to, it can connect to a remote database. Unlike when using SQLite, Django will not create a new database on the remote server running PostgreSQL if the database does not yet exist. As of version 1.0.0 of this repo, a Linux VM (virtual machine) at Carleton is hosting a PostgreSQL database (see next section for how to connect). If a new remote database needs to be created, the following steps should be performed:
 1. `ssh` onto a remote machine as root that will host the database
 2. Install PostgreSQL (if you have installed Homebrew on the remote server, you can install PostgreSQL with `brew install postgresql`) on the remote server
 3. Assume the role of the postgres superuser by entering the command `sudo su - postgres`
@@ -62,6 +63,17 @@ If Django is configured to, it can connect to a remote database. Unlike when usi
 6. [Create a new database](<https://www.postgresql.org/docs/current/tutorial-createdb.html>)
 7. [Grant privileges](<https://www.postgresql.org/docs/12/ddl-priv.html>) to the new user so they can interact as necessary with the new database (granting access control list values of `CTc` is recommended)
 8. Modify Django's database configuration settings as necessary (refer to Database configuration version 2.0 below).
+
+### Connecting to the Linux VM at Carleton
+As of version 1.0.0 of this repo, a Linux VM at Carleton is hosting a PostgreSQL database. This sections provides instructions for connecting to that VM for management and inspection purposes only. These steps are not required for Django to connect to the database (the next section details the necessary configuration instructions).
+1. `ssh` onto the remote server at `classifieds.mathcs.carleton.edu` as the user `classifieds` (that is, execute the command `ssh classifieds@classifieds.mathcs.carleton.edu`)
+2. Enter the password `Compsrox236!`
+3. Assume the role of the postgres superuser by entering the command `sudo su - postgres` (use the same password as above if prompted)
+4. Login to the PostgreSQL database with the command `psql -U postgres`
+5. List all the databases by entering the command `\l` and notice the database named `classifieds`
+6. Connect to the `classifieds` database with the command `\c classifieds`
+7. Show all tables in the database by entering the command `\dt`
+8. From here, perform instructions using SQL to view or modify contents of this database's relations
 
 ### Django Database Configuration
 Configuration settings for Django's connection to a database can be found in `classifieds_project/classifieds_project/settings.py`. In particular, is the constant `DATABASES` in `settings.py` that dictates the connection settings. Django's default setting is as follows:
