@@ -31,6 +31,17 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 [References](<#references>)<br />
 
 # Django: The Backend Web Framework
+## Database Setup
+Django requires a connection to a database to be operational. That database can either exist locally on the machine that runs the Django server, or it can exist on another server entirely. By default, Django will create a SQLite database on the machine where the Django server is run. Configuration settings for Django's connection to a database can be found in `classifieds_project/classifieds_project/settings.py`. In particular, is the constant `DATABASES` in `settings.py` that dictates the connection settings. Django's default settings are as follows: <br />
+```python
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
+}
+```
+
 ## Environnment Setup
 This section provides instructions for how to setup a machine on which the Django server can run. These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
 
