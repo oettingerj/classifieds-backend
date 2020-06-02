@@ -11,13 +11,13 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
 &emsp;[Database Setup](<#Database-Setup>)<br />
-&emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)
-&emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)
-&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)
+&emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
+&emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
+&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
 
 &emsp;[Environment Setup](<#environment-setup>)<br />
 &emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
-&emsp;&emsp;&emsp[Installing the Xcode Command Line Tools (macOS only)](<#Installing the Xcode Command Line Tools (macOS only)>)<br />
+&emsp;&emsp;&emsp;[Installing the Xcode Command Line Tools (macOS only)](<#Installing-the-Xcode-Command-Line-Tools-macOS-only>)<br />
 &emsp;&emsp;[Cloning the repo](<#Cloning-the-repo>)<br />
 &emsp;&emsp;[Homebrew Installation](<#Homebrew-Installation>)<br />
 &emsp;&emsp;[Python3 Installation](<#Python3-Installation>)<br />
