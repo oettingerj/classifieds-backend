@@ -60,16 +60,22 @@ Unless you plan to use a database system other than PostgreSQL, you'll need to i
 [Pipenv](<https://pypi.org/project/pipenv/>) combines multiple tools together, such as pip and virtualenv. It is particularly helpful when installing dependencies from a list that your team has constructed, all the while using the benefits of a [Python virtual environment](<https://docs.python.org/3/tutorial/venv.html>). Pipenv can be installed by executing `pip3 install pipenv`.
 
 ### Dependency Installation from the Pipfile
-With pipenv installed, the remaining dependencies can be installed efficiently in a single motion. In a command line interface, begin by navigating to the root directory of the repo, which contains the file "Pipfile" among other contents. Create a Python virtual environment and spawn an associated shell by running the commmand `pipenv shell --three` (note that the argument "three" is specified to make a Python virtual environment for Python3 specifically). To install the dependencies as deliniated in the Pipfile, enter `pipenv install`. Exit the shell (on macOS, use control-D).
+With pipenv installed, the remaining dependencies can be installed efficiently in a single motion. In a command line interface, begin by navigating to the root directory of the repo, which contains the file "Pipfile" among other contents. Create a Python virtual environment and spawn an associated shell by running the commmand `pipenv shell --three` (note that the argument "three" is specified to make a Python virtual environment for Python3 specifically). To install the dependencies as deliniated in the Pipfile, enter `pipenv install`. Please see troubleshooting note 1 if this fails. Exit the shell (on macOS, use control-D).
 
 ### Carleton VPN Installation
-As of version 1.0.0 of this repo, connection to the database requires that the machine that runs the Django server have a Carleton ip address. This can be achieved by installing and running the VPN that Carleton provides. Please refer to Carleton ITS's [instructions for downloading, installing, and running the VPN](<https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN>). Following installation, please activate the VPN on your machine.
+As of version 1.0.0 of this repo, connection to the database requires that the machine that runs the Django server have a Carleton ip address. This can be achieved by installing and running the VPN that Carleton provides. Please refer to Carleton ITS's [instructions for downloading, installing, and running the VPN](<https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN>). Following installation, please activate the VPN on your machine. This marks the end of the environment setup! Woo hoo! You're well on your way to running the Django server!
 
-### Environment Setup Complete
-This marks the end of the environment setup! Woo hoo! You're well on your way to running the Django server!
+### Environment Setup Troubleshooting
+Generally, errors during environment setup are due to missing prerequisitive software (including missing the most recent version), or the inability for the machine to find the prerequistive software. The following notes may be helpful generally, and certain parts of the instructions above may refer you to specific notes.
+1. The "LIBRARY_PATH" variable may be incorrectly set; if on macOS, run the command `export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/` to allow for the successful installation of psycopg2. Note that closing and reopening a command line session will reset this variable, as will sourcing your .bash_profile or .bash_rc file.
+2. "wheel" may be out of date; it can be updated with `pip3 install —upgrade wheel`
+3. postgresql may be out of date; it can be updated with `brew upgrade postgresql`
 
 ## Running the server
-To run the Django server 
+To run the Django server, perform the following actions:
+
+1. Navigate to `classifieds_project` (the outer project directory; see note 1 in "The File Hierarchy" section below for reference)
+2. Start the server with the command `pipenv run python3 manage.py runserver`. Alternatively, you may activate the project's Python virtual enviornment separately with `pipenv shell` and then run `python3 manage.py runserver` inside of the shell.
 
 
 ## Organizational Hierarchy & Nomenclature
