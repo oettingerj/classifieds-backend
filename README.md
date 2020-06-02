@@ -113,6 +113,10 @@ DATABASES = {
 ## Environment Setup
 This section provides instructions for how to setup a machine on which the Django server can run. These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
 
+If performing these instructions on a Carleton-owned machine, the usage of `brew` (i.e. Homebrew) will not work; such readers are advised to follow the instructions below, but to employ alternate installation methods that do not require `brew`. 
+
+If not performing these instructions on a Carleton-owned machine, the usage of `brew` is critical when following the instructions as written. **Be advised that any deviation from these instructions, including skipping sections for dependencies that may already be installed, may cause unintended consequences.** In particular, any instructions that specify installation of a dependency with `brew` should be followed explicitly; if you installed such a dependency another way, it is advised that you uninstall it and install it again with `brew`. 
+
 ### Core Tool Installation
 Fundamental tools, especially git, are required for the further setup of the environment. Users of macOS can install the Xcode command line tools which will ensure the installation of all such tools; users of other operating systems are encouraged to install [git](<https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>) using a method of their choice, and install any other programs as instructed by the command line interface.
 
