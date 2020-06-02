@@ -1,12 +1,17 @@
 **NOTICE**<br />
-This repository contains passwords stored in plaintext (including in this file) and therefore should not be made public in its current state. Also note that this README.md file (generally) follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
+Former versions of this repository contained passwords and usernames stored in plaintext (in this file, and in settings.py) and therefore unless such revision history has been deleted or obscured to prevent the recovery of such secure information, or unless all such usernames and passwords have since been invalidated, **THIS REPOSITORY SHOULD NOT BE MADE PUBLIC**.
+
+Since version 1.0.1 of this repo, and version 1.1.1 of this file, such usernames and passwords exist only as references. The values for such entities are contained in a document entitled `CarletonClassifiedsCredentials.txt`. Requests to access this document should be made to Professor Sneha Narayan. Note that upon substitution of these references for their actual values in `settings.py`, subsequent pushing of this repository would compromise the security afforded by this new apparatus. Is is therefore advised that `settings.py` be included in the `.gitignore` file for this repository once all group members have cloned the repository (as of version 1.0.1 of this repo it is not included), or that an encryption tactic is employed.
+
+This README.md file (generally) follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
 
 **About**<br />
-Last updated (this file): 6/1/2020<br />
-Version (of repo): 1.0.0<br />
-Version (of this file): 1.1.0 <br />
+Last updated (this file): 6/2/2020<br />
+Version (of repo): 1.0.1<br />
+Version (of this file): 1.1.1 <br />
 Content: This repository contains the code for the backend of the Carleton Classified web-app. This backend is constructed using the web framework Django.<br />
 Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
+Mentors: special thanks to Sneha Narayan for her guidance and mentorship throughout this project, and to Mike Tie for providing his technical expertise.
 
 **Table of Contents**<br />
 [**Django: The Backend Web Framework**](<#django-the-backend-web-framework>)<br />
@@ -66,7 +71,7 @@ If Django is configured to, it can connect to a remote database. Unlike when usi
 
 ### Connecting to the Linux VM at Carleton
 As of version 1.0.0 of this repo, a Linux VM at Carleton is hosting a PostgreSQL database. This sections provides instructions for connecting to that VM for management and inspection purposes only. These steps are not required for Django to connect to the database (the next section details the necessary configuration instructions).
-1. `ssh` onto the remote server at `classifieds.mathcs.carleton.edu` as the user `<classifieds.mathcs.carleton.edu_root_username>` (that is, execute the command `ssh <classifieds.mathcs.carleton.edu_root_username>@classifieds.mathcs.carleton.edu`)
+1. `ssh` onto the remote server at `classifieds.mathcs.carleton.edu` as the user `<classifieds.mathcs.carleton.edu_root_username>` (that is, execute the command `ssh <classifieds.mathcs.carleton.edu_root_username>@classifieds.mathcs.carleton.edu`)--please refer to the note at the top of this file on how to access the username value, among other secure information that is not present explicitly in this repo.
 2. Enter the password `<classifieds.mathcs.carleton.edu_root_password>`
 3. Assume the role of the postgres superuser by entering the command `sudo su - postgres` (use the same password as above if prompted)
 4. Login to the PostgreSQL database with the command `psql -U postgres`
