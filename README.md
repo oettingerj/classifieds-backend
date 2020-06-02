@@ -62,12 +62,12 @@ If Django is configured to, it can connect to a remote database. Unlike when usi
 5. [Create a new user](<https://www.postgresql.org/docs/current/sql-createuser.html>)
 6. [Create a new database](<https://www.postgresql.org/docs/current/tutorial-createdb.html>)
 7. [Grant privileges](<https://www.postgresql.org/docs/12/ddl-priv.html>) to the new user so they can interact as necessary with the new database (granting access control list values of `CTc` is recommended)
-8. Modify Django's database configuration settings as necessary (refer to Database configuration version 2.0 below).
+8. Modify Django's database configuration settings as necessary (refer to Database configuration version 2.0 below in the Django Database Configuration section), where in the `DATABASES` constant in `settings.py`, `USER` is set to the name of the user you created, `PASSWORD` is set to the password of the user you created, and `NAME` is set to the name of the database you created.
 
 ### Connecting to the Linux VM at Carleton
 As of version 1.0.0 of this repo, a Linux VM at Carleton is hosting a PostgreSQL database. This sections provides instructions for connecting to that VM for management and inspection purposes only. These steps are not required for Django to connect to the database (the next section details the necessary configuration instructions).
-1. `ssh` onto the remote server at `classifieds.mathcs.carleton.edu` as the user `classifieds` (that is, execute the command `ssh classifieds@classifieds.mathcs.carleton.edu`)
-2. Enter the password `Compsrox236!`
+1. `ssh` onto the remote server at `classifieds.mathcs.carleton.edu` as the user `<classifieds.mathcs.carleton.edu_root_username>` (that is, execute the command `ssh <classifieds.mathcs.carleton.edu_root_username>@classifieds.mathcs.carleton.edu`)
+2. Enter the password `<classifieds.mathcs.carleton.edu_root_password>`
 3. Assume the role of the postgres superuser by entering the command `sudo su - postgres` (use the same password as above if prompted)
 4. Login to the PostgreSQL database with the command `psql -U postgres`
 5. List all the databases by entering the command `\l` and notice the database named `classifieds`
@@ -93,8 +93,8 @@ DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME': 'classifieds',
-		'USER': 'comps',
-		'PASSWORD': 'Compsrox236!',
+		'USER': '<PostgreSQL_username>',
+		'PASSWORD': '<PostgreSQL_user_password>',
 		'HOST': 'classifieds.mathcs.carleton.edu',
 		'PORT': '',
 		'TEST': { #configuration for unit testing
