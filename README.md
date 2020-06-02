@@ -1,5 +1,5 @@
 **NOTICE**<br />
-This repository contains passwords stored in plaintext and therefore should not be made public in its current state. Also note that this README.md file (generally) follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
+This repository contains passwords stored in plaintext (including in this file) and therefore should not be made public in its current state. Also note that this README.md file (generally) follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
 
 **About**<br />
 Last updated (this file): 6/1/2020<br />
@@ -32,7 +32,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 # Django: The Backend Web Framework
 ## Database Setup
-Django requires a connection to a database to be operational. That database can either exist locally on the machine that runs the Django server, or it can exist on another server entirely. By default, Django will create a SQLite database on the machine where the Django server is run. Configuration settings for Django's connection to a database can be found in `classifieds_project/classifieds_project/settings.py`. In particular, is the constant `DATABASES` in `settings.py` that dictates the connection settings. Django's default settings are as follows: <br />
+Django requires a connection to a database to be operational. That database can either exist locally on the machine that runs the Django server, or it can exist on another server entirely. By default, Django will create a SQLite database on the machine where the Django server is run. Configuration settings for Django's connection to a database can be found in `classifieds_project/classifieds_project/settings.py`. In particular, is the constant `DATABASES` in `settings.py` that dictates the connection settings. Django's default setting is as follows:
 ```python
 DATABASES = {
 	'default': {
@@ -41,6 +41,25 @@ DATABASES = {
 	}
 }
 ```
+As of version 1.0.0 of this repo, however, a Linux VM at Carleton is being used to host a PostgreSQL database. As of this version, the `DATABASES` constant is set as follows:
+```python
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': 'classifieds',
+		'USER': 'comps',
+		'PASSWORD': 'Compsrox236!',
+		'HOST': 'classifieds.mathcs.carleton.edu',
+		'PORT': '',
+		'TEST': { #configuration for unit testing
+			'NAME': 'classifieds_project_test',
+
+		},
+	}
+}
+```
+
+
 
 ## Environnment Setup
 This section provides instructions for how to setup a machine on which the Django server can run. These setup instructions assume that you are working in a linux-based environment (namely, the macOS operating system, Windows Subsystem for Linux in a Windows operating system, or a distro of the Linux operating system itself). Windows users are advised to install [Windows Subsystem for Linux](<https://docs.microsoft.com/en-us/windows/wsl/install-win10>). Readers are advised to sequentially follow the instructions in this "Environment Setup" section, skipping any steps that have already been performed.
@@ -64,8 +83,11 @@ Homebrew is a package manager for Linux-based operating systems (including macOS
 ### Python3 Installation
 Python 2 is pre-installed on most versions of macOS; Python 3, however, requires installation. Other operating systems will also likely require the installation of Python 3. Python 3 is perhaps most easily installed using the program previous installed, Homebrew. To install Python 3, enter the command `brew install python`.
 
+### SQLite Installation
+SQLite can be installed with the command `brew install sqlite3`
+
 ### PostgreSQL Installation
-Unless you plan to use a database system other than PostgreSQL, you'll need to install it on your machine. It can be installed with the command `brew install postgresql`
+PostgreSQL can be installed with the command `brew install postgresql`
 
 ### Pipenv Installation
 [Pipenv](<https://pypi.org/project/pipenv/>) combines multiple tools together, such as pip and virtualenv. It is particularly helpful when installing dependencies from a list that your team has constructed, all the while using the benefits of a [Python virtual environment](<https://docs.python.org/3/tutorial/venv.html>). Pipenv can be installed by executing `pip3 install pipenv`.
