@@ -14,7 +14,6 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
 &emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
 &emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
-
 &emsp;[Environment Setup](<#environment-setup>)<br />
 &emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
 &emsp;&emsp;&emsp;[Installing the Xcode Command Line Tools (macOS only)](<#Installing-the-Xcode-Command-Line-Tools-macOS-only>)<br />
@@ -27,14 +26,8 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;[Dependency Installation from the Pipfile](<#Dependency-Installation-from-the-Pipfile>)<br />
 &emsp;&emsp;[Carleton VPN Installation](<#Carleton-VPN-Installation>)<br />
 &emsp;&emsp;[Environment Setup Troubleshooting](<#Environment-Setup-Troubleshooting>)<br />
-
-
-
 &emsp;[Running the Server](<#running-the-server>)<br />
 &emsp;&emsp;[Server Troubleshooting](<#Server-Troubleshooting>)<br />
-
-
-
 &emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy--nomenclature>)<br />
 &emsp;[The File Hierarchy](<#the-file-hierarchy>)<br />
 &emsp;[Data Flow](<#data-flow>)<br />
