@@ -10,7 +10,7 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
-&emsp;[Database Setup](<#Database-Setup>)<br />
+&emsp;**[Database Setup]**(<#Database-Setup>)<br />
 &emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
 &emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
 &emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
