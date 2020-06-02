@@ -1,5 +1,8 @@
+<style>p{color:red;}</style>
+<p><em>foo</em></p>
+
 **NOTICE**<br />
-This repository contains $\color{00F9DE}{your-text-here}$passwords stored in plaintext and therefore should not be made public in its current state. Also note that this README.md file follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
+This repository contains passwords stored in plaintext and therefore should not be made public in its current state. Also note that this README.md file follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
 
 **About**<br />
 Last updated (this file): 6/1/2020<br />
