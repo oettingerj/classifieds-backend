@@ -10,6 +10,9 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 **Table of Contents**<br />
 [Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
+&emsp;[Database Setup](<#database-setup>)<br />
+&emsp;[Environment Setup](<#environment-setup>)<br />
+&emsp;[Running the Server](<#running-the-server>)<br />
 &emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy--nomenclature>)<br />
 &emsp;[The File Hierarchy](<#the-file-hierarchy>)<br />
 &emsp;[Data Flow](<#data-flow>)<br />
@@ -25,9 +28,6 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;&emsp;&emsp;[Logging in](<#logging-in>)<br />
 &emsp;&emsp;&emsp;&emsp;[GET Requests](<#get-requests>)<br />
 &emsp;&emsp;&emsp;&emsp;[POST Requests](<#post-requests>)<br />
-&emsp;[Running the Server](<#running-the-server>)<br />
-&emsp;&emsp;[Installing Dependencies](<#installing-dependencies>)<br />
-&emsp;&emsp;[Starting the Server](<#starting-the-server>)<br />
 [References](<#references>)<br />
 
 # Django: The Backend Web Framework
@@ -120,7 +120,7 @@ Generally, errors during environment setup are due to missing prerequisitive sof
 2. "wheel" may be out of date; it can be updated with `pip3 install —upgrade wheel`
 3. postgresql may be out of date; it can be updated with `brew upgrade postgresql`
 
-## Running the server
+## Running the Server
 To run the Django server, perform the following actions:
 
 1. Navigate to `classifieds_project` (the outer project directory; see note 1 in "The File Hierarchy" section below for reference)
