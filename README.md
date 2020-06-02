@@ -9,12 +9,12 @@ Content: This repository contains the code for the backend of the Carleton Class
 Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 
 **Table of Contents**<br />
-[Django: The Backend Web Framework](<#django-the-backend-web-framework>)<br />
+[**Django: The Backend Web Framework**](<#django-the-backend-web-framework>)<br />
 &emsp;[**Database Setup**](<#Database-Setup>)<br />
 &emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
 &emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
 &emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
-&emsp;[Environment Setup](<#environment-setup>)<br />
+&emsp;[**Environment Setup**](<#environment-setup>)<br />
 &emsp;&emsp;[Core Tool Installation](<#Core-Tool-Installation>)<br />
 &emsp;&emsp;&emsp;[Installing the Xcode Command Line Tools (macOS only)](<#Installing-the-Xcode-Command-Line-Tools-macOS-only>)<br />
 &emsp;&emsp;[Cloning the repo](<#Cloning-the-repo>)<br />
@@ -26,24 +26,24 @@ Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 &emsp;&emsp;[Dependency Installation from the Pipfile](<#Dependency-Installation-from-the-Pipfile>)<br />
 &emsp;&emsp;[Carleton VPN Installation](<#Carleton-VPN-Installation>)<br />
 &emsp;&emsp;[Environment Setup Troubleshooting](<#Environment-Setup-Troubleshooting>)<br />
-&emsp;[Running the Server](<#running-the-server>)<br />
+&emsp;[**Running the Server**](<#running-the-server>)<br />
 &emsp;&emsp;[Server Troubleshooting](<#Server-Troubleshooting>)<br />
-&emsp;[Organizational Hierarchy & Nomenclature](<#organizational-hierarchy--nomenclature>)<br />
-&emsp;[The File Hierarchy](<#the-file-hierarchy>)<br />
-&emsp;[Data Flow](<#data-flow>)<br />
+&emsp;[**Organizational Hierarchy & Nomenclature**](<#organizational-hierarchy--nomenclature>)<br />
+&emsp;[**The File Hierarchy**](<#the-file-hierarchy>)<br />
+&emsp;[**Data Flow**](<#data-flow>)<br />
 &emsp;&emsp;[URL mapper](<#url-mapper>)<br />
 &emsp;&emsp;[View](<#view>)<br />
 &emsp;&emsp;[Model](<#model>)<br />
 &emsp;&emsp;[Serializers](<#serializers>)<br />
 &emsp;&emsp;[MVT Architecture](<#mvt-architecture>)<br />
-&emsp;[API Endpoints](<#api-endpoints>)<br />
+&emsp;[**API Endpoints**](<#api-endpoints>)<br />
 &emsp;&emsp;[Testing](<#testing>)<br />
 &emsp;&emsp;&emsp;[Google id_token Generation](<#google-id_token-generation>)<br />
 &emsp;&emsp;&emsp;[Sending an HTTP Request](<#sending-an-http-request>)<br />
 &emsp;&emsp;&emsp;&emsp;[Logging in](<#logging-in>)<br />
 &emsp;&emsp;&emsp;&emsp;[GET Requests](<#get-requests>)<br />
 &emsp;&emsp;&emsp;&emsp;[POST Requests](<#post-requests>)<br />
-[References](<#references>)<br />
+[**References**](<#references>)<br />
 
 # Django: The Backend Web Framework
 ## Database Setup
