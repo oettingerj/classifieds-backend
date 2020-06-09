@@ -18,6 +18,8 @@ Mentors: special thanks to Sneha Narayan for her guidance and mentorship through
 &emsp;&emsp;[**Database Setup**](<#Database-Setup>)<br />
 &emsp;&emsp;&emsp;&emsp;[SQLite Database Creation](<#SQLite-Database-Creation>)<br />
 &emsp;&emsp;&emsp;&emsp;[PostgreSQL Database Creation](<#PostgreSQL-Database-Creation>)<br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Restoring a Former PostgreSQL Database](<#Restoring-a-Former-PostgreSQL-Database>)<br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Creating a New PostgreSQL Database](<#Creating-a-New-PostgreSQL-Database>)<br />
 &emsp;&emsp;&emsp;&emsp;[Connecting to the Linux VM at Carleton](<#Connecting-to-the-Linux-VM-at-Carleton>)<br />
 &emsp;&emsp;&emsp;&emsp;[Django Database Configuration](<#Django-Database-Configuration>)<br />
 &emsp;&emsp;[**Environment Setup**](<#environment-setup>)<br />
@@ -59,9 +61,19 @@ Django requires a connection to a database to be operational. That database can 
 If Django is configured to its default settings (shown below), and SQLite is installed (see SQLite Installation in Environment Setup), a new SQLite database will automatically be created on a machine that starts the Django server, unless such a database already exists.
 
 ### PostgreSQL Database Creation
-If Django is configured to, it can connect to a remote database. Unlike when using SQLite, Django will not create a new database on the remote server running PostgreSQL if the database does not yet exist. As of version 1.0.0 of this repo, a Linux VM (virtual machine) at Carleton is hosting a PostgreSQL database (see next section for how to connect). If a new remote database needs to be created, the following steps should be performed. For further detail, please also refer to this [guide on PostgreSQL use an installation on Ubuntu](<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04>).
+If Django is configured to, it can connect to a remote database. Unlike when using SQLite, Django will not create a new database on the remote server running PostgreSQL if the database does not yet exist. As of version 1.0.0 of this repo, a Linux VM (virtual machine) at Carleton is hosting a PostgreSQL database (see next section for how to connect). With the installation of PostgreSQL on a machine, either a previous version of the database used for this project can be restored, or a brand new database can be created. 
+
+#### Restoring a Former PostgreSQL Database
+To restore a former PostgreSQL database (i.e., the database used as of version 1.0.0 of this repo), the following steps should be performed:
+1. If the Linux VM at Carleton that has been used as of version 1.0.0 of this repo to host the PostgreSQL database is no longer active, a new machine (possible virtual) will need to be setup. It is advised that team members seek the guidance of Mike Tie in performing this step.
+2. Install PostgreSQL on the selected (virtual) machine if not already installed
+3. Contact Professor Sneha Narayan to obtain access to the file "db_classifieds_v1.out" which contains the data necessary for restoration. Note that this file may contain instructions to restore multiple databases, although only the database "classifieds" is of particular value.
+4. [Perform the restoration](https://www.postgresql.org/docs/12/app-pgrestore.html) in accordance with the PostgreSQL documentation
+
+#### Creating a New PostgreSQL Database
+If there is no intention to restore a previous version of the database, the following steps should be performed. For further detail, please also refer to this [guide on PostgreSQL use and installation on Ubuntu](<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04>).
 1. `ssh` onto a remote machine as root that will host the database
-2. Install PostgreSQL (if you have installed Homebrew on the remote server, you can install PostgreSQL with `brew install postgresql`) on the remote server
+2. Install PostgreSQL on the remote server
 3. Assume the role of the postgres superuser by entering the command `sudo su - postgres`
 4. Login to the PostgreSQL database with the command `psql -U postgres`
 5. [Create a new user](<https://www.postgresql.org/docs/current/sql-createuser.html>)
