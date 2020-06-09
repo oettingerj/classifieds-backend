@@ -67,7 +67,7 @@ If Django is configured to, it can connect to a remote database. Unlike when usi
 To restore a former PostgreSQL database (i.e., the database used as of version 1.0.0 of this repo), the following steps should be performed:
 1. If the Linux VM at Carleton that has been used as of version 1.0.0 of this repo to host the PostgreSQL database is no longer active, a new machine (possible virtual) will need to be setup. It is advised that team members seek the guidance of Mike Tie in performing this step.
 2. Install PostgreSQL on the selected (virtual) machine if not already installed
-3. Contact Professor Sneha Narayan to obtain access to the file "db_classifieds_v1.out" which contains the data necessary for restoration. Note that this file may contain instructions to restore multiple databases, although only the database "classifieds" is of particular value.
+3. Contact Professor Sneha Narayan to obtain access to the file `db_classifieds_v1.out` which contains the data necessary for restoration. Note that this file may contain instructions to restore multiple databases, although only the database "classifieds" is of particular value.
 4. [Perform the restoration](https://www.postgresql.org/docs/12/app-pgrestore.html) in accordance with the PostgreSQL documentation
 
 #### Creating a New PostgreSQL Database
