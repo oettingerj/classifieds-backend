@@ -6,9 +6,9 @@ Since version 1.0.1 of this repo, and version 1.1.1 of this file, such usernames
 This README.md file (generally) follows the [CommonMark](<https://commonmark.org>) specification of Markdown, and is best read on Github or with any application that can properly render a Markdown file.<br />
 
 **About**<br />
-Last updated (this file): 6/2/2020<br />
+Last updated (this file): 6/9/2020<br />
 Version (of repo): 1.0.1<br />
-Version (of this file): 1.1.1 <br />
+Version (of this file): 1.1.2 <br />
 Content: This repository contains the code for the backend of the Carleton Classified web-app. This backend is constructed using the web framework Django.<br />
 Authors: Danielle Eisen '20, Sophia Maymudes '20, and John Mullan '20<br />
 Mentors: special thanks to Sneha Narayan for her guidance and mentorship throughout this project, and to Mike Tie for providing his technical expertise.
